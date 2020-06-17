@@ -46,6 +46,7 @@ export default defineComponent({
 })
 </script>
 <style>
+/* temporary until i install tailwind */
 #title {
   padding: 0.5%;
   margin-top: 1%;
