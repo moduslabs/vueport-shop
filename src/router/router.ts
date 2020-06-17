@@ -2,7 +2,7 @@ import { createWebHistory } from 'vue-router'
 import { createRouter } from '@modus/ionic-vue'
 
 const home = () => import('@/views/Home.vue')
-const hello = () => import('@/components/HelloWorld.vue')
+const collectionList = () => import('@/components/CollectionList.vue')
 const history = createWebHistory()
 const router = createRouter({
   history,
@@ -16,40 +16,40 @@ const router = createRouter({
     },
     {
       path: '/hello',
-      component: hello,
-      props: { msg: 'Hello World!' },
+      component: collectionList,
+      props: { heading: 'Hello World!', data: [] },
       meta: {
         title: 'Hello - Vue-Port Shop',
       },
     },
     {
       path: '/tshirts',
-      component: hello,
-      props: { msg: 'T-Shirts' },
+      component: collectionList,
+      props: { heading: 'T-Shirts', data: [] },
       meta: {
         title: 'T-Shirts - Vue-Port Shop',
       },
     },
     {
       path: '/hoodies',
-      component: hello,
-      props: { msg: 'Hoodies' },
+      component: collectionList,
+      props: { heading: 'Hoodies', data: [] },
       meta: {
         title: 'Hoodies - Vue-Port Shop',
       },
     },
     {
       path: '/jeans',
-      component: hello,
-      props: { msg: 'Jeans' },
+      component: collectionList,
+      props: { heading: 'Jeans', data: [] },
       meta: {
         title: 'Jeans - Vue-Port Shop',
       },
     },
     {
       path: '/shorts',
-      component: hello,
-      props: { msg: 'Shorts' },
+      component: collectionList,
+      props: { heading: 'Shorts', data: [] },
       meta: {
         title: 'Shorts - Vue-Port Shop',
       },
