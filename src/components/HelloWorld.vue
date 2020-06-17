@@ -11,11 +11,13 @@
 <script lang="ts">
 import { IonContent } from '@modus/ionic-vue'
 import { defineComponent } from 'vue'
+import { RouterLink } from 'vue-router'
 export default defineComponent({
   name: 'HelloWorld',
   components: {
     NavBar: () => import('./NavBar.vue'),
     IonContent,
+    RouterLink,
   },
   props: {
     msg: String,

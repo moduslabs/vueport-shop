@@ -33,6 +33,7 @@
 <script lang="ts">
 import { IonContent, IonButton } from '@modus/ionic-vue'
 import { defineComponent } from 'vue'
+import { RouterLink } from 'vue-router'
 import NavBar from '../components/NavBar.vue'
 export default defineComponent({
   name: 'Home',
@@ -40,6 +41,7 @@ export default defineComponent({
     NavBar,
     IonContent,
     IonButton,
+    RouterLink,
   },
 })
 </script>
