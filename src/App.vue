@@ -5,20 +5,22 @@
 </template>
 
 <script lang="ts">
+import { defineComponent, watch } from "vue";
 import { IonApp, IonRouterView } from "@modus/ionic-vue";
-export default {
+import { useRouter } from "vue-router";
+
+export default defineComponent({
   name: "App",
   components: {
     IonApp,
     IonRouterView,
   },
-  watch: {
-    $route: {
-      immediate: true,
-      handler(to: any, from: any) {
-        document.title = to.meta.title || 'Vue-Port Shop';
-      }
-    },
-  }
-};
+  setup() {
+    const { currentRoute } = useRouter();
+
+    watch(currentRoute, (to) => {
+      document.title = to.meta.title || "Vue-Port Shop";
+    });
+  },
+});
 </script>

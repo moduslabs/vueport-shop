@@ -12,8 +12,10 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 import { IonHeader, IonTitle, IonToolbar, IonLabel } from "@modus/ionic-vue";
-export default {
+
+export default defineComponent({
   name: "HelloWorld",
   props: {
     msg: String,
@@ -24,5 +26,5 @@ export default {
     IonToolbar,
     IonLabel,
   },
-};
+});
 </script>
