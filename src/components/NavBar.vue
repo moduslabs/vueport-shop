@@ -48,8 +48,8 @@ export default defineComponent({
 <style>
 /* temporary until i install tailwind */
 #title {
-  padding: 0.5%;
-  margin-top: 1%;
+  padding: 0.25%;
+  margin-top: 0.5%;
 }
 #title a {
   text-decoration: none;
@@ -57,7 +57,7 @@ export default defineComponent({
 }
 ul#menu li {
   display: inline;
-  padding: 1%;
+  padding: 2%;
   text-decoration: none;
 }
 li a {

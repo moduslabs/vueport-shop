@@ -11,12 +11,10 @@
 <script lang="ts">
 import { IonContent } from '@modus/ionic-vue'
 import { defineComponent } from 'vue'
-import NavBar from './NavBar.vue'
-
 export default defineComponent({
   name: 'HelloWorld',
   components: {
-    NavBar,
+    NavBar: () => import('./NavBar.vue'),
     IonContent,
   },
   props: {
