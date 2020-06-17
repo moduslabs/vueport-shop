@@ -1,19 +1,19 @@
 aliases:
   - &restore-npm-cache
     keys:
-      - v1-dependencies-{{ checksum "package-lock.json" }}
-      - v1-dependencies-master
-      - v1-dependencies-
+      - v2-dependencies-{{ checksum "package-lock.json" }}
+      - v2-dependencies-master
+      - v2-dependencies-
   - &restore-dist-cache
     keys:
-      - v1-dist-{{ .Environment.CIRCLE_SHA1 }}
-      - v1-dist-master
-      - v1-dist-
+      - v2-dist-{{ .Environment.CIRCLE_SHA1 }}
+      - v2-dist-master
+      - v2-dist-
   - &restore-gimbal-cache
     keys:
-      - v1-gimbal-diff-{{ .Environment.CIRCLE_SHA1 }}
-      - v1-gimbal-diff-master
-      - v1-gimbal-diff-
+      - v2-gimbal-diff-{{ .Environment.CIRCLE_SHA1 }}
+      - v2-gimbal-diff-master
+      - v2-gimbal-diff-
 
 defaults: &defaults
   working_directory: /tmp/vueport # need to use full path if using different docker images
