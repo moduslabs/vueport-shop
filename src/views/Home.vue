@@ -1,10 +1,6 @@
 <template>
   <div class="ion-page">
-    <IonHeader>
-      <IonToolbar>
-        <IonTitle>Vue-port Shop</IonTitle>
-      </IonToolbar>
-    </IonHeader>
+    <NavBar />
     <IonLabel>
       <RouterLink to="/hello">Hello World</RouterLink>
     </IonLabel>
@@ -12,14 +8,13 @@
 </template>
 
 <script lang="ts">
-import { IonHeader, IonToolbar, IonTitle, IonLabel } from "@modus/ionic-vue";
+import { IonLabel } from "@modus/ionic-vue";
+import NavBar from '../components/NavBar.vue'
 export default {
   name: "Home",
   components: {
-    IonHeader,
-    IonToolbar,
-    IonTitle,
     IonLabel,
+    NavBar
   },
 };
 </script>

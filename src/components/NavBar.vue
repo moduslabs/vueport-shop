@@ -1,0 +1,54 @@
+<template>
+    <div class="ion-page">
+        <IonHeader>
+            <IonToolbar>
+                <IonTitle id="title"><RouterLink to="/">Vueport Shop</RouterLink></IonTitle>
+                <ul id="menu">
+                    <li><IonLabel><RouterLink to="/tshirts">T-Shirts</RouterLink></IonLabel></li>
+                    <li><IonLabel><RouterLink to="/hoodies">Hoodies</RouterLink></IonLabel></li>
+                    <li><IonLabel><RouterLink to="/jeans">Jeans</RouterLink></IonLabel></li>
+                    <li><IonLabel><RouterLink to="/shorts">Shorts</RouterLink></IonLabel></li>
+                </ul>
+            </IonToolbar>
+        </IonHeader>
+    </div>
+</template>
+<script>
+import {
+IonHeader,
+IonToolbar,
+IonTitle,
+IonLabel
+} from '@modus/ionic-vue';
+export default {
+    name: "NavBar",
+    components: {
+        IonHeader,
+        IonToolbar,
+        IonTitle,
+        IonLabel
+    },
+    props: {
+        currentComponent: String
+    }
+}
+</script>
+<style>
+    #title{
+        padding: 0.5%;
+        margin-top: 1%
+    }
+    #title a{
+      text-decoration: none;
+      color: black;
+    }
+    ul#menu li{
+        display:inline;
+        padding: 1%;
+        text-decoration: none;
+    }
+    li a {
+    text-decoration: none;
+    color: black;
+    }
+</style>

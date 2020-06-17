@@ -1,28 +1,26 @@
 <template>
   <div class="ion-page">
-    <IonHeader>
-      <IonToolbar>
-        <IonTitle>Hello World</IonTitle>
-      </IonToolbar>
-    </IonHeader>
+    <NavBar/>
     <IonLabel>
       <RouterLink to="/">Home Page</RouterLink>
+    </IonLabel>
+    <IonLabel>
+      You are currently on {{msg}}
     </IonLabel>
   </div>
 </template>
 
 <script lang="ts">
-import { IonHeader, IonTitle, IonToolbar, IonLabel } from "@modus/ionic-vue";
+import { IonLabel } from "@modus/ionic-vue";
+import NavBar from './NavBar.vue'
 export default {
   name: "HelloWorld",
   props: {
     msg: String,
   },
   components: {
-    IonHeader,
-    IonTitle,
-    IonToolbar,
     IonLabel,
+    NavBar
   },
 };
 </script>
