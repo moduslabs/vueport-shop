@@ -1,25 +1,28 @@
 <template>
-  <div class="ion-page">
+  <ion-page>
     <IonHeader>
       <IonToolbar>
         <IonTitle>Vue-port Shop</IonTitle>
       </IonToolbar>
     </IonHeader>
-    <IonLabel>
+    <IonContent>
+      <h1>Welcome</h1>
       <RouterLink to="/hello">Hello World</RouterLink>
-    </IonLabel>
-  </div>
+    </IonContent>
+  </ion-page>
 </template>
 
 <script lang="ts">
-import { IonHeader, IonToolbar, IonTitle, IonLabel } from "@modus/ionic-vue";
-export default {
-  name: "Home",
+import { defineComponent } from 'vue'
+import { IonHeader, IonToolbar, IonTitle, IonContent } from '@modus/ionic-vue'
+
+export default defineComponent({
+  name: 'Home',
   components: {
     IonHeader,
     IonToolbar,
     IonTitle,
-    IonLabel,
+    IonContent,
   },
-};
+})
 </script>
