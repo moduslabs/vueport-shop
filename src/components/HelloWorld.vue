@@ -5,18 +5,20 @@
         <IonTitle>Hello World</IonTitle>
       </IonToolbar>
     </IonHeader>
-    <IonLabel>
-      <RouterLink to="/">Home Page</RouterLink>
-    </IonLabel>
+    <main>
+      <IonLabel>
+        <RouterLink to="/">Home Page</RouterLink>
+      </IonLabel>
+    </main>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { IonHeader, IonTitle, IonToolbar, IonLabel } from "@modus/ionic-vue";
+import { defineComponent } from 'vue'
+import { IonHeader, IonTitle, IonToolbar, IonLabel } from '@modus/ionic-vue'
 
 export default defineComponent({
-  name: "HelloWorld",
+  name: 'HelloWorld',
   props: {
     msg: String,
   },
@@ -26,5 +28,5 @@ export default defineComponent({
     IonToolbar,
     IonLabel,
   },
-});
+})
 </script>
