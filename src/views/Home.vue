@@ -1,13 +1,7 @@
 <template>
-  <ion-page>
+  <div class="ion-page">
     <NavBar />
-    <IonContent
-      :scrollEvents="true"
-      @ionScrollStart="logScrollStart()"
-      @ionScroll="logScrolling($event)"
-      @ionScrollEnd="logScrollEnd()"
-      force-overscroll="true"
-    >
+    <IonContent>
       <RouterLink to="/tshirts">
         <img src="../assets/sample.jpg" alt="tshirt" />
       </RouterLink>
@@ -33,7 +27,7 @@
         <IonButton fill="outline">Buy Jeans</IonButton>
       </RouterLink>
     </IonContent>
-  </ion-page>
+  </div>
 </template>
 
 <script lang="ts">

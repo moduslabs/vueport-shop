@@ -1,11 +1,11 @@
 <template>
-  <ion-page>
+  <div class="ion-page">
     <NavBar />
     <IonContent>
       <h1>What's cookin'? You are currently on {{ msg }}</h1>
       <RouterLink to="/">Home Page</RouterLink>
     </IonContent>
-  </ion-page>
+  </div>
 </template>
 
 <script lang="ts">
