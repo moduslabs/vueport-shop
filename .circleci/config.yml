@@ -16,7 +16,7 @@ aliases:
       - v1-gimbal-diff-
 
 defaults: &defaults
-  working_directory: /tmp/adsp-frontend # need to use full path if using different docker images
+  working_directory: /tmp/vueport # need to use full path if using different docker images
   docker:
     - image: circleci/node:12-browsers
 
@@ -32,7 +32,10 @@ jobs:
 
       - run:
           name: Install NPM modules
-          command: npm ci
+          command: |
+            if [ ! -d node_modules ]; then
+              npm ci
+            fi
 
       - save_cache:
           key: v1-dependencies-{{ checksum "package-lock.json" }}
@@ -57,7 +60,7 @@ jobs:
       - save_cache:
           key: v1-dist-{{ .Environment.CIRCLE_SHA1 }}
           paths:
-            - build
+            - dist
 
   gimbal:
     <<: *defaults
