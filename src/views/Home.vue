@@ -1,5 +1,5 @@
 <template>
-  <div class="ion-page">
+  <ion-page>
     <IonHeader>
       <IonToolbar>
         <IonTitle>Vue-port Shop</IonTitle>
@@ -9,12 +9,14 @@
       <h1>Welcome</h1>
       <RouterLink to="/hello">Hello World</RouterLink>
     </IonContent>
-  </div>
+  </ion-page>
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
 import { IonHeader, IonToolbar, IonTitle, IonContent } from '@modus/ionic-vue'
-export default {
+
+export default defineComponent({
   name: 'Home',
   components: {
     IonHeader,
@@ -22,5 +24,5 @@ export default {
     IonTitle,
     IonContent,
   },
-}
+})
 </script>
