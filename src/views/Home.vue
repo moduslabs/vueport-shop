@@ -1,20 +1,22 @@
 <template>
-  <div class="ion-page">
+  <ion-page>
     <NavBar />
-    <IonLabel>
+    <IonContent>
+      <h1>Welcome</h1>
       <RouterLink to="/hello">Hello World</RouterLink>
-    </IonLabel>
-  </div>
+    </IonContent>
+  </ion-page>
 </template>
 
 <script lang="ts">
-import { IonLabel } from "@modus/ionic-vue";
+import { IonContent } from '@modus/ionic-vue'
 import NavBar from '../components/NavBar.vue'
-export default {
-  name: "Home",
+import { defineComponent } from 'vue'
+export default defineComponent({
+  name: 'Home',
   components: {
-    IonLabel,
-    NavBar
+    NavBar,
+    IonContent,
   },
-};
+})
 </script>

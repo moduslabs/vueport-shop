@@ -1,0 +1,96 @@
+aliases:
+  - &restore-npm-cache
+    keys:
+      - v2-dependencies-{{ checksum "package-lock.json" }}
+      - v2-dependencies-master
+      - v2-dependencies-
+  - &restore-dist-cache
+    keys:
+      - v2-dist-{{ .Environment.CIRCLE_SHA1 }}
+      - v2-dist-master
+      - v2-dist-
+  - &restore-gimbal-cache
+    keys:
+      - v2-gimbal-diff-{{ .Environment.CIRCLE_SHA1 }}
+      - v2-gimbal-diff-master
+      - v2-gimbal-diff-
+
+defaults: &defaults
+  working_directory: /tmp/vueport # need to use full path if using different docker images
+  docker:
+    - image: circleci/node:12-browsers
+
+version: 2
+jobs:
+  install-dependencies:
+    <<: *defaults
+
+    steps:
+      - checkout
+
+      - restore_cache: *restore-npm-cache
+
+      - run:
+          name: Install NPM modules
+          command: |
+            if [ ! -d node_modules ]; then
+              npm ci
+            fi
+
+      - save_cache:
+          key: v2-dependencies-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+
+  build:
+    <<: *defaults
+
+    steps:
+      - checkout
+      - restore_cache: *restore-npm-cache
+
+      - run:
+          name: Lint
+          command: npm run lint
+
+      - run:
+          name: Build
+          command: npm run build
+
+      - save_cache:
+          key: v2-dist-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - dist
+
+  gimbal:
+    <<: *defaults
+    docker:
+      - image: moduscreate/gimbal:latest
+    steps:
+      - checkout
+      - restore_cache: *restore-npm-cache
+      - restore_cache: *restore-dist-cache
+      - restore_cache: *restore-gimbal-cache
+      - run:
+          name: Run Gimbal
+          command: gimbal
+      - store_artifacts:
+          path: ./artifacts
+      - save_cache:
+          key: v2-gimbal-diff-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - gimbal.db
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - install-dependencies
+
+      - build:
+          requires:
+            - install-dependencies
+
+      - gimbal:
+          requires:
+            - build

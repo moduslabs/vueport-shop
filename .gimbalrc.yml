@@ -1,0 +1,52 @@
+audits:
+  - axe
+  - size
+  - lighthouse
+  - heap-snapshot
+  - source-map-explorer
+
+configs:
+  buildDir: dist
+  heap-snapshot:
+    threshold:
+      Documents: 20
+      Frames: 10
+      LayoutCount: 20
+      Nodes: 1000
+      RecalcStyleCount: 50
+  lighthouse:
+    threshold:
+      accessibility: 80
+      'best-practices': 80
+      performance: 30
+      pwa: 50
+      seo: 90
+  size:
+    threshold:
+      - path: dist
+        maxSize: 10 MB
+      - path: dist/js/chunk*.js
+        maxSize: 250 KB
+      - path: dist/js/polyfills*.js
+        maxSize: 30 KB
+      - path: dist/js/runtime-*.js
+        maxSize: 3.75 KB
+      - path: dist/index.html
+        maxSize: 8 KB
+outputs:
+  cli:
+    onlyFailures: true
+  html: artifacts/gimbal.html
+  json: artifacts/gimbal.json
+  markdown: artifacts/gimbal.md
+
+plugins:
+  - plugin: '@modus/gimbal-plugin-axe'
+    thresholds:
+      color-contrast: serious
+      page-has-heading-one: moderate
+  - plugin: '@modus/gimbal-plugin-source-map-explorer'
+    bundles:
+      - path: '*.js'
+        thresholds:
+          <unmapped>: 5 MB
