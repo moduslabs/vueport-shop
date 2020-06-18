@@ -11,7 +11,7 @@
               :key="category.id"
             />
           </RouterLink>
-          <RouterLink to="{{" category.path }} :key="category.id">
+          <RouterLink to="{{category.path}}" :key="category.id">
             <IonButton fill="outline" :key="category.id">{{
               'Buy ' + category.name
             }}</IonButton>
