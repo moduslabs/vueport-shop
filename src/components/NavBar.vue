@@ -1,7 +1,7 @@
 <template>
   <IonHeader>
     <IonToolbar>
-      <IonTitle id="title">
+      <IonTitle id="title" align="center">
         <RouterLink to="/">Vueport Shop</RouterLink>
       </IonTitle>
       <ul id="menu">
@@ -33,6 +33,7 @@
 import { IonHeader, IonToolbar, IonTitle, IonLabel } from '@modus/ionic-vue'
 import { defineComponent } from 'vue'
 import { RouterLink } from 'vue-router'
+
 export default defineComponent({
   name: 'NavBar',
   components: {
@@ -53,17 +54,11 @@ export default defineComponent({
   padding: 0.25%;
   margin-top: 0.5%;
 }
-#title a {
-  text-decoration: none;
-  color: black;
+ul {
+  text-align: center;
 }
 ul#menu li {
   display: inline;
   padding: 2%;
-  text-decoration: none;
-}
-li a {
-  text-decoration: none;
-  color: black;
 }
 </style>

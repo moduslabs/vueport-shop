@@ -1,14 +1,16 @@
 <template>
-  <div class="ion-page">
+  <ion-page>
     <NavBar />
-    <h1>{{ heading }}</h1>
-    <div role="main" />
-  </div>
+    <IonContent>
+      <h1>{{ heading }}</h1>
+    </IonContent>
+  </ion-page>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import NavBar from '../components/NavBar.vue'
+
 export default defineComponent({
   name: 'CollectionList',
   components: {

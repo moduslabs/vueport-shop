@@ -35,6 +35,9 @@ export default defineComponent({
 :root {
   --ion-toolbar-color: #4b4b4b;
   --ion-color-primary: #306ed9;
-  text-align: center;
+}
+a {
+  text-decoration: none;
+  color: black;
 }
 </style>
