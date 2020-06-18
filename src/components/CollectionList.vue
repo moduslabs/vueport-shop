@@ -16,7 +16,7 @@ export default defineComponent({
   },
   props: {
     heading: String,
-    data: [],
+    data: Array,
   },
 })
 </script>

@@ -2,38 +2,22 @@
   <div class="ion-page">
     <NavBar />
     <div id="list" role="main">
-      <IonItem>
-        <RouterLink to="/tshirts">
-          <img src="../assets/sample.jpg" alt="tshirt" />
-        </RouterLink>
-        <RouterLink to="/tshirts">
-          <IonButton fill="outline">Buy T-Shirts</IonButton>
-        </RouterLink>
-      </IonItem>
-      <IonItem>
-        <RouterLink to="/hoodies">
-          <img src="../assets/sample.jpg" alt="hoodies" />
-        </RouterLink>
-        <RouterLink to="/hoodies">
-          <IonButton fill="outline">Buy Hoodies</IonButton>
-        </RouterLink>
-      </IonItem>
-      <IonItem>
-        <RouterLink to="/shorts">
-          <img src="../assets/sample.jpg" alt="shorts" />
-        </RouterLink>
-        <RouterLink to="/shorts">
-          <IonButton fill="outline">Buy Shorts</IonButton>
-        </RouterLink>
-      </IonItem>
-      <IonItem>
-        <RouterLink to="/jeans">
-          <img src="../assets/sample.jpg" alt="jeans" />
-        </RouterLink>
-        <RouterLink to="/jeans">
-          <IonButton fill="outline">Buy Jeans</IonButton>
-        </RouterLink>
-      </IonItem>
+      <template v-for="category in categories">
+        <IonItem :key="category.id">
+          <RouterLink to="{{category.path}}" :key="category.id">
+            <img
+              src="../assets/sample.jpg"
+              alt="{{category.name}}"
+              :key="category.id"
+            />
+          </RouterLink>
+          <RouterLink to="{{" category.path }} :key="category.id">
+            <IonButton fill="outline" :key="category.id">{{
+              'Buy ' + category.name
+            }}</IonButton>
+          </RouterLink>
+        </IonItem>
+      </template>
     </div>
   </div>
 </template>
@@ -43,6 +27,7 @@ import { IonButton, IonItem } from '@modus/ionic-vue'
 import { defineComponent } from 'vue'
 import { RouterLink } from 'vue-router'
 import NavBar from '../components/NavBar.vue'
+
 export default defineComponent({
   name: 'Home',
   components: {
@@ -50,6 +35,9 @@ export default defineComponent({
     IonButton,
     RouterLink,
     IonItem,
+  },
+  props: {
+    categories: Array,
   },
 })
 </script>
