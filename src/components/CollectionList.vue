@@ -2,6 +2,7 @@
   <div class="ion-page">
     <NavBar />
     <h1>{{ heading }}</h1>
+    <div role="main" />
   </div>
 </template>
 

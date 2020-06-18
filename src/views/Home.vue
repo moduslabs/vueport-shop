@@ -1,7 +1,7 @@
 <template>
   <div class="ion-page">
     <NavBar />
-    <div id="list">
+    <div id="list" role="main">
       <IonItem>
         <RouterLink to="/tshirts">
           <img src="../assets/sample.jpg" alt="tshirt" />
