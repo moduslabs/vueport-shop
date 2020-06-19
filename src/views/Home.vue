@@ -1,42 +1,68 @@
 <template>
-  <IonContent>
-    <div class="list">
-      <ion-card v-for="category in categories" :key="category.id">
-        <RouterLink :to="category.path">
-          <ion-img class="hero" :src="category.image" :alt="category.name" />
-        </RouterLink>
-        <ion-card-header>
-          <ion-card-subtitle>Featured</ion-card-subtitle>
-          <ion-card-title>{{ category.name }}</ion-card-title>
-          <ion-fab vertical="center" horizontal="end">
-            <ion-fab-button :href="category.path">
-              View
-            </ion-fab-button>
-          </ion-fab>
-        </ion-card-header>
-      </ion-card>
-    </div>
-  </IonContent>
+  <IonTabs>
+    <IonTab tab="home">
+      <HomePage :categories="categories" />
+    </IonTab>
+    <IonTab tab="tshirts">
+      <CollectionList heading="tshirts" />
+    </IonTab>
+    <IonTab tab="hoodies">
+      <CollectionList heading="hoodies" />
+    </IonTab>
+    <IonTab tab="shorts">
+      <CollectionList heading="shorts" />
+    </IonTab>
+    <IonTab tab="jeans">
+      <CollectionList heading="jeans" />
+    </IonTab>
+    <template v-slot:top>
+      <IonTabBar>
+        <IonTitle>Vueport Shop</IonTitle>
+        <IonTabButton tab="home">
+          <IonLabel>Home</IonLabel>
+        </IonTabButton>
+        <IonTabButton tab="tshirts">
+          <IonLabel>T-Shirts</IonLabel>
+        </IonTabButton>
+        <IonTabButton tab="shorts">
+          <IonLabel>Shorts</IonLabel>
+        </IonTabButton>
+        <IonTabButton tab="jeans">
+          <IonLabel>Jeans</IonLabel>
+        </IonTabButton>
+      </IonTabBar>
+    </template>
+  </IonTabs>
 </template>
 
 <script lang="ts">
-import { IonContent } from '@modus/ionic-vue'
+import {
+  IonTabs,
+  IonTab,
+  IonTabBar,
+  IonTabButton,
+  IonLabel,
+  IonTitle,
+} from '@modus/ionic-vue'
 import { defineComponent } from 'vue'
-import { RouterLink } from 'vue-router'
+//import { RouterLink } from 'vue-router'
+import HomePage from '../components/HomePage.vue'
+import CollectionList from '../components/CollectionList.vue'
 
 export default defineComponent({
   name: 'Home',
   components: {
-    RouterLink,
-    IonContent,
+    CollectionList,
+    IonTabs,
+    IonTab,
+    HomePage,
+    IonTabBar,
+    IonTabButton,
+    IonLabel,
+    IonTitle,
   },
   props: {
     categories: Array,
   },
 })
 </script>
-<style scoped>
-.list {
-  padding-bottom: 3rem;
-}
-</style>

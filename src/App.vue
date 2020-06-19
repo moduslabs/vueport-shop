@@ -1,6 +1,5 @@
 <template>
   <IonApp>
-    <NavBar />
     <IonRouterView />
   </IonApp>
 </template>
@@ -9,7 +8,6 @@
 import { defineComponent, watch } from 'vue'
 import { IonApp, IonRouterView } from '@modus/ionic-vue'
 import { useRouter } from 'vue-router'
-import NavBar from '@/components/NavBar.vue'
 
 import '@ionic/core/css/normalize.css'
 import '@ionic/core/css/core.css'
@@ -22,7 +20,6 @@ export default defineComponent({
   components: {
     IonApp,
     IonRouterView,
-    NavBar,
   },
   setup() {
     const { currentRoute } = useRouter()
