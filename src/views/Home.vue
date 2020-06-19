@@ -15,6 +15,9 @@
     <IonTab tab="jeans">
       <CollectionList heading="jeans" />
     </IonTab>
+    <IonTab tab="cart">
+      <IonLabel>Cart page</IonLabel>
+    </IonTab>
     <template v-slot:top>
       <IonTabBar>
         <IonTitle>Vueport Shop</IonTitle>
@@ -30,6 +33,10 @@
         <IonTabButton tab="jeans">
           <IonLabel>Jeans</IonLabel>
         </IonTabButton>
+        <IonTabButton tab="cart">
+          <IonIcon icon="cart" />
+          <IonLabel>Cart</IonLabel>
+        </IonTabButton>
       </IonTabBar>
     </template>
   </IonTabs>
@@ -43,12 +50,11 @@ import {
   IonTabButton,
   IonLabel,
   IonTitle,
+  IonIcon,
 } from '@modus/ionic-vue'
 import { defineComponent } from 'vue'
-//import { RouterLink } from 'vue-router'
 import HomePage from '../components/HomePage.vue'
 import CollectionList from '../components/CollectionList.vue'
-
 export default defineComponent({
   name: 'Home',
   components: {
@@ -60,9 +66,15 @@ export default defineComponent({
     IonTabButton,
     IonLabel,
     IonTitle,
+    IonIcon,
   },
   props: {
     categories: Array,
   },
 })
 </script>
+<style>
+ion-icon {
+  color: black;
+}
+</style>
