@@ -1,32 +1,27 @@
 <template>
-  <div class="ion-page">
-    <NavBar />
-    <IonContent>
-      <div id="list">
-        <template v-for="category in categories">
-          <IonItem :key="category.id">
-            <RouterLink :to="category.path" :key="category.id">
-              <img
-                class="hero"
-                :src="category.image"
-                :alt="category.name"
-                :key="category.id"
-              />
-            </RouterLink>
-            <RouterLink :to="category.path" :key="category.id">
-              <IonButton fill="outline" :key="category.id">{{
-                'Buy ' + category.name
-              }}</IonButton>
-            </RouterLink>
-          </IonItem>
-        </template>
-      </div>
-    </IonContent>
-  </div>
+  <NavBar />
+  <IonContent>
+    <div class="list">
+      <ion-card v-for="category in categories" :key="category.id">
+        <RouterLink :to="category.path">
+          <ion-img class="hero" :src="category.image" :alt="category.name" />
+        </RouterLink>
+        <ion-card-header>
+          <ion-card-subtitle>Featured</ion-card-subtitle>
+          <ion-card-title>{{ category.name }}</ion-card-title>
+          <ion-fab vertical="center" horizontal="end">
+            <ion-fab-button :href="category.path">
+              View
+            </ion-fab-button>
+          </ion-fab>
+        </ion-card-header>
+      </ion-card>
+    </div>
+  </IonContent>
 </template>
 
 <script lang="ts">
-import { IonButton, IonItem, IonContent } from '@modus/ionic-vue'
+import { IonContent } from '@modus/ionic-vue'
 import { defineComponent } from 'vue'
 import { RouterLink } from 'vue-router'
 import NavBar from '../components/NavBar.vue'
@@ -35,9 +30,7 @@ export default defineComponent({
   name: 'Home',
   components: {
     NavBar,
-    IonButton,
     RouterLink,
-    IonItem,
     IonContent,
   },
   props: {
@@ -46,11 +39,7 @@ export default defineComponent({
 })
 </script>
 <style scoped>
-.hero {
-  width: 100%;
-  height: 40%;
-}
-#list {
-  overflow: scroll;
+.list {
+  padding-bottom: 3rem;
 }
 </style>

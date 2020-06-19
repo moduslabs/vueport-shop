@@ -1,38 +1,15 @@
 <template>
   <IonHeader>
     <IonToolbar>
-      <IonTitle id="title" align="center">
-        <RouterLink to="/">Vueport Shop</RouterLink>
+      <IonTitle>
+        Vueport Shop
       </IonTitle>
-      <ul id="menu">
-        <li>
-          <IonLabel>
-            <RouterLink to="/tshirts">T-Shirts</RouterLink>
-          </IonLabel>
-        </li>
-        <li>
-          <IonLabel>
-            <RouterLink to="/hoodies">Hoodies</RouterLink>
-          </IonLabel>
-        </li>
-        <li>
-          <IonLabel>
-            <RouterLink to="/jeans">Jeans</RouterLink>
-          </IonLabel>
-        </li>
-        <li>
-          <IonLabel>
-            <RouterLink to="/shorts">Shorts</RouterLink>
-          </IonLabel>
-        </li>
-      </ul>
     </IonToolbar>
   </IonHeader>
 </template>
 <script>
-import { IonHeader, IonToolbar, IonTitle, IonLabel } from '@modus/ionic-vue'
+import { IonHeader, IonToolbar, IonTitle } from '@modus/ionic-vue'
 import { defineComponent } from 'vue'
-import { RouterLink } from 'vue-router'
 
 export default defineComponent({
   name: 'NavBar',
@@ -40,21 +17,6 @@ export default defineComponent({
     IonHeader,
     IonToolbar,
     IonTitle,
-    IonLabel,
-    RouterLink,
-  },
-  props: {
-    currentComponent: String,
   },
 })
 </script>
-<style scoped>
-/* temporary until i install tailwind */
-ul {
-  text-align: center;
-}
-ul#menu li {
-  display: inline;
-  padding: 2%;
-}
-</style>
