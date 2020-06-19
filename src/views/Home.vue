@@ -1,5 +1,4 @@
 <template>
-  <NavBar />
   <IonContent>
     <div class="list">
       <ion-card v-for="category in categories" :key="category.id">
@@ -24,12 +23,10 @@
 import { IonContent } from '@modus/ionic-vue'
 import { defineComponent } from 'vue'
 import { RouterLink } from 'vue-router'
-import NavBar from '../components/NavBar.vue'
 
 export default defineComponent({
   name: 'Home',
   components: {
-    NavBar,
     RouterLink,
     IonContent,
   },
