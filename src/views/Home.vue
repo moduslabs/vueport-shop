@@ -1,28 +1,45 @@
 <template>
-  <ion-page>
-    <IonHeader>
-      <IonToolbar>
-        <IonTitle>Vue-port Shop</IonTitle>
-      </IonToolbar>
-    </IonHeader>
-    <IonContent>
-      <h1>Welcome</h1>
-      <RouterLink to="/hello">Hello World</RouterLink>
-    </IonContent>
-  </ion-page>
+  <NavBar />
+  <IonContent>
+    <div class="list">
+      <ion-card v-for="category in categories" :key="category.id">
+        <RouterLink :to="category.path">
+          <ion-img class="hero" :src="category.image" :alt="category.name" />
+        </RouterLink>
+        <ion-card-header>
+          <ion-card-subtitle>Featured</ion-card-subtitle>
+          <ion-card-title>{{ category.name }}</ion-card-title>
+          <ion-fab vertical="center" horizontal="end">
+            <ion-fab-button :href="category.path">
+              View
+            </ion-fab-button>
+          </ion-fab>
+        </ion-card-header>
+      </ion-card>
+    </div>
+  </IonContent>
 </template>
 
 <script lang="ts">
+import { IonContent } from '@modus/ionic-vue'
 import { defineComponent } from 'vue'
-import { IonHeader, IonToolbar, IonTitle, IonContent } from '@modus/ionic-vue'
+import { RouterLink } from 'vue-router'
+import NavBar from '../components/NavBar.vue'
 
 export default defineComponent({
   name: 'Home',
   components: {
-    IonHeader,
-    IonToolbar,
-    IonTitle,
+    NavBar,
+    RouterLink,
     IonContent,
+  },
+  props: {
+    categories: Array,
   },
 })
 </script>
+<style scoped>
+.list {
+  padding-bottom: 3rem;
+}
+</style>

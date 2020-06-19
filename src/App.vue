@@ -36,4 +36,12 @@ export default defineComponent({
   --ion-toolbar-color: #4b4b4b;
   --ion-color-primary: #306ed9;
 }
+a {
+  text-decoration: none;
+  color: black;
+}
+ion-title {
+  padding: 0.25%;
+  margin-top: 0.5%;
+}
 </style>
