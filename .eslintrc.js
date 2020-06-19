@@ -14,7 +14,7 @@ module.exports = {
     ecmaVersion: 2020,
   },
   rules: {
-    "no-console": "warn",
-    "no-debugger": "warn",
+    'no-console': 'warn',
+    'no-debugger': 'warn',
   },
-};
+}

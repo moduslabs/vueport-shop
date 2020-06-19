@@ -1,28 +1,28 @@
-import { createWebHistory } from "vue-router";
-import { createRouter } from "@modus/ionic-vue";
+import { createWebHistory } from 'vue-router'
+import { createRouter } from '@modus/ionic-vue'
 
-const home = () => import("@/views/Home.vue");
-const hello = () => import("@/components/HelloWorld.vue");
-const history = createWebHistory();
+const home = () => import('@/views/Home.vue')
+const hello = () => import('@/components/HelloWorld.vue')
+const history = createWebHistory()
 const router = createRouter({
   history,
   routes: [
     {
-      path: "/",
+      path: '/',
       component: home,
       meta: {
-        title: "Home Page - Vue-Port Shop",
+        title: 'Home Page - Vue-Port Shop',
       },
     },
     {
-      path: "/hello",
+      path: '/hello',
       component: hello,
-      props: { msg: "Hello World!" },
+      props: { msg: 'Hello World!' },
       meta: {
-        title: "Hello - Vue-Port Shop",
+        title: 'Hello - Vue-Port Shop',
       },
     },
   ],
-});
+})
 
-export default router;
+export default router
