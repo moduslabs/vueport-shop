@@ -15,7 +15,7 @@ module.exports = {
   rules: {
     'no-console': 'warn',
     'no-debugger': 'warn',
-    'vue/no-deprecated-slot-attribute': 0,
-    'vue/valid-template-root': 0,
+    'vue/no-deprecated-slot-attribute': "off",
+    'vue/valid-template-root': "off",
   },
 }
