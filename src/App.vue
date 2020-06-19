@@ -40,4 +40,8 @@ a {
   text-decoration: none;
   color: black;
 }
+ion-title {
+  padding: 0.25%;
+  margin-top: 0.5%;
+}
 </style>

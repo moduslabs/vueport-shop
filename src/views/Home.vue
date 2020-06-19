@@ -5,15 +5,15 @@
       <div id="list">
         <template v-for="category in categories">
           <IonItem :key="category.id">
-            <RouterLink to="{{category.path}}" :key="category.id">
+            <RouterLink :to="category.path" :key="category.id">
               <img
                 class="hero"
-                src="../assets/sample.jpg"
-                alt="{{category.name}}"
+                :src="category.image"
+                :alt="category.name"
                 :key="category.id"
               />
             </RouterLink>
-            <RouterLink to="{{category.path}}" :key="category.id">
+            <RouterLink :to="category.path" :key="category.id">
               <IonButton fill="outline" :key="category.id">{{
                 'Buy ' + category.name
               }}</IonButton>
@@ -45,7 +45,7 @@ export default defineComponent({
   },
 })
 </script>
-<style>
+<style scoped>
 .hero {
   width: 100%;
   height: 40%;

@@ -48,12 +48,8 @@ export default defineComponent({
   },
 })
 </script>
-<style>
+<style scoped>
 /* temporary until i install tailwind */
-#title {
-  padding: 0.25%;
-  margin-top: 0.5%;
-}
 ul {
   text-align: center;
 }
