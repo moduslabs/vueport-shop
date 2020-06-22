@@ -1,12 +1,16 @@
 <template>
   <NavBar />
   <IonContent>
-    <img alt="mens" src="/src/assets/sample.jpg" />
+    <img alt="mens" src="../assets/sample.jpg" />
     <h1>{{ heading }}</h1>
     <h5>{{ data.length + ' items' }}</h5>
-    <div role="list">
+    <div role="list" class="list">
       <ion-card v-for="product in data" :key="product.id">
-        <img :alt="product.description" :src="product.images[1]" />
+        <img
+          class="image"
+          :alt="product.description"
+          :src="product.images[1]"
+        />
         <p>{{ product.title }}</p>
         <p>{{ product.price }}</p>
       </ion-card>
@@ -31,3 +35,12 @@ export default defineComponent({
   },
 })
 </script>
+<style scoped>
+.list {
+  padding-bottom: 3rem;
+}
+.image {
+  height: 40%;
+  width: 70%;
+}
+</style>
