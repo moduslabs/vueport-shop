@@ -1,22 +1,42 @@
 <template>
-  <IonHeader>
-    <IonToolbar>
-      <IonTitle>
-        Vueport Shop
-      </IonTitle>
-    </IonToolbar>
-  </IonHeader>
+  <IonTabBar>
+    <RouterLink to="/"><IonTitle>Vueport Shop</IonTitle></RouterLink>
+    <IonTabButton tab="tshirts" href="/tshirts">
+      <IonLabel>T-Shirts</IonLabel>
+    </IonTabButton>
+    <IonTabButton tab="hoodies" href="/hoodies">
+      <IonLabel>Hoodies</IonLabel>
+    </IonTabButton>
+    <IonTabButton tab="shorts" href="/shorts">
+      <IonLabel>Shorts</IonLabel>
+    </IonTabButton>
+    <IonTabButton tab="jeans" href="/jeans">
+      <IonLabel>Jeans</IonLabel>
+    </IonTabButton>
+    <IonTabButton tab="cart">
+      <IonIcon icon="cart" class="cart" />
+      <IonLabel>Cart</IonLabel>
+    </IonTabButton>
+  </IonTabBar>
 </template>
 <script>
-import { IonHeader, IonToolbar, IonTitle } from '@modus/ionic-vue'
+import {
+  IonTitle,
+  IonTabBar,
+  IonIcon,
+  IonLabel,
+  IonTabButton,
+} from '@modus/ionic-vue'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'NavBar',
   components: {
-    IonHeader,
-    IonToolbar,
     IonTitle,
+    IonTabBar,
+    IonIcon,
+    IonLabel,
+    IonTabButton,
   },
 })
 </script>

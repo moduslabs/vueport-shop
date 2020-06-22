@@ -19,7 +19,7 @@ const router = createRouter({
     {
       path: '/tshirts',
       component: collectionList,
-      props: { heading: 'T-Shirts', data: [] },
+      props: { heading: 'tshirts', data: [] },
       meta: {
         title: 'T-Shirts - Vue-Port Shop',
       },
@@ -27,7 +27,7 @@ const router = createRouter({
     {
       path: '/hoodies',
       component: collectionList,
-      props: { heading: 'Hoodies', data: [] },
+      props: { heading: 'hoodies', data: [] },
       meta: {
         title: 'Hoodies - Vue-Port Shop',
       },
@@ -35,7 +35,7 @@ const router = createRouter({
     {
       path: '/jeans',
       component: collectionList,
-      props: { heading: 'Jeans', data: [] },
+      props: { heading: 'jeans', data: [] },
       meta: {
         title: 'Jeans - Vue-Port Shop',
       },
@@ -43,7 +43,7 @@ const router = createRouter({
     {
       path: '/shorts',
       component: collectionList,
-      props: { heading: 'Shorts', data: [] },
+      props: { heading: 'shorts', data: [] },
       meta: {
         title: 'Shorts - Vue-Port Shop',
       },
