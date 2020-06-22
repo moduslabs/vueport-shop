@@ -1,7 +1,16 @@
 <template>
   <NavBar />
   <IonContent>
+    <img alt="mens" src="/src/assets/sample.jpg" />
     <h1>{{ heading }}</h1>
+    <h5>{{ data.length + ' items' }}</h5>
+    <div role="list">
+      <ion-card v-for="product in data" :key="product.id">
+        <img :alt="product.description" :src="product.images[1]" />
+        <p>{{ product.title }}</p>
+        <p>{{ product.price }}</p>
+      </ion-card>
+    </div>
   </IonContent>
 </template>
 
