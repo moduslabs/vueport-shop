@@ -18,6 +18,7 @@ export default defineComponent({
   },
   props: {
     heading: String,
+    data: Array,
   },
 })
 </script>
