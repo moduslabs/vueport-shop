@@ -1,5 +1,7 @@
 <template>
-  <NavBar />
+  <div role="navigation">
+    <NavBar />
+  </div>
   <IonContent>
     <div class="list">
       <ion-card v-for="category in categories" :key="category.id">
