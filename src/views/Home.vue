@@ -1,44 +1,48 @@
 <template>
   <IonTabs>
-    <IonTab tab="home">
-      <HomePage :categories="categories" />
-    </IonTab>
-    <IonTab tab="tshirts">
-      <CollectionList heading="tshirts" />
-    </IonTab>
-    <IonTab tab="hoodies">
-      <CollectionList heading="hoodies" />
-    </IonTab>
-    <IonTab tab="shorts">
-      <CollectionList heading="shorts" />
-    </IonTab>
-    <IonTab tab="jeans">
-      <CollectionList heading="jeans" />
-    </IonTab>
-    <IonTab tab="cart">
-      <IonLabel>Cart page</IonLabel>
-    </IonTab>
     <template v-slot:top>
-      <IonTabBar>
-        <IonTitle>Vueport Shop</IonTitle>
-        <IonTabButton tab="home">
-          <IonLabel>Home</IonLabel>
-        </IonTabButton>
-        <IonTabButton tab="tshirts">
-          <IonLabel>T-Shirts</IonLabel>
-        </IonTabButton>
-        <IonTabButton tab="shorts">
-          <IonLabel>Shorts</IonLabel>
-        </IonTabButton>
-        <IonTabButton tab="jeans">
-          <IonLabel>Jeans</IonLabel>
-        </IonTabButton>
-        <IonTabButton tab="cart">
-          <IonIcon icon="cart" />
-          <IonLabel>Cart</IonLabel>
-        </IonTabButton>
-      </IonTabBar>
+      <div role="navigation">
+        <IonTabBar>
+          <IonTitle>Vueport Shop</IonTitle>
+          <IonTabButton tab="home">
+            <IonLabel>Home</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="tshirts">
+            <IonLabel>T-Shirts</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="shorts">
+            <IonLabel>Shorts</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="jeans">
+            <IonLabel>Jeans</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="cart">
+            <IonIcon icon="cart" class="cart" />
+            <IonLabel>Cart</IonLabel>
+          </IonTabButton>
+        </IonTabBar>
+      </div>
     </template>
+    <div role="region">
+      <IonTab tab="home">
+        <HomePage :categories="categories" />
+      </IonTab>
+      <IonTab tab="tshirts">
+        <CollectionList heading="tshirts" />
+      </IonTab>
+      <IonTab tab="hoodies">
+        <CollectionList heading="hoodies" />
+      </IonTab>
+      <IonTab tab="shorts">
+        <CollectionList heading="shorts" />
+      </IonTab>
+      <IonTab tab="jeans">
+        <CollectionList heading="jeans" />
+      </IonTab>
+      <IonTab tab="cart">
+        <IonLabel>Cart page</IonLabel>
+      </IonTab>
+    </div>
   </IonTabs>
 </template>
 
@@ -73,8 +77,8 @@ export default defineComponent({
   },
 })
 </script>
-<style>
-ion-icon {
+<style scoped>
+.cart {
   color: black;
 }
 </style>
