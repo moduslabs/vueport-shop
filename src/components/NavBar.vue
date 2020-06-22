@@ -19,7 +19,7 @@
     </IonTabButton>
   </IonTabBar>
 </template>
-<script>
+<script lang="ts">
 import {
   IonTitle,
   IonTabBar,
