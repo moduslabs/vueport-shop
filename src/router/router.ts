@@ -25,6 +25,7 @@ const router = createRouter({
       props: {
         heading: 'T-Shirts',
         data: products,
+        category: categories[0],
       },
       meta: {
         title: 'T-Shirts - Vue-Port Shop',
@@ -36,6 +37,7 @@ const router = createRouter({
       props: {
         heading: 'Hoodies',
         data: products,
+        category: categories[1],
       },
       meta: {
         title: 'Hoodies - Vue-Port Shop',
@@ -47,6 +49,7 @@ const router = createRouter({
       props: {
         heading: 'Jeans',
         data: products,
+        category: categories[2],
       },
       meta: {
         title: 'Jeans - Vue-Port Shop',
@@ -58,6 +61,7 @@ const router = createRouter({
       props: {
         heading: 'Shorts',
         data: products,
+        category: categories[3],
       },
       meta: {
         title: 'Shorts - Vue-Port Shop',

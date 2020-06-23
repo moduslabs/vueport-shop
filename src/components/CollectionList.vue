@@ -1,20 +1,24 @@
 <template>
   <NavBar />
   <IonContent>
-    <img alt="mens" src="../assets/sample.jpg" />
-    <h1>{{ heading }}</h1>
-    <h5>{{ data.length + ' items' }}</h5>
-    <div role="list" class="list">
-      <ion-card v-for="product in data" :key="product.id">
-        <img
-          class="image"
-          :alt="product.description"
-          :src="product.images[1]"
-        />
-        <p>{{ product.title }}</p>
-        <p>{{ product.price }}</p>
-      </ion-card>
-    </div>
+    <ion-img :alt="category.title" :src="category.image" />
+    <ion-label>{{ heading }}</ion-label>
+    <ion-label>{{ data.length + ' items' }}</ion-label>
+    <ion-grid fixed="true">
+      <ion-row>
+        <ion-col col-2>
+          <ion-card v-for="product in data" :key="product.id">
+            <img
+              class="image"
+              :alt="product.description"
+              :src="product.images[1]"
+            />
+            <p>{{ product.title }}</p>
+            <p>{{ product.price }}</p>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </IonContent>
 </template>
 
@@ -26,12 +30,13 @@ import NavBar from '../components/NavBar.vue'
 export default defineComponent({
   name: 'CollectionList',
   components: {
-    NavBar,
     IonContent,
+    NavBar,
   },
   props: {
     heading: String,
     data: Array,
+    category: Object,
   },
 })
 </script>
@@ -40,7 +45,7 @@ export default defineComponent({
   padding-bottom: 3rem;
 }
 .image {
-  height: 40%;
-  width: 70%;
+  height: 20%;
+  width: 50%;
 }
 </style>
