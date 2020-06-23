@@ -40,3 +40,8 @@ export default defineComponent({
   },
 })
 </script>
+<style scoped>
+.cart {
+  color: black;
+}
+</style>
