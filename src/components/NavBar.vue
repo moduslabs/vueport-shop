@@ -1,21 +1,14 @@
 <template>
   <IonTabBar>
-    <RouterLink to="/"><IonTitle>Vueport Shop</IonTitle></RouterLink>
-    <IonTabButton tab="tshirts" href="/tshirts">
-      <IonLabel>T-Shirts</IonLabel>
+    <IonTitle>Vueport Shop</IonTitle>
+    <IonTabButton tab="collections" href="/">
+      <IonLabel>Collections</IonLabel>
     </IonTabButton>
-    <IonTabButton tab="hoodies" href="/hoodies">
-      <IonLabel>Hoodies</IonLabel>
-    </IonTabButton>
-    <IonTabButton tab="shorts" href="/shorts">
-      <IonLabel>Shorts</IonLabel>
-    </IonTabButton>
-    <IonTabButton tab="jeans" href="/jeans">
-      <IonLabel>Jeans</IonLabel>
+    <IonTabButton tab="about" href="/about">
+      <IonLabel>About</IonLabel>
     </IonTabButton>
     <IonTabButton tab="cart">
       <IonIcon icon="cart" class="cart" />
-      <IonLabel>Cart</IonLabel>
     </IonTabButton>
   </IonTabBar>
 </template>

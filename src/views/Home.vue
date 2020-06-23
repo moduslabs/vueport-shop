@@ -1,31 +1,34 @@
 <template>
-  <div role="navigation">
-    <NavBar />
-  </div>
-  <IonContent>
-    <div class="list">
-      <ion-card v-for="category in categories" :key="category.id">
-        <RouterLink :to="category.path">
-          <ion-img class="hero" :src="category.image" :alt="category.name" />
-        </RouterLink>
-        <ion-card-header>
-          <ion-card-subtitle>Featured</ion-card-subtitle>
-          <ion-card-title>{{ category.name }}</ion-card-title>
-          <ion-fab vertical="center" horizontal="end">
-            <ion-fab-button :href="category.path">
-              View
-            </ion-fab-button>
-          </ion-fab>
-        </ion-card-header>
-      </ion-card>
-    </div>
-  </IonContent>
+  <NavBar />
+  <IonTab tab="collections">
+    <IonContent>
+      <RouterView />
+      <div class="list">
+        <ion-card v-for="category in categories" :key="category.id">
+          <RouterLink :to="category.path">
+            <ion-img class="hero" :src="category.image" :alt="category.name" />
+          </RouterLink>
+          <ion-card-header>
+            <ion-card-subtitle>Featured</ion-card-subtitle>
+            <ion-card-title>{{ category.name }}</ion-card-title>
+            <ion-fab vertical="center" horizontal="end">
+              <RouterLink :to="category.path">
+                <ion-fab-button :href="category.path">
+                  View
+                </ion-fab-button>
+              </RouterLink>
+            </ion-fab>
+          </ion-card-header>
+        </ion-card>
+      </div>
+    </IonContent>
+  </IonTab>
 </template>
 
 <script lang="ts">
 import { IonContent } from '@modus/ionic-vue'
 import { defineComponent } from 'vue'
-import { RouterLink } from 'vue-router'
+import { RouterLink, RouterView } from 'vue-router'
 import NavBar from '../components/NavBar.vue'
 
 export default defineComponent({
@@ -34,6 +37,7 @@ export default defineComponent({
     NavBar,
     RouterLink,
     IonContent,
+    RouterView,
   },
   props: {
     categories: Array,
