@@ -1,9 +1,10 @@
 import { createWebHistory } from 'vue-router'
 import { createRouter } from '@modus/ionic-vue'
-import { categories } from '@/mockData/categories-list'
 
 const home = () => import('@/views/Home.vue')
 const collectionList = () => import('@/components/CollectionList.vue')
+const Category = () => import('@/components/Category.vue')
+
 const history = createWebHistory()
 const router = createRouter({
   history,
@@ -11,7 +12,6 @@ const router = createRouter({
     {
       path: '/',
       component: home,
-      props: { categories: categories },
       meta: {
         title: 'Home Page - Vue-Port Shop',
       },
@@ -46,6 +46,13 @@ const router = createRouter({
       props: { heading: 'Shorts', data: [] },
       meta: {
         title: 'Shorts - Vue-Port Shop',
+      },
+    },
+    {
+      path: '/category/:categoryId',
+      component: Category,
+      meta: {
+        title: 'Category - Vue-Port Shop',
       },
     },
   ],

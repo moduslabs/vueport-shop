@@ -1,6 +1,13 @@
 <template>
   <IonApp>
-    <IonRouterView />
+    <Suspense>
+      <template #default>
+        <IonRouterView />
+      </template>
+      <template #fallback>
+        <Skeleton />
+      </template>
+    </Suspense>
   </IonApp>
 </template>
 
@@ -8,6 +15,7 @@
 import { defineComponent, watch } from 'vue'
 import { IonApp, IonRouterView } from '@modus/ionic-vue'
 import { useRouter } from 'vue-router'
+import Skeleton from '@/components/Skeleton'
 
 import '@ionic/core/css/normalize.css'
 import '@ionic/core/css/core.css'
@@ -20,6 +28,7 @@ export default defineComponent({
   components: {
     IonApp,
     IonRouterView,
+    Skeleton,
   },
   setup() {
     const { currentRoute } = useRouter()

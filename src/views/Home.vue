@@ -3,14 +3,14 @@
   <IonContent>
     <div class="list">
       <ion-card v-for="category in categories" :key="category.id">
-        <RouterLink :to="category.path">
-          <ion-img class="hero" :src="category.image" :alt="category.name" />
+        <RouterLink :to="`/category/${category.id}`">
+          <ion-img class="hero" :src="category.image" :alt="category.title" />
         </RouterLink>
         <ion-card-header>
           <ion-card-subtitle>Featured</ion-card-subtitle>
-          <ion-card-title>{{ category.name }}</ion-card-title>
+          <ion-card-title>{{ category.title }}</ion-card-title>
           <ion-fab vertical="center" horizontal="end">
-            <ion-fab-button :href="category.path">
+            <ion-fab-button :href="`/category/${category.id}`">
               View
             </ion-fab-button>
           </ion-fab>
@@ -25,6 +25,7 @@ import { IonContent } from '@modus/ionic-vue'
 import { defineComponent } from 'vue'
 import { RouterLink } from 'vue-router'
 import NavBar from '../components/NavBar.vue'
+import useCategories from '@/composables/categories'
 
 export default defineComponent({
   name: 'Home',
@@ -33,8 +34,9 @@ export default defineComponent({
     RouterLink,
     IonContent,
   },
-  props: {
-    categories: Array,
+  async setup() {
+    const { categories } = await useCategories()
+    return { categories }
   },
 })
 </script>
