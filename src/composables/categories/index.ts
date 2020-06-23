@@ -21,12 +21,8 @@ export default async function useCategories() {
   const loaded = ref(false)
 
   if (loaded.value === false) {
-    try {
-      await request()
-      loaded.value = true
-    } catch (e) {
-      console.error(e)
-    }
+    await request()
+    loaded.value = true
   }
 
   return { categories } as CategoriesComposition

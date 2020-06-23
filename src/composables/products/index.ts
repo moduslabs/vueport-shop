@@ -35,12 +35,8 @@ export default async function useProductsInCategory(
   const loaded = ref(false)
 
   if (loaded.value === false) {
-    try {
-      await request()
-      loaded.value = true
-    } catch (e) {
-      console.error(e)
-    }
+    await request()
+    loaded.value = true
   }
 
   return { products } as ProductsComposition
@@ -56,12 +52,8 @@ export async function useProduct(productId: Product['id']) {
   const loaded = ref(false)
 
   if (loaded.value === false) {
-    try {
-      await request()
-      loaded.value = true
-    } catch (e) {
-      console.error(e)
-    }
+    await request()
+    loaded.value = true
   }
 
   return { product } as ProductComposition
