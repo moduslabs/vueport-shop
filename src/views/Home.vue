@@ -1,5 +1,7 @@
 <template>
-  <NavBar />
+  <div role="navigation">
+    <NavBar />
+  </div>
   <IonTab tab="collections">
     <IonContent>
       <RouterView />
