@@ -1,10 +1,7 @@
 <template>
-  <div role="navigation">
-    <NavBar />
-  </div>
   <IonTab tab="collections">
-    <IonContent>
-      <RouterView />
+    <IonRouterView />
+    <IonContent v-if="$route.path === '/'">
       <div class="list">
         <ion-card v-for="category in categories" :key="category.id">
           <RouterLink :to="category.path">
@@ -28,18 +25,16 @@
 </template>
 
 <script lang="ts">
-import { IonContent } from '@modus/ionic-vue'
+import { IonContent, IonRouterView } from '@modus/ionic-vue'
 import { defineComponent } from 'vue'
-import { RouterLink, RouterView } from 'vue-router'
-import NavBar from '../components/NavBar.vue'
+import { RouterLink } from 'vue-router'
 
 export default defineComponent({
   name: 'Home',
   components: {
-    NavBar,
     RouterLink,
     IonContent,
-    RouterView,
+    IonRouterView,
   },
   props: {
     categories: Array,

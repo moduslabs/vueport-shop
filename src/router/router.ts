@@ -22,7 +22,7 @@ const router = createRouter({
           },
         },
         {
-          path: '/hoodies',
+          path: 'hoodies',
           component: collectionList,
           props: { heading: 'hoodies', data: [] },
           meta: {
@@ -30,7 +30,7 @@ const router = createRouter({
           },
         },
         {
-          path: '/jeans',
+          path: 'jeans',
           component: collectionList,
           props: { heading: 'jeans', data: [] },
           meta: {
@@ -38,7 +38,7 @@ const router = createRouter({
           },
         },
         {
-          path: '/shorts',
+          path: 'shorts',
           component: collectionList,
           props: { heading: 'shorts', data: [] },
           meta: {

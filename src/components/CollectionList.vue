@@ -1,9 +1,9 @@
 <template>
   <IonContent>
+    <RouterView />
     <h1>{{ heading }}</h1>
     <RouterLink to="/">Back to home</RouterLink>
   </IonContent>
-  <RouterView />
 </template>
 
 <script lang="ts">
