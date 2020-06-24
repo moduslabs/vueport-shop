@@ -2,25 +2,25 @@ import * as sample from '../assets/sample.jpg'
 export const categories = [
   {
     id: 1,
-    name: 'T-Shirts',
+    title: 'T-Shirts',
     path: '/tshirts',
     image: sample,
   },
   {
     id: 2,
-    name: 'Hoodies',
+    title: 'Hoodies',
     path: '/hoodies',
     image: sample,
   },
   {
     id: 3,
-    name: 'Shorts',
+    title: 'Shorts',
     path: '/shorts',
     image: sample,
   },
   {
     id: 4,
-    name: 'Jeans',
+    title: 'Jeans',
     path: '/jeans',
     image: sample,
   },

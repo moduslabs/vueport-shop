@@ -2,30 +2,52 @@
   <IonTab tab="collections">
     <IonRouterView />
     <IonContent v-if="$route.path === '/'">
-      <div class="list">
-        <ion-card v-for="category in categories" :key="category.id">
-          <RouterLink :to="category.path">
-            <ion-img class="hero" :src="category.image" :alt="category.name" />
-          </RouterLink>
-          <ion-card-header>
-            <ion-card-subtitle>Featured</ion-card-subtitle>
-            <ion-card-title>{{ category.name }}</ion-card-title>
-            <ion-fab vertical="center" horizontal="end">
+      <IonList>
+        <IonItemGroup v-for="category in categories" :key="category.id">
+          <IonItemDivider>
+            <IonItem>
               <RouterLink :to="category.path">
-                <ion-fab-button :href="category.path">
-                  View
-                </ion-fab-button>
+                <IonImg
+                  class="image"
+                  :src="category.image"
+                  :alt="category.name"
+                />
               </RouterLink>
-            </ion-fab>
-          </ion-card-header>
-        </ion-card>
-      </div>
+            </IonItem>
+          </IonItemDivider>
+          <IonItemDivider>
+            <IonItem>
+              <IonLabel>
+                {{ category.name }}
+              </IonLabel>
+            </IonItem>
+          </IonItemDivider>
+          <IonItemDivider>
+            <IonItem>
+              <RouterLink :to="category.path">
+                <IonButton>Shop Now</IonButton>
+              </RouterLink>
+            </IonItem>
+          </IonItemDivider>
+        </IonItemGroup>
+      </IonList>
     </IonContent>
   </IonTab>
 </template>
 
 <script lang="ts">
-import { IonContent, IonRouterView, IonTab } from '@modus/ionic-vue'
+import {
+  IonContent,
+  IonRouterView,
+  IonTab,
+  IonList,
+  IonItem,
+  IonItemDivider,
+  IonImg,
+  IonButton,
+  IonItemGroup,
+  IonLabel,
+} from '@modus/ionic-vue'
 import { defineComponent } from 'vue'
 import { RouterLink } from 'vue-router'
 
@@ -36,14 +58,16 @@ export default defineComponent({
     IonContent,
     IonRouterView,
     IonTab,
+    IonList,
+    IonItem,
+    IonItemDivider,
+    IonImg,
+    IonButton,
+    IonItemGroup,
+    IonLabel,
   },
   props: {
     categories: Array,
   },
 })
 </script>
-<style scoped>
-.list {
-  padding-bottom: 3rem;
-}
-</style>

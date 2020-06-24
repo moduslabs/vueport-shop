@@ -1,7 +1,7 @@
 <template>
   <IonApp>
     <IonTabs>
-      <IonRouterView />
+      <RouterView />
       <template v-slot:top>
         <NavBar />
       </template>
@@ -11,8 +11,8 @@
 
 <script lang="ts">
 import { defineComponent, watch } from 'vue'
-import { IonApp, IonRouterView, IonTabs } from '@modus/ionic-vue'
-import { useRouter } from 'vue-router'
+import { IonApp, IonTabs } from '@modus/ionic-vue'
+import { useRouter, RouterView } from 'vue-router'
 import NavBar from './components/NavBar.vue'
 
 import '@ionic/core/css/normalize.css'
@@ -25,7 +25,7 @@ export default defineComponent({
   name: 'App',
   components: {
     IonApp,
-    IonRouterView,
+    RouterView,
     NavBar,
     IonTabs,
   },
@@ -47,5 +47,8 @@ export default defineComponent({
 a {
   text-decoration: none;
   color: black;
+}
+.image {
+  height: 320px;
 }
 </style>

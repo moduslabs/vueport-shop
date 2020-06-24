@@ -6,6 +6,7 @@ import { products } from '@/mockData/product-list'
 const home = () => import('@/views/Home.vue')
 const collectionList = () => import('@/components/CollectionList.vue')
 const about = () => import('@/views/About.vue')
+const productDetails = () => import('@/components/ProductDetails.vue')
 const history = createWebHistory()
 const router = createRouter({
   history,
@@ -17,6 +18,18 @@ const router = createRouter({
         {
           path: '/tshirts',
           component: collectionList,
+          children: [
+            {
+              path: '/:id',
+              component: productDetails,
+              props: {
+                product: products[0],
+              },
+              meta: {
+                title: 'T-Shirts',
+              },
+            },
+          ],
           props: {
             heading: 'T-Shirts',
             data: products,
@@ -75,6 +88,7 @@ const router = createRouter({
         title: 'About - Vue-Port Shop',
       },
     },
+    { path: '/', redirect: '/' },
   ],
 })
 

@@ -1,24 +1,26 @@
 <template>
   <IonContent>
-    <RouterView />
-    <ion-img :alt="category.title" :src="category.image" />
-    <ion-label>{{ heading }}</ion-label>
-    <ion-label>{{ data.length + ' items' }}</ion-label>
-    <ion-grid fixed="true">
-      <ion-row>
-        <ion-col col-2>
-          <ion-card v-for="product in data" :key="product.id">
-            <img
-              class="image"
-              :alt="product.description"
-              :src="product.images[1]"
-            />
-            <p>{{ product.title }}</p>
-            <p>{{ product.price }}</p>
-          </ion-card>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+    <IonRouterView />
+    <IonImg class="image" :alt="category.title" :src="category.image" />
+    <IonText color="dark">{{ heading }}</IonText>
+    <IonText color="medium">{{ data.length + ' items' }}</IonText>
+    <IonGrid fixed="true">
+      <IonRow>
+        <IonCol col-2>
+          <IonCard v-for="product in data" :key="product.id">
+            <RouterLink :to="category.path + '/' + product.id">
+              <IonImg
+                id="gridImg"
+                :alt="product.description"
+                :src="product.images[1]"
+              />
+              <IonText color="dark">{{ product.title }}</IonText>
+              <IonText color="medium">{{ product.price }}</IonText>
+            </RouterLink>
+          </IonCard>
+        </IonCol>
+      </IonRow>
+    </IonGrid>
     <RouterLink to="/">
       Go back home
     </RouterLink>
@@ -27,15 +29,30 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { IonContent } from '@modus/ionic-vue'
-import { RouterView } from 'vue-router'
-//import NavBar from './NavBar.vue'
+import {
+  IonContent,
+  IonRouterView,
+  IonText,
+  IonImg,
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonCard,
+} from '@modus/ionic-vue'
+import { RouterLink } from 'vue-router'
 
 export default defineComponent({
   name: 'CollectionList',
   components: {
     IonContent,
-    RouterView,
+    IonRouterView,
+    RouterLink,
+    IonText,
+    IonImg,
+    IonGrid,
+    IonRow,
+    IonCol,
+    IonCard,
   },
   props: {
     heading: String,
@@ -44,12 +61,10 @@ export default defineComponent({
   },
 })
 </script>
-<style scoped>
-.list {
-  padding-bottom: 3rem;
-}
-.image {
-  height: 20%;
-  width: 50%;
+
+<style>
+#gridImg {
+  height: 300px;
+  width: 300px;
 }
 </style>
