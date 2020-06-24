@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import { IonContent, IonRouterView } from '@modus/ionic-vue'
+import { IonContent, IonRouterView, IonTab } from '@modus/ionic-vue'
 import { defineComponent } from 'vue'
 import { RouterLink } from 'vue-router'
 
@@ -35,6 +35,7 @@ export default defineComponent({
     RouterLink,
     IonContent,
     IonRouterView,
+    IonTab,
   },
   props: {
     categories: Array,
