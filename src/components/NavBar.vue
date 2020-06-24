@@ -1,5 +1,5 @@
 <template>
-  <IonTabBar>
+  <IonTabBar selectedTab="collections">
     <IonTitle>Vueport Shop</IonTitle>
     <IonTabButton tab="collections" href="/">
       <IonLabel>Collections</IonLabel>
