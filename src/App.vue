@@ -1,13 +1,19 @@
 <template>
   <IonApp>
-    <IonRouterView />
+    <IonTabs>
+      <IonRouterView />
+      <template v-slot:top>
+        <NavBar />
+      </template>
+    </IonTabs>
   </IonApp>
 </template>
 
 <script lang="ts">
 import { defineComponent, watch } from 'vue'
-import { IonApp, IonRouterView } from '@modus/ionic-vue'
+import { IonApp, IonRouterView, IonTabs } from '@modus/ionic-vue'
 import { useRouter } from 'vue-router'
+import NavBar from './components/NavBar.vue'
 
 import '@ionic/core/css/normalize.css'
 import '@ionic/core/css/core.css'
@@ -20,6 +26,8 @@ export default defineComponent({
   components: {
     IonApp,
     IonRouterView,
+    NavBar,
+    IonTabs,
   },
   setup() {
     const { currentRoute } = useRouter()
@@ -39,9 +47,5 @@ export default defineComponent({
 a {
   text-decoration: none;
   color: black;
-}
-ion-title {
-  padding: 0.25%;
-  margin-top: 0.5%;
 }
 </style>

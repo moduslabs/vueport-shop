@@ -1,6 +1,6 @@
 <template>
-  <NavBar />
   <IonContent>
+    <RouterView />
     <ion-img :alt="category.title" :src="category.image" />
     <ion-label>{{ heading }}</ion-label>
     <ion-label>{{ data.length + ' items' }}</ion-label>
@@ -19,19 +19,23 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+    <RouterLink to="/">
+      Go back home
+    </RouterLink>
   </IonContent>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { IonContent } from '@modus/ionic-vue'
-import NavBar from '../components/NavBar.vue'
+import { RouterView } from 'vue-router'
+//import NavBar from './NavBar.vue'
 
 export default defineComponent({
   name: 'CollectionList',
   components: {
     IonContent,
-    NavBar,
+    RouterView,
   },
   props: {
     heading: String,

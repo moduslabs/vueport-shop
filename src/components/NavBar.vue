@@ -1,22 +1,40 @@
 <template>
-  <IonHeader>
-    <IonToolbar>
-      <IonTitle>
-        Vueport Shop
-      </IonTitle>
-    </IonToolbar>
-  </IonHeader>
+  <IonTabBar selectedTab="collections">
+    <IonTitle>Vueport Shop</IonTitle>
+    <IonTabButton tab="collections" href="/">
+      <IonLabel>Collections</IonLabel>
+    </IonTabButton>
+    <IonTabButton tab="about" href="/about">
+      <IonLabel>About</IonLabel>
+    </IonTabButton>
+    <IonTabButton tab="cart">
+      <IonIcon icon="cart" class="cart" />
+    </IonTabButton>
+  </IonTabBar>
 </template>
-<script>
-import { IonHeader, IonToolbar, IonTitle } from '@modus/ionic-vue'
+<script lang="ts">
+import {
+  IonTitle,
+  IonTabBar,
+  IonIcon,
+  IonLabel,
+  IonTabButton,
+} from '@modus/ionic-vue'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'NavBar',
   components: {
-    IonHeader,
-    IonToolbar,
     IonTitle,
+    IonTabBar,
+    IonIcon,
+    IonLabel,
+    IonTabButton,
   },
 })
 </script>
+<style scoped>
+.cart {
+  color: black;
+}
+</style>
