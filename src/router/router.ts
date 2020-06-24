@@ -1,6 +1,7 @@
 import { createWebHistory } from 'vue-router'
 import { createRouter } from '@modus/ionic-vue'
 import { categories } from '@/mockData/categories-list'
+import { products } from '@/mockData/product-list'
 
 const home = () => import('@/views/Home.vue')
 const collectionList = () => import('@/components/CollectionList.vue')
@@ -14,33 +15,49 @@ const router = createRouter({
       component: home,
       children: [
         {
-          path: 'tshirts',
+          path: '/tshirts',
           component: collectionList,
-          props: { heading: 'tshirts', data: [] },
+          props: {
+            heading: 'T-Shirts',
+            data: products,
+            category: categories[0],
+          },
           meta: {
             title: 'T-Shirts - Vue-Port Shop',
           },
         },
         {
-          path: 'hoodies',
+          path: '/hoodies',
           component: collectionList,
-          props: { heading: 'hoodies', data: [] },
+          props: {
+            heading: 'Hoodies',
+            data: products,
+            category: categories[1],
+          },
           meta: {
             title: 'Hoodies - Vue-Port Shop',
           },
         },
         {
-          path: 'jeans',
+          path: '/jeans',
           component: collectionList,
-          props: { heading: 'jeans', data: [] },
+          props: {
+            heading: 'Jeans',
+            data: products,
+            category: categories[2],
+          },
           meta: {
             title: 'Jeans - Vue-Port Shop',
           },
         },
         {
-          path: 'shorts',
+          path: '/shorts',
           component: collectionList,
-          props: { heading: 'shorts', data: [] },
+          props: {
+            heading: 'Shorts',
+            data: products,
+            category: categories[3],
+          },
           meta: {
             title: 'Shorts - Vue-Port Shop',
           },
