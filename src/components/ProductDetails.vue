@@ -107,12 +107,12 @@ export default defineComponent({
     prod: String,
   },
   data() {
-    const currentProd = products.filter(
-      (product) => product.id === this.prod
-    )[0]
     return {
-      product: currentProd,
+      product: products.filter((product) => product.id === this.prod)[0],
     }
+  },
+  updated() {
+    this.product = products.filter((product) => product.id === this.prod)[0]
   },
 })
 </script>

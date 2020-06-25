@@ -1,5 +1,5 @@
 <template>
-  <IonContent v-if="$route.path === category.path">
+  <IonContent>
     <IonRouterView />
     <IonImg class="image" :alt="category.title" :src="category.image" />
     <IonText color="dark">{{ heading }}</IonText>

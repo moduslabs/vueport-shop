@@ -1,7 +1,7 @@
 import * as sample from '../assets/sample.jpg'
 export const categories = [
   {
-    id: '1',
+    id: '3dd19955-32de-4aa9-bd63-60c21070c1cc',
     title: 'T-Shirts',
     path: '/tshirts',
     image: sample,
