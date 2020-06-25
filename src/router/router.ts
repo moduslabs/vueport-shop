@@ -20,7 +20,6 @@ const router = createRouter({
           component: collectionList,
           children: [
             {
-              name: 'tshirt-product',
               path: '/tshirts/:id',
               component: productDetails,
               props: true,
@@ -41,6 +40,16 @@ const router = createRouter({
         {
           path: '/hoodies',
           component: collectionList,
+          children: [
+            {
+              path: '/hoodies/:id',
+              component: productDetails,
+              props: true,
+              meta: {
+                title: 'Hoodies',
+              },
+            },
+          ],
           props: {
             heading: 'Hoodies',
             data: products,
@@ -53,6 +62,16 @@ const router = createRouter({
         {
           path: '/jeans',
           component: collectionList,
+          children: [
+            {
+              path: '/jeans/:id',
+              component: productDetails,
+              props: true,
+              meta: {
+                title: 'Jeans',
+              },
+            },
+          ],
           props: {
             heading: 'Jeans',
             data: products,
@@ -65,6 +84,16 @@ const router = createRouter({
         {
           path: '/shorts',
           component: collectionList,
+          children: [
+            {
+              path: '/shorts/:id',
+              component: productDetails,
+              props: true,
+              meta: {
+                title: 'Shorts',
+              },
+            },
+          ],
           props: {
             heading: 'Shorts',
             data: products,
