@@ -1,5 +1,5 @@
 <template>
-  <IonContent>
+  <IonContent v-if="$route.path === category.path">
     <IonRouterView />
     <IonImg class="image" :alt="category.title" :src="category.image" />
     <IonText color="dark">{{ heading }}</IonText>
@@ -7,8 +7,13 @@
     <IonGrid fixed="true">
       <IonRow>
         <IonCol col-2>
-          <IonCard v-for="product in data" :key="product.id">
-            <RouterLink :to="category.path + '/' + product.id">
+          <IonCard v-for="(product, index) in data" :key="index">
+            <RouterLink
+              :to="{
+                path: category.path + '/' + product.id,
+                params: { prod: product.id },
+              }"
+            >
               <IonImg
                 id="gridImg"
                 :alt="product.description"

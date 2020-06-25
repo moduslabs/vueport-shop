@@ -3,14 +3,14 @@
     <IonRouterView />
     <IonContent v-if="$route.path === '/'">
       <IonList>
-        <IonItemGroup v-for="category in categories" :key="category.id">
+        <IonItemGroup v-for="(category, index) in categories" :key="index">
           <IonItemDivider>
             <IonItem>
               <RouterLink :to="category.path">
                 <IonImg
                   class="image"
                   :src="category.image"
-                  :alt="category.name"
+                  :alt="category.title"
                 />
               </RouterLink>
             </IonItem>
@@ -18,7 +18,7 @@
           <IonItemDivider>
             <IonItem>
               <IonLabel>
-                {{ category.name }}
+                {{ category.title }}
               </IonLabel>
             </IonItem>
           </IonItemDivider>

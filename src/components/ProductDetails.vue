@@ -83,6 +83,7 @@ import {
   IonSelectOption,
   IonButton,
 } from '@modus/ionic-vue'
+import { products } from '@/mockData/product-list'
 
 export default defineComponent({
   name: 'ProductDetails',
@@ -103,7 +104,15 @@ export default defineComponent({
     IonButton,
   },
   props: {
-    product: Object,
+    prod: String,
+  },
+  data() {
+    const currentProd = products.filter(
+      (product) => product.id === this.prod
+    )[0]
+    return {
+      product: currentProd,
+    }
   },
 })
 </script>

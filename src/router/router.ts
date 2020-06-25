@@ -20,11 +20,10 @@ const router = createRouter({
           component: collectionList,
           children: [
             {
-              path: '/:id',
+              name: 'tshirt-product',
+              path: '/tshirts/:id',
               component: productDetails,
-              props: {
-                product: products[0],
-              },
+              props: true,
               meta: {
                 title: 'T-Shirts',
               },
