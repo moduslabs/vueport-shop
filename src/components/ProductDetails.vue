@@ -4,7 +4,7 @@
     <IonGrid>
       <IonRow>
         <IonCol>
-          <IonImg :alt="product.title" :src="product.image[1]" />
+          <IonImg :alt="product.title" :src="product.images[1]" />
         </IonCol>
         <IonCol>
           <IonItemGroup>
