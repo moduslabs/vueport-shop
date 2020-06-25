@@ -25,11 +25,11 @@
                 </IonLabel>
                 <IonSelect placeholder="Select Size">
                   <IonSelectOption
-                    :v-for="variant in product.variants"
+                    v-for="variant in product.variants"
                     :key="variant.id"
                     :value="variant.sku"
-                    >{{ variant.title }}</IonSelectOption
-                  >
+                    >{{ variant.title }}
+                  </IonSelectOption>
                 </IonSelect>
               </IonItem>
             </IonItemDivider>
@@ -104,15 +104,15 @@ export default defineComponent({
     IonButton,
   },
   props: {
-    prod: String,
+    id: String,
   },
   data() {
     return {
-      product: products.filter((product) => product.id === this.prod)[0],
+      product: products.filter((product) => product.id === this.id)[0],
     }
   },
   updated() {
-    this.product = products.filter((product) => product.id === this.prod)[0]
+    this.product = products.filter((product) => product.id === this.id)[0]
   },
 })
 </script>

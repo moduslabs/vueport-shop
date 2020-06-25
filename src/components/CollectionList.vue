@@ -1,9 +1,9 @@
 <template>
   <IonTab tab="collections">
     <IonRouterView />
-    <IonContent v-if="$route.path === category.path">
+    <IonContent>
       <IonImg class="image" :alt="category.title" :src="category.image" />
-      <IonText color="dark">{{ heading }}</IonText>
+      <IonText color="dark">{{ category.title }}</IonText>
       <IonText color="medium">{{ data.length + ' items' }}</IonText>
       <IonGrid fixed="true">
         <IonRow>
@@ -35,6 +35,7 @@
 </template>
 
 <script lang="ts">
+import { categories } from '@/mockData/categories-list'
 import { defineComponent } from 'vue'
 import {
   IonContent,
@@ -64,9 +65,18 @@ export default defineComponent({
     IonTab,
   },
   props: {
-    heading: String,
+    cat: String,
     data: Array,
-    category: Object,
+  },
+  data() {
+    return {
+      category: categories.filter((x) => x.path === this.cat)[0],
+    }
+  },
+  updated() {
+    return {
+      category: categories.filter((x) => x.path === this.cat)[0],
+    }
   },
 })
 </script>

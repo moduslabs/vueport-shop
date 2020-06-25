@@ -14,97 +14,24 @@ const router = createRouter({
     {
       path: '/',
       component: home,
+      props: { categories: categories },
       children: [
         {
-          path: '/tshirts',
+          path: '/:category',
           component: collectionList,
-          children: [
-            {
-              path: '/tshirts/:id',
-              component: productDetails,
-              props: true,
-              meta: {
-                title: 'T-Shirts',
-              },
-            },
-          ],
-          props: {
-            heading: 'T-Shirts',
+          props: (route) => ({
+            cat: route.params.category,
             data: products,
-            category: categories[0],
-          },
-          meta: {
-            title: 'T-Shirts - Vue-Port Shop',
-          },
+          }),
         },
         {
-          path: '/hoodies',
-          component: collectionList,
-          children: [
-            {
-              path: '/hoodies/:id',
-              component: productDetails,
-              props: true,
-              meta: {
-                title: 'Hoodies',
-              },
-            },
-          ],
-          props: {
-            heading: 'Hoodies',
-            data: products,
-            category: categories[1],
-          },
-          meta: {
-            title: 'Hoodies - Vue-Port Shop',
-          },
-        },
-        {
-          path: '/jeans',
-          component: collectionList,
-          children: [
-            {
-              path: '/jeans/:id',
-              component: productDetails,
-              props: true,
-              meta: {
-                title: 'Jeans',
-              },
-            },
-          ],
-          props: {
-            heading: 'Jeans',
-            data: products,
-            category: categories[2],
-          },
-          meta: {
-            title: 'Jeans - Vue-Port Shop',
-          },
-        },
-        {
-          path: '/shorts',
-          component: collectionList,
-          children: [
-            {
-              path: '/shorts/:id',
-              component: productDetails,
-              props: true,
-              meta: {
-                title: 'Shorts',
-              },
-            },
-          ],
-          props: {
-            heading: 'Shorts',
-            data: products,
-            category: categories[3],
-          },
-          meta: {
-            title: 'Shorts - Vue-Port Shop',
-          },
+          path: '/:category/:id',
+          component: productDetails,
+          props: (route) => ({
+            id: route.params.id,
+          }),
         },
       ],
-      props: { categories: categories },
       meta: {
         title: 'Home Page - Vue-Port Shop',
       },
@@ -116,7 +43,6 @@ const router = createRouter({
         title: 'About - Vue-Port Shop',
       },
     },
-    { path: '/', redirect: '/' },
   ],
 })
 
