@@ -5,6 +5,7 @@ const home = () => import('@/views/Home.vue')
 // const collectionList = () => import('@/components/CollectionList.vue')
 const Category = () => import('@/components/Category.vue')
 const about = () => import('@/views/About.vue')
+const productDetails = () => import('@/components/ProductDetails.vue')
 
 const history = createWebHistory()
 const router = createRouter({
@@ -22,6 +23,13 @@ const router = createRouter({
       component: Category,
       meta: {
         title: 'Category - Vue-Port Shop',
+      },
+    },
+    {
+      path: '/product/:productId',
+      component: productDetails,
+      meta: {
+        title: 'Product - Vue-Port Shop',
       },
     },
     {

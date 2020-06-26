@@ -1,25 +1,27 @@
 <template>
   <IonContent>
     <ion-list v-for="product in products" :key="product.id">
-      <ion-item>
-        <ion-avatar slot="start">
-          <ion-img :src="product.images[0]" :alt="product.title" />
-        </ion-avatar>
-        <ion-label>
-          <h2>{{ product.title }}</h2>
-          <ion-badge
-            v-for="tag in product.tags"
-            :key="tag"
-            color="medium"
-            class="tag"
-            >{{ tag }}</ion-badge
-          >
-          <p>{{ product.description }}</p>
-        </ion-label>
-        <ion-text color="primary" slot="end">{{
-          currency(product.price)
-        }}</ion-text>
-      </ion-item>
+      <RouterLink :to="`/product/${product.id}`">
+        <ion-item>
+          <ion-avatar slot="start">
+            <ion-img :src="product.images[0]" :alt="product.title" />
+          </ion-avatar>
+          <ion-label>
+            <h2>{{ product.title }}</h2>
+            <ion-badge
+              v-for="tag in product.tags"
+              :key="tag"
+              color="medium"
+              class="tag"
+              >{{ tag }}</ion-badge
+            >
+            <p>{{ product.description }}</p>
+          </ion-label>
+          <ion-text color="primary" slot="end">{{
+            currency(product.price)
+          }}</ion-text>
+        </ion-item>
+      </RouterLink>
     </ion-list>
   </IonContent>
 </template>
