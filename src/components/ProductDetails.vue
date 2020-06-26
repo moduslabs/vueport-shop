@@ -19,7 +19,7 @@
             <IonItemDivider>
               <IonItem>
                 <IonText color="medium">
-                  {{ product['products'].price }}
+                  {{ currency(product['products'].price) }}
                 </IonText>
               </IonItem>
             </IonItemDivider>
@@ -28,7 +28,7 @@
                 <IonLabel>
                   Size
                 </IonLabel>
-                <IonSelect placeholder="Select Size">
+                <IonSelect placeholder="Select Size" class="select">
                   <IonSelectOption
                     v-for="variant in product['products'].variants"
                     :key="variant.id"
@@ -43,7 +43,7 @@
                 <IonLabel>
                   Quantity
                 </IonLabel>
-                <IonSelect placeholder="Select Quantity">
+                <IonSelect placeholder="Select Quantity" class="select">
                   <IonSelectOption value="1">1</IonSelectOption>
                   <IonSelectOption value="2">2</IonSelectOption>
                   <IonSelectOption value="3">3</IonSelectOption>
@@ -133,5 +133,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style scoped></style>
