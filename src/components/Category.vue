@@ -1,5 +1,4 @@
 <template>
-  <NavBar />
   <IonContent>
     <ion-list v-for="product in products" :key="product.id">
       <ion-item>
@@ -28,7 +27,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { IonContent } from '@modus/ionic-vue'
-import NavBar from '../components/NavBar.vue'
 import { useRoute } from 'vue-router'
 import useProducts from '@/composables/products'
 
@@ -45,7 +43,6 @@ function getCurrencyFormat() {
 export default defineComponent({
   name: 'CollectionList',
   components: {
-    NavBar,
     IonContent,
   },
   async setup() {

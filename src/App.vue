@@ -1,22 +1,28 @@
 <template>
   <IonApp>
-    <ion-text v-if="error" color="warning">{{ error }}</ion-text>
-    <Suspense>
-      <template #default>
-        <IonRouterView />
+    <IonTabs>
+      <template v-slot:top>
+        <NavBar />
       </template>
-      <template #fallback>
-        <Skeleton />
-      </template>
-    </Suspense>
+      <ion-text v-if="error" color="warning">{{ error }}</ion-text>
+      <Suspense>
+        <template #default>
+          <IonRouterView />
+        </template>
+        <template #fallback>
+          <Skeleton />
+        </template>
+      </Suspense>
+    </IonTabs>
   </IonApp>
 </template>
 
 <script lang="ts">
 import { defineComponent, watch, onErrorCaptured, ref } from 'vue'
-import { IonApp, IonRouterView } from '@modus/ionic-vue'
+import { IonApp, IonRouterView, IonTabs } from '@modus/ionic-vue'
 import { useRouter } from 'vue-router'
 import Skeleton from '@/components/Skeleton'
+import NavBar from './components/NavBar.vue'
 
 import '@ionic/core/css/normalize.css'
 import '@ionic/core/css/core.css'
@@ -30,6 +36,8 @@ export default defineComponent({
     IonApp,
     IonRouterView,
     Skeleton,
+    NavBar,
+    IonTabs,
   },
   setup() {
     const error = ref()
@@ -56,9 +64,5 @@ export default defineComponent({
 a {
   text-decoration: none;
   color: black;
-}
-ion-title {
-  padding: 0.25%;
-  margin-top: 0.5%;
 }
 </style>
