@@ -1,7 +1,7 @@
 <template>
   <IonContent>
     <IonList v-for="product in products" :key="product.id">
-      <RouterLink :to="`/product/{{product.id}}`">
+      <RouterLink :to="`/product/${product.id}`">
         <IonItem>
           <IonAvatar slot="start">
             <IonImg :src="product.images[0]" :alt="product.title" />
