@@ -119,14 +119,8 @@ export default defineComponent({
     IonSelectOption,
     IonButton,
   },
-  props: {
-    prod: String,
-  },
   async setup() {
-    const {
-      params: { productId },
-    } = useRoute()
-    const product = await useProduct(productId)
+    const product = await useProduct(useRoute().params.productId)
 
     const currency = getCurrencyFormat()
     return { product, currency }

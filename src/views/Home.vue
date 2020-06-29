@@ -2,27 +2,37 @@
   <IonTab tab="collections">
     <IonContent>
       <div class="list">
-        <ion-card v-for="category in categories" :key="category.id">
+        <IonCard v-for="category in this.categories" :key="category.id">
           <RouterLink :to="`/category/${category.id}`">
-            <ion-img class="hero" :src="category.image" :alt="category.title" />
+            <IonImg class="hero" :src="category.image" :alt="category.title" />
           </RouterLink>
-          <ion-card-header>
-            <ion-card-subtitle>Featured</ion-card-subtitle>
-            <ion-card-title>{{ category.title }}</ion-card-title>
-            <ion-fab vertical="center" horizontal="end">
-              <ion-fab-button :href="`/category/${category.id}`">
+          <IonCardHeader>
+            <IonCardSubtitle>Featured</IonCardSubtitle>
+            <IonCardTitle>{{ category.title }}</IonCardTitle>
+            <IonFab vertical="center" horizontal="end">
+              <IonFabButton :href="`/category/${category.id}`">
                 View
-              </ion-fab-button>
-            </ion-fab>
-          </ion-card-header>
-        </ion-card>
+              </IonFabButton>
+            </IonFab>
+          </IonCardHeader>
+        </IonCard>
       </div>
     </IonContent>
   </IonTab>
 </template>
 
 <script lang="ts">
-import { IonContent, IonTab } from '@modus/ionic-vue'
+import {
+  IonContent,
+  IonTab,
+  IonCard,
+  IonImg,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
+  IonFab,
+  IonFabButton,
+} from '@modus/ionic-vue'
 import { defineComponent } from 'vue'
 import { RouterLink } from 'vue-router'
 import useCategories from '@/composables/categories'
@@ -33,6 +43,13 @@ export default defineComponent({
     RouterLink,
     IonContent,
     IonTab,
+    IonCard,
+    IonImg,
+    IonCardHeader,
+    IonCardSubtitle,
+    IonCardTitle,
+    IonFab,
+    IonFabButton,
   },
   async setup() {
     const { categories } = await useCategories()

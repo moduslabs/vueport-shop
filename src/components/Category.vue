@@ -15,7 +15,7 @@
               class="tag"
               >{{ tag }}
             </IonBadge>
-            <p>{{ product.description }}</p>
+            <IonText>{{ product.description }}</IonText>
           </IonLabel>
           <IonText color="primary" slot="end">{{
             currency(product.price)
@@ -39,7 +39,7 @@ import {
   IonBadge,
 } from '@modus/ionic-vue'
 import { useRoute } from 'vue-router'
-import useProducts from '@/composables/products'
+import useProductsInCategory from '@/composables/products'
 
 function getCurrencyFormat() {
   const intl = new Intl.NumberFormat(navigator.language, {
@@ -64,14 +64,11 @@ export default defineComponent({
     IonBadge,
   },
   async setup() {
-    const {
-      params: { categoryId },
-    } = useRoute()
-
-    const { products } = await useProducts(categoryId)
+    const { products } = await useProductsInCategory(
+      useRoute().params.categoryId
+    )
 
     const currency = getCurrencyFormat()
-
     return { products, currency }
   },
 })

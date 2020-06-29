@@ -2,7 +2,6 @@ import { createWebHistory } from 'vue-router'
 import { createRouter } from '@modus/ionic-vue'
 
 const home = () => import('@/views/Home.vue')
-// const collectionList = () => import('@/components/CollectionList.vue')
 const Category = () => import('@/components/Category.vue')
 const about = () => import('@/views/About.vue')
 const productDetails = () => import('@/components/ProductDetails.vue')

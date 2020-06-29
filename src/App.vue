@@ -4,7 +4,7 @@
       <template v-slot:top>
         <NavBar />
       </template>
-      <ion-text v-if="error" color="warning">{{ error }}</ion-text>
+      <IonText v-if="error" color="warning">{{ error }}</IonText>
       <Suspense>
         <template #default>
           <IonRouterView />
@@ -19,9 +19,9 @@
 
 <script lang="ts">
 import { defineComponent, watch, onErrorCaptured, ref } from 'vue'
-import { IonApp, IonRouterView, IonTabs } from '@modus/ionic-vue'
+import { IonApp, IonRouterView, IonTabs, IonText } from '@modus/ionic-vue'
 import { useRouter } from 'vue-router'
-import Skeleton from '@/components/Skeleton'
+import Skeleton from '@/components/Skeleton.vue'
 import NavBar from './components/NavBar.vue'
 
 import '@ionic/core/css/normalize.css'
@@ -38,6 +38,7 @@ export default defineComponent({
     Skeleton,
     NavBar,
     IonTabs,
+    IonText,
   },
   setup() {
     const error = ref()
