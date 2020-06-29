@@ -1,18 +1,27 @@
 <template>
   <IonApp>
     <IonTabs>
-      <IonRouterView />
       <template v-slot:top>
         <NavBar />
       </template>
+      <ion-text v-if="error" color="warning">{{ error }}</ion-text>
+      <Suspense>
+        <template #default>
+          <IonRouterView />
+        </template>
+        <template #fallback>
+          <Skeleton />
+        </template>
+      </Suspense>
     </IonTabs>
   </IonApp>
 </template>
 
 <script lang="ts">
-import { defineComponent, watch } from 'vue'
+import { defineComponent, watch, onErrorCaptured, ref } from 'vue'
 import { IonApp, IonRouterView, IonTabs } from '@modus/ionic-vue'
 import { useRouter } from 'vue-router'
+import Skeleton from '@/components/Skeleton'
 import NavBar from './components/NavBar.vue'
 
 import '@ionic/core/css/normalize.css'
@@ -26,15 +35,23 @@ export default defineComponent({
   components: {
     IonApp,
     IonRouterView,
+    Skeleton,
     NavBar,
     IonTabs,
   },
   setup() {
+    const error = ref()
     const { currentRoute } = useRouter()
 
     watch(currentRoute, (to) => {
       document.title = to.meta.title || 'Vue-Port Shop'
     })
+
+    onErrorCaptured((err) => {
+      error.value = err as string
+    })
+
+    return { error }
   },
 })
 </script>

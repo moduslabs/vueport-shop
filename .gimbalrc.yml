@@ -45,6 +45,8 @@ plugins:
     thresholds:
       color-contrast: serious
       page-has-heading-one: moderate
+      landmark-one-main: serious
+      empty-heading: serious
   - plugin: '@modus/gimbal-plugin-source-map-explorer'
     bundles:
       - path: '*.js'
