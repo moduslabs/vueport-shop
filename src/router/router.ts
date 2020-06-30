@@ -2,9 +2,10 @@ import { createWebHistory } from 'vue-router'
 import { createRouter } from '@modus/ionic-vue'
 
 const home = () => import('@/views/Home.vue')
-const Category = () => import('@/components/Category.vue')
+const category = () => import('@/components/Category.vue')
 const about = () => import('@/views/About.vue')
 const productDetails = () => import('@/components/ProductDetails.vue')
+const cart = () => import('@/components/Cart.vue')
 
 const history = createWebHistory()
 const router = createRouter({
@@ -19,7 +20,7 @@ const router = createRouter({
     },
     {
       path: '/category/:categoryId',
-      component: Category,
+      component: category,
       meta: {
         title: 'Category - Vue-Port Shop',
       },
@@ -36,6 +37,13 @@ const router = createRouter({
       component: about,
       meta: {
         title: 'About - Vue-Port Shop',
+      },
+    },
+    {
+      path: '/cart',
+      component: cart,
+      meta: {
+        title: 'Cart - Vue-Port Shop',
       },
     },
   ],

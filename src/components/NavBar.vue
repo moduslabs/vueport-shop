@@ -9,6 +9,7 @@
     </IonTabButton>
     <IonTabButton tab="cart">
       <IonIcon icon="cart" class="cart" />
+      <IonBadge color="primary"> {{ cartItems }} </IonBadge>
     </IonTabButton>
   </IonTabBar>
 </template>
@@ -30,6 +31,21 @@ export default defineComponent({
     IonIcon,
     IonLabel,
     IonTabButton,
+  },
+  data() {
+    return {
+      cartItems: 0,
+    }
+  },
+  methods: {
+    cartIncrement: function () {
+      this.cartItems++
+    },
+  },
+  provide: function () {
+    return {
+      cartIncrement: this.cartIncrement,
+    }
   },
 })
 </script>

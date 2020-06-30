@@ -62,13 +62,25 @@
             </IonItemDivider>
             <IonItemDivider>
               <IonItem>
-                <IonButton>ADD TO CART</IonButton>
+                <IonButton @click="openModalComponent">ADD TO CART</IonButton>
               </IonItem>
             </IonItemDivider>
           </IonItemGroup>
         </IonCol>
       </IonRow>
     </IonGrid>
+    <IonModal :isOpen="isOpen" @willDismiss="willDismiss" :showBackdrop="true">
+      <IonText>{{ product.title }} added to cart</IonText>
+      <RouterLink to="/cart">
+        <IonButton>View Cart</IonButton>
+      </RouterLink>
+      <RouterLink to="/cart">
+        <IonButton>Checkout</IonButton>
+      </RouterLink>
+      <IonButton @click="willDismiss" size="small" color="light" shape="round"
+        >X</IonButton
+      >
+    </IonModal>
   </IonContent>
 </template>
 
@@ -89,6 +101,7 @@ import {
   IonSelect,
   IonSelectOption,
   IonButton,
+  IonModal,
 } from '@modus/ionic-vue'
 import { useRoute } from 'vue-router'
 import useProduct from '@/composables/products'
@@ -118,12 +131,27 @@ export default defineComponent({
     IonSelect,
     IonSelectOption,
     IonButton,
+    IonModal,
+  },
+  inject: ['cartIncrement'],
+  data() {
+    return {
+      isOpen: false,
+    }
   },
   async setup() {
     const product = await useProduct(useRoute().params.productId)
 
     const currency = getCurrencyFormat()
     return { product, currency }
+  },
+  methods: {
+    openModalComponent() {
+      this.isOpen = true
+    },
+    willDismiss() {
+      this.isOpen = false
+    },
   },
 })
 </script>
