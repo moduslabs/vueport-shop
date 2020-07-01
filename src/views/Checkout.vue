@@ -53,6 +53,31 @@
               <IonInput placeholder="State" required="true" type="text" />
               <IonInput placeholder="Country" required="true" type="text" />
             </IonItem>
+            <IonLabel>Billing Address</IonLabel>
+            <IonItem>
+              <IonLabel>Use different Billing Address</IonLabel>
+              <IonCheckbox :checked="state.isChecked" @click="check" />
+            </IonItem>
+            <IonItem v-if="state.isChecked">
+              <IonLabel position="stacked">
+                Address
+                <IonText color="danger">*</IonText>
+              </IonLabel>
+              <IonInput
+                placeholder="Address Line 1"
+                required="true"
+                type="text"
+              />
+              <IonInput
+                placeholder="Address Line 2"
+                required="true"
+                type="text"
+              />
+              <IonInput placeholder="City" required="true" type="text" />
+              <IonInput placeholder="Zip" required="true" type="number" />
+              <IonInput placeholder="State" required="true" type="text" />
+              <IonInput placeholder="Country" required="true" type="text" />
+            </IonItem>
           </IonList>
         </IonCol>
         <IonCol>
@@ -115,11 +140,11 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent, ref, reactive } from 'vue'
 import { range } from 'lodash'
 import {
   IonInput,
-  // IonCheckbox,
+  IonCheckbox,
   IonList,
   IonItem,
   IonLabel,
@@ -136,7 +161,7 @@ export default defineComponent({
   name: 'Checkout',
   components: {
     IonInput,
-    // IonCheckbox,
+    IonCheckbox,
     IonList,
     IonItem,
     IonLabel,
@@ -149,23 +174,33 @@ export default defineComponent({
     IonSelectOption,
     IonButton,
   },
-  data() {
+  setup() {
+    const months = ref([
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ])
+    const years = ref(range(2020, 2031, 1))
+    const state = reactive({
+      isChecked: false,
+    })
+    function check() {
+      state.isChecked = !state.isChecked
+    }
     return {
-      months: [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec',
-      ],
-      years: range(2020, 2031, 1),
+      months,
+      years,
+      state,
+      check,
     }
   },
 })
