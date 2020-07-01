@@ -4,99 +4,36 @@
       <IonRow>
         <IonCol>
           <IonList>
+            <IonLabel>Contact Information</IonLabel>
+            <Input name="First Name" inputType="text" />
+            <Input name="Last Name" inputType="text" />
+            <Input name="Phone Number" inputType="tel" />
+            <Input name="Email" inputType="email" />
             <IonLabel>Shipping Address</IonLabel>
-            <IonItem>
-              <IonLabel position="stacked">
-                First Name
-                <IonText color="danger">*</IonText>
-              </IonLabel>
-              <IonInput required type="text" placeholder="First Name" />
-            </IonItem>
-            <IonItem>
-              <IonLabel position="stacked">
-                Last Name
-                <IonText color="danger">*</IonText>
-              </IonLabel>
-              <IonInput required="true" placeholder="Last Name" />
-            </IonItem>
-            <IonItem>
-              <IonLabel position="stacked">
-                Phone Number
-                <IonText color="danger">*</IonText>
-              </IonLabel>
-              <IonInput required="true" placeholder="Phone Number" type="tel" />
-            </IonItem>
-            <IonItem>
-              <IonLabel position="stacked">
-                Email
-                <IonText color="danger">*</IonText>
-              </IonLabel>
-              <IonInput required="true" placeholder="Email" type="email" />
-            </IonItem>
-            <IonItem>
-              <IonLabel position="stacked">
-                Address
-                <IonText color="danger">*</IonText>
-              </IonLabel>
-              <IonInput
-                placeholder="Address Line 1"
-                required="true"
-                type="text"
-              />
-              <IonInput
-                placeholder="Address Line 2"
-                required="true"
-                type="text"
-              />
-              <IonInput placeholder="City" required="true" type="text" />
-              <IonInput placeholder="Zip" required="true" type="number" />
-              <IonInput placeholder="State" required="true" type="text" />
-              <IonInput placeholder="Country" required="true" type="text" />
-            </IonItem>
+            <Input name="Address" inputType="text" />
+            <Input name="City" inputType="text" />
+            <Input name="Zip" inputType="number" />
+            <Input name="State" inputType="text" />
+            <Input name="Country" inputType="text" />
             <IonLabel>Billing Address</IonLabel>
             <IonItem>
               <IonLabel>Use different Billing Address</IonLabel>
               <IonCheckbox :checked="state.isChecked" @click="check" />
             </IonItem>
             <IonItem v-if="state.isChecked">
-              <IonLabel position="stacked">
-                Address
-                <IonText color="danger">*</IonText>
-              </IonLabel>
-              <IonInput
-                placeholder="Address Line 1"
-                required="true"
-                type="text"
-              />
-              <IonInput
-                placeholder="Address Line 2"
-                required="true"
-                type="text"
-              />
-              <IonInput placeholder="City" required="true" type="text" />
-              <IonInput placeholder="Zip" required="true" type="number" />
-              <IonInput placeholder="State" required="true" type="text" />
-              <IonInput placeholder="Country" required="true" type="text" />
+              <Input name="Address" inputType="text" />
+              <Input name="City" inputType="text" />
+              <Input name="Zip" inputType="number" />
+              <Input name="State" inputType="text" />
+              <Input name="Country" inputType="text" />
             </IonItem>
           </IonList>
         </IonCol>
         <IonCol>
           <IonLabel>Payment Information</IonLabel>
           <IonList>
-            <IonItem>
-              <IonLabel position="stacked">
-                Cardholder Name
-                <IonText color="danger">*</IonText>
-              </IonLabel>
-              <IonInput required type="text" placeholder="Cardholder Name" />
-            </IonItem>
-            <IonItem>
-              <IonLabel position="stacked">
-                Card Number
-                <IonText color="danger">*</IonText>
-              </IonLabel>
-              <IonInput required type="number" placeholder="Card Number" />
-            </IonItem>
+            <Input name="Cardholder Name" inputType="text" />
+            <Input name="Card Number" inputType="text" />
             <IonItem>
               <IonLabel position="stacked">
                 Month
@@ -119,13 +56,7 @@
                 </IonSelectOption>
               </IonSelect>
             </IonItem>
-            <IonItem>
-              <IonLabel position="stacked">
-                CVV
-                <IonText color="danger">*</IonText>
-              </IonLabel>
-              <IonInput required type="number" placeholder="CVV" />
-            </IonItem>
+            <Input name="CVV" inputType="number" />
             <IonItem>
               <IonLabel>Order Summary (Soon to come)</IonLabel>
             </IonItem>
@@ -142,8 +73,8 @@
 <script>
 import { defineComponent, ref, reactive } from 'vue'
 import { range } from 'lodash'
+import Input from '../components/Input.vue'
 import {
-  IonInput,
   IonCheckbox,
   IonList,
   IonItem,
@@ -160,7 +91,6 @@ import {
 export default defineComponent({
   name: 'Checkout',
   components: {
-    IonInput,
     IonCheckbox,
     IonList,
     IonItem,
@@ -173,23 +103,28 @@ export default defineComponent({
     IonSelect,
     IonSelectOption,
     IonButton,
+    Input,
+  },
+  data() {
+    return {
+      months: [
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec',
+      ],
+      years: ref(range(2020, 2031, 1)),
+    }
   },
   setup() {
-    const months = ref([
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec',
-    ])
-    const years = ref(range(2020, 2031, 1))
     const state = reactive({
       isChecked: false,
     })
@@ -197,8 +132,6 @@ export default defineComponent({
       state.isChecked = !state.isChecked
     }
     return {
-      months,
-      years,
       state,
       check,
     }
