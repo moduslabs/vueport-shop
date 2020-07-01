@@ -85,7 +85,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import {
   IonContent,
   IonRouterView,
@@ -133,25 +133,20 @@ export default defineComponent({
     IonButton,
     IonModal,
   },
-  inject: ['cartIncrement'],
-  data() {
-    return {
-      isOpen: false,
-    }
-  },
   async setup() {
+    const isOpen = ref(false)
     const product = await useProduct(useRoute().params.productId)
-
     const currency = getCurrencyFormat()
-    return { product, currency }
-  },
-  methods: {
-    openModalComponent() {
-      this.isOpen = true
-    },
-    willDismiss() {
-      this.isOpen = false
-    },
+
+    function openModalComponent() {
+      isOpen.value = true
+    }
+
+    function willDismiss() {
+      isOpen.value = false
+    }
+
+    return { product, currency, isOpen, openModalComponent, willDismiss }
   },
 })
 </script>

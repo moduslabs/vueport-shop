@@ -21,7 +21,7 @@ import {
   IonLabel,
   IonTabButton,
 } from '@modus/ionic-vue'
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
   name: 'NavBar',
@@ -32,19 +32,16 @@ export default defineComponent({
     IonLabel,
     IonTabButton,
   },
-  data() {
-    return {
-      cartItems: 0,
+  async setup() {
+    const cartItems = ref(0)
+
+    function cartIncrement() {
+      cartItems.value = cartItems.value++
     }
-  },
-  methods: {
-    cartIncrement: function () {
-      this.cartItems++
-    },
-  },
-  provide: function () {
+
     return {
-      cartIncrement: this.cartIncrement,
+      cartItems,
+      cartIncrement,
     }
   },
 })
