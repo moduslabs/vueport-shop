@@ -102,7 +102,7 @@
                 Month
                 <IonText color="danger">*</IonText>
               </IonLabel>
-              <IonSelect placeholder="Month">
+              <IonSelect placeholder="Month" role="menu">
                 <IonSelectOption v-for="month in months" :key="month">
                   {{ month }}
                 </IonSelectOption>
@@ -113,7 +113,7 @@
                 Year
                 <IonText color="danger">*</IonText>
               </IonLabel>
-              <IonSelect placeholder="Year">
+              <IonSelect placeholder="Year" role="menu">
                 <IonSelectOption v-for="year in years" :key="year">
                   {{ year }}
                 </IonSelectOption>
