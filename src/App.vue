@@ -2,12 +2,12 @@
   <IonApp>
     <IonTabs>
       <template v-slot:top>
-        <NavBar />
+        <NavBar :cartItems="cartItems" />
       </template>
       <IonText v-if="error" color="warning">{{ error }}</IonText>
       <Suspense>
         <template #default>
-          <IonRouterView />
+          <IonRouterView :cartIncrement="cartIncrement" />
         </template>
         <template #fallback>
           <Skeleton />
@@ -43,6 +43,7 @@ export default defineComponent({
   setup() {
     const error = ref()
     const { currentRoute } = useRouter()
+    const cartItems = ref(0)
 
     watch(currentRoute, (to) => {
       document.title = to.meta.title || 'Vue-Port Shop'
@@ -52,7 +53,12 @@ export default defineComponent({
       error.value = err as string
     })
 
-    return { error }
+    function cartIncrement() {
+      cartItems.value++
+      return null
+    }
+
+    return { error, cartItems, cartIncrement }
   },
 })
 </script>

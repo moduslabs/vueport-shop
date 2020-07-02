@@ -133,12 +133,25 @@ export default defineComponent({
     IonButton,
     IonModal,
   },
-  async setup() {
+  props: {
+    cartItems: {
+      required: true,
+      type: Number,
+    },
+    cartIncrement: {
+      type: Function,
+      default: () => {
+        return null
+      },
+    },
+  },
+  async setup(props) {
     const isOpen = ref(false)
     const product = await useProduct(useRoute().params.productId)
     const currency = getCurrencyFormat()
 
     function openModalComponent() {
+      props.cartIncrement()
       isOpen.value = true
     }
 
@@ -146,7 +159,13 @@ export default defineComponent({
       isOpen.value = false
     }
 
-    return { product, currency, isOpen, openModalComponent, willDismiss }
+    return {
+      product,
+      currency,
+      isOpen,
+      openModalComponent,
+      willDismiss,
+    }
   },
 })
 </script>

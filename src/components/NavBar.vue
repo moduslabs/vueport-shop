@@ -9,7 +9,7 @@
     </IonTabButton>
     <IonTabButton tab="cart">
       <IonIcon icon="cart" class="cart" />
-      <IonBadge color="primary"> {{ cartItems }} </IonBadge>
+      <IonBadge color="primary">{{ cartItems }}</IonBadge>
     </IonTabButton>
   </IonTabBar>
 </template>
@@ -20,8 +20,9 @@ import {
   IonIcon,
   IonLabel,
   IonTabButton,
+  IonBadge,
 } from '@modus/ionic-vue'
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'NavBar',
@@ -31,18 +32,13 @@ export default defineComponent({
     IonIcon,
     IonLabel,
     IonTabButton,
+    IonBadge,
   },
-  async setup() {
-    const cartItems = ref(0)
-
-    function cartIncrement() {
-      cartItems.value = cartItems.value++
-    }
-
-    return {
-      cartItems,
-      cartIncrement,
-    }
+  props: {
+    cartItems: {
+      required: true,
+      type: Number,
+    },
   },
 })
 </script>
