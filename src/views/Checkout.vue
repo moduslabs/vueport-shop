@@ -72,7 +72,7 @@
 
 <script>
 import { defineComponent, ref, reactive } from 'vue'
-import { range } from 'lodash'
+import range from 'lodash/range'
 import Input from '../components/Input.vue'
 import {
   IonCheckbox,
