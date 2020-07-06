@@ -19,11 +19,6 @@
       </IonList>
     </IonContent>
   </IonMenu>
-  <IonToolbar id="main-content">
-    <IonMenuButton autoHide="false" slot="start" @click="openMenuComponent">
-    </IonMenuButton>
-    <IonTitle>Vueport Shop</IonTitle>
-  </IonToolbar>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
@@ -36,7 +31,6 @@ import {
   IonList,
   IonItem,
   IonLabel,
-  IonMenuButton,
 } from '@modus/ionic-vue'
 export default defineComponent({
   name: 'Menu',
@@ -48,7 +42,6 @@ export default defineComponent({
     IonList,
     IonItem,
     IonLabel,
-    IonMenuButton,
   },
   setup() {
     function openMenuComponent() {

@@ -2,8 +2,7 @@
   <IonApp>
     <IonTabs>
       <template v-slot:top>
-        <NavBar class="ion-hide-md-down" />
-        <Menu class="ion-hide-md-up" />
+        <NavBar />
       </template>
       <IonText v-if="error" color="warning">{{ error }}</IonText>
       <Suspense>
@@ -24,7 +23,6 @@ import { IonApp, IonRouterView, IonTabs, IonText } from '@modus/ionic-vue'
 import { useRouter } from 'vue-router'
 import Skeleton from '@/components/Skeleton.vue'
 import NavBar from './components/NavBar.vue'
-import Menu from '@/components/Menu.vue'
 
 import '@ionic/core/css/normalize.css'
 import '@ionic/core/css/core.css'
@@ -41,7 +39,6 @@ export default defineComponent({
     NavBar,
     IonTabs,
     IonText,
-    Menu,
   },
   setup() {
     const error = ref()
