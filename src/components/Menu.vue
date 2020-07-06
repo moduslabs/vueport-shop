@@ -1,20 +1,26 @@
 <template>
-  <IonMenu menuId="main-menu" contentId="main-content">
+  <IonMenu menuId="main-menu" contentId="main-content" class="title">
     <IonHeader>
-      <IonToolbar>
+      <IonToolbar translucent>
         <IonTitle>Menu</IonTitle>
       </IonToolbar>
     </IonHeader>
     <IonContent>
       <IonList>
         <IonItem>
-          <IonLabel>Collections</IonLabel>
+          <IonTabButton tab="collections" href="/">
+            <IonLabel>Collections</IonLabel>
+          </IonTabButton>
         </IonItem>
         <IonItem>
-          <IonLabel>About</IonLabel>
+          <IonTabButton tab="about" href="/about">
+            <IonLabel>About</IonLabel>
+          </IonTabButton>
         </IonItem>
         <IonItem>
-          <IonLabel>Cart</IonLabel>
+          <IonTabButton tab="cart" href="/cart">
+            <IonIcon icon="cart" />
+          </IonTabButton>
         </IonItem>
       </IonList>
     </IonContent>
@@ -31,6 +37,8 @@ import {
   IonList,
   IonItem,
   IonLabel,
+  IonTabButton,
+  IonIcon,
 } from '@modus/ionic-vue'
 export default defineComponent({
   name: 'Menu',
@@ -42,6 +50,8 @@ export default defineComponent({
     IonList,
     IonItem,
     IonLabel,
+    IonTabButton,
+    IonIcon,
   },
   setup() {
     function openMenuComponent() {
@@ -51,3 +61,8 @@ export default defineComponent({
   },
 })
 </script>
+<style scoped>
+.title {
+  text-align: center;
+}
+</style>
