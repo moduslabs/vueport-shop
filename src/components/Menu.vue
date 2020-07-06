@@ -1,5 +1,10 @@
 <template>
-  <IonMenu menuId="main-menu" contentId="main-content" class="title">
+  <IonMenu
+    menuId="main-menu"
+    contentId="main-content"
+    class="centeredTitle"
+    role="menu"
+  >
     <IonHeader>
       <IonToolbar translucent>
         <IonTitle>Menu</IonTitle>
@@ -62,7 +67,7 @@ export default defineComponent({
 })
 </script>
 <style scoped>
-.title {
+.centeredTitle {
   text-align: center;
 }
 </style>
