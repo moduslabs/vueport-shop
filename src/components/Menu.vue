@@ -33,7 +33,6 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { menuController } from '@ionic/core'
 import {
   IonMenu,
   IonToolbar,
@@ -57,12 +56,6 @@ export default defineComponent({
     IonLabel,
     IonTabButton,
     IonIcon,
-  },
-  setup() {
-    function openMenuComponent() {
-      menuController.open('main-menu')
-    }
-    return { openMenuComponent }
   },
 })
 </script>
