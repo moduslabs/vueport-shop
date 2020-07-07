@@ -139,10 +139,8 @@ export default defineComponent({
       type: Number,
     },
     cartIncrement: {
+      required: true,
       type: Function,
-      default: () => {
-        return null
-      },
     },
   },
   async setup(props) {

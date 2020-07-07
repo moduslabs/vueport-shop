@@ -7,7 +7,10 @@
       <IonText v-if="error" color="warning">{{ error }}</IonText>
       <Suspense>
         <template #default>
-          <IonRouterView :cartIncrement="cartIncrement" />
+          <IonRouterView
+            :cartIncrement="cartIncrement"
+            :cartItems="cartItems"
+          />
         </template>
         <template #fallback>
           <Skeleton />
