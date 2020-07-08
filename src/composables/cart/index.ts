@@ -1,16 +1,13 @@
-import { reactive, computed } from 'vue'
-const state = reactive({
-  cartItems: 0,
-})
-const cartItems = computed(() => state.cartItems)
-const isCartEmpty = computed(() => state.cartItems === 0)
-const cartIncrement = () => {
-  state.cartItems++
+import { ref, computed } from 'vue'
+const items = ref([])
+const size = computed(() => items.value.length)
+const isEmpty = computed(() => size.value === 0)
+function add(product) {
+  items.value = [...items.value, product]
 }
-
-const cartState = {
-  cartItems,
-  isCartEmpty,
-  cartIncrement,
+export default {
+  items,
+  size,
+  isEmpty,
+  add,
 }
-export default cartState

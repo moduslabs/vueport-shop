@@ -105,7 +105,7 @@ import {
 } from '@modus/ionic-vue'
 import { useRoute } from 'vue-router'
 import useProduct from '@/composables/products'
-import cartState from '@/composables/cart/index'
+import cart from '@/composables/cart/index'
 function getCurrencyFormat() {
   const intl = new Intl.NumberFormat(navigator.language, {
     maximumFractionDigits: 2,
@@ -139,7 +139,7 @@ export default defineComponent({
     const isOpen = ref(false)
     const currency = getCurrencyFormat()
     function openModalComponent() {
-      cartState.cartIncrement()
+      cart.add(product)
       isOpen.value = true
     }
     function willDismiss() {
@@ -151,7 +151,7 @@ export default defineComponent({
       isOpen,
       openModalComponent,
       willDismiss,
-      cartState,
+      cart,
     }
   },
 })

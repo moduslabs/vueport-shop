@@ -1,11 +1,11 @@
 <template>
   <IonTab tab="cart">
     <IonContent>
-      <IonText v-if="cartState.cartItems === 0">
+      <IonText v-if="cart.isEmpty">
         Your <IonIcon icon="cart" class="ion-hide-sm-down" /> is empty
       </IonText>
-      <IonText v-if="cartState.cartItems > 0">
-        Your cart has {{ cartState.cartItems }} items
+      <IonText v-if="!cart.isEmpty">
+        {{ cart.items.value }}
       </IonText>
     </IonContent>
   </IonTab>
@@ -13,7 +13,7 @@
 
 <script>
 import { IonContent, IonText, IonTab, IonIcon } from '@modus/ionic-vue'
-import cartState from '@/composables/cart/index'
+import cart from '@/composables/cart/index'
 import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'Cart',
@@ -24,7 +24,7 @@ export default defineComponent({
     IonIcon,
   },
   setup() {
-    return { cartState }
+    return { cart }
   },
 })
 </script>

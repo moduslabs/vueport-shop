@@ -10,7 +10,7 @@
     </IonTabButton>
     <IonTabButton tab="cart" href="/cart">
       <IonIcon icon="cart" class="ion-hide-sm-down" />
-      <IonBadge color="primary">{{ cartState.cartItems }}</IonBadge>
+      <IonBadge color="primary">{{ cart.size }}</IonBadge>
     </IonTabButton>
   </IonTabBar>
   <Menu />
@@ -25,7 +25,7 @@ import {
   IonMenuButton,
   IonBadge,
 } from '@modus/ionic-vue'
-import cartState from '@/composables/cart/index'
+import cart from '@/composables/cart/index'
 import { defineComponent } from 'vue'
 import Menu from '@/components/Menu.vue'
 import { menuController } from '@ionic/core'
@@ -45,7 +45,7 @@ export default defineComponent({
     function openMenuComponent() {
       menuController.open('main-menu')
     }
-    return { openMenuComponent, cartState }
+    return { openMenuComponent, cart }
   },
 })
 </script>
