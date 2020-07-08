@@ -46,7 +46,11 @@
                 <IonSelect
                   placeholder="Select Quantity"
                   class="select"
-                  v-model="quantity.value"
+                  @ionChange="
+                    (e) => {
+                      setQuantity(e.target.value)
+                    }
+                  "
                 >
                   <IonSelectOption value="1">1</IonSelectOption>
                   <IonSelectOption value="2">2</IonSelectOption>
@@ -143,10 +147,14 @@ export default defineComponent({
     const product = await useProduct(useRoute().params.productId)
     const isOpen = ref(false)
     const currency = getCurrencyFormat()
-    const quantity = ref(0)
+    let quantity = 0
+
+    function setQuantity(num: number) {
+      quantity = num
+    }
 
     function openModalComponent() {
-      for (let i = 0; i < quantity.value; i++) {
+      for (let i = 0; i < quantity; i++) {
         cart.add(product)
       }
       isOpen.value = true
@@ -163,7 +171,7 @@ export default defineComponent({
       cart,
       openModalComponent,
       willDismiss,
-      quantity,
+      setQuantity,
     }
   },
 })
