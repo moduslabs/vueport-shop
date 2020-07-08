@@ -80,8 +80,8 @@
 <script>
 import { defineComponent, ref, reactive } from 'vue'
 import range from 'lodash/range'
-import Input from '../components/Input.vue'
-import cart from '@/composables/cart/index'
+import Input from '@/components/Input.vue'
+import cart from '../composables/cart/index'
 import {
   IonCheckbox,
   IonList,

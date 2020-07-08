@@ -1,11 +1,11 @@
 <template>
   <IonTab tab="cart">
     <IonContent>
-      <IonText v-if="cart.isEmpty">
+      <IonText v-if="cart.items.length === 0">
         Your <IonIcon icon="cart" class="ion-hide-sm-down" /> is empty
       </IonText>
-      <IonList v-if="!cart.isEmpty">
-        <IonText> You have {{ cart.size }} items in your cart </IonText>
+      <IonList v-if="cart.items.length > 0">
+        <IonText> You have {{ cart.items.length }} items in your cart </IonText>
         <IonItem v-for="item in cart.items" :key="item.id">
           <IonLabel>{{ item['products'].title }}</IonLabel>
         </IonItem>
@@ -29,7 +29,7 @@ import {
   IonItem,
   IonButton,
 } from '@modus/ionic-vue'
-import cart from '@/composables/cart/index'
+import cart from '../composables/cart/index'
 import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'Cart',

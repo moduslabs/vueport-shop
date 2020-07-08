@@ -43,7 +43,11 @@
                 <IonLabel>
                   Quantity
                 </IonLabel>
-                <IonSelect placeholder="Select Quantity" class="select">
+                <IonSelect
+                  placeholder="Select Quantity"
+                  class="select"
+                  v-model="quantity.value"
+                >
                   <IonSelectOption value="1">1</IonSelectOption>
                   <IonSelectOption value="2">2</IonSelectOption>
                   <IonSelectOption value="3">3</IonSelectOption>
@@ -106,6 +110,7 @@ import {
 import { useRoute } from 'vue-router'
 import useProduct from '@/composables/products'
 import cart from '@/composables/cart/index'
+
 function getCurrencyFormat() {
   const intl = new Intl.NumberFormat(navigator.language, {
     maximumFractionDigits: 2,
@@ -138,20 +143,27 @@ export default defineComponent({
     const product = await useProduct(useRoute().params.productId)
     const isOpen = ref(false)
     const currency = getCurrencyFormat()
+    const quantity = ref(0)
+
     function openModalComponent() {
-      cart.add(product)
+      for (let i = 0; i < quantity.value; i++) {
+        cart.add(product)
+      }
       isOpen.value = true
     }
+
     function willDismiss() {
       isOpen.value = false
     }
+
     return {
       product,
       currency,
       isOpen,
+      cart,
       openModalComponent,
       willDismiss,
-      cart,
+      quantity,
     }
   },
 })
