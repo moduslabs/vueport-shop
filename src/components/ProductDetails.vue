@@ -62,18 +62,30 @@
             </IonItemDivider>
             <IonItemDivider>
               <IonItem>
-                <IonButton>ADD TO CART</IonButton>
+                <IonButton @click="openModalComponent">ADD TO CART</IonButton>
               </IonItem>
             </IonItemDivider>
           </IonItemGroup>
         </IonCol>
       </IonRow>
     </IonGrid>
+    <IonModal :isOpen="isOpen" @willDismiss="willDismiss" :showBackdrop="true">
+      <IonText>{{ product['products'].title }} added to cart</IonText>
+      <RouterLink to="/cart">
+        <IonButton>View Cart</IonButton>
+      </RouterLink>
+      <RouterLink to="/checkout">
+        <IonButton>Checkout</IonButton>
+      </RouterLink>
+      <IonButton @click="willDismiss" size="small" color="light" shape="round"
+        >X</IonButton
+      >
+    </IonModal>
   </IonContent>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import {
   IonContent,
   IonRouterView,
@@ -89,9 +101,11 @@ import {
   IonSelect,
   IonSelectOption,
   IonButton,
+  IonModal,
 } from '@modus/ionic-vue'
 import { useRoute } from 'vue-router'
 import useProduct from '@/composables/products'
+import cartState from '@/composables/cart/index'
 function getCurrencyFormat() {
   const intl = new Intl.NumberFormat(navigator.language, {
     maximumFractionDigits: 2,
@@ -118,12 +132,27 @@ export default defineComponent({
     IonSelect,
     IonSelectOption,
     IonButton,
+    IonModal,
   },
   async setup() {
     const product = await useProduct(useRoute().params.productId)
-
+    const isOpen = ref(false)
     const currency = getCurrencyFormat()
-    return { product, currency }
+    function openModalComponent() {
+      cartState.cartIncrement()
+      isOpen.value = true
+    }
+    function willDismiss() {
+      isOpen.value = false
+    }
+    return {
+      product,
+      currency,
+      isOpen,
+      openModalComponent,
+      willDismiss,
+      cartState,
+    }
   },
 })
 </script>
