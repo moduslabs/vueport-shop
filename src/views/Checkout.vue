@@ -58,7 +58,14 @@
             </IonItem>
             <Input name="CVV" inputType="number" />
             <IonItem>
-              <IonLabel>Order Summary (Soon to come)</IonLabel>
+              <IonLabel>Order Summary</IonLabel>
+            </IonItem>
+            <IonItem v-for="item in cart.items" :key="item.id">
+              <IonList>
+                <IonLabel>
+                  {{ item['products'].title }} {{ item['products'].price }}
+                </IonLabel>
+              </IonList>
             </IonItem>
             <IonItem>
               <IonButton>Place Order</IonButton>
@@ -74,6 +81,7 @@
 import { defineComponent, ref, reactive } from 'vue'
 import range from 'lodash/range'
 import Input from '../components/Input.vue'
+import cart from '@/composables/cart/index'
 import {
   IonCheckbox,
   IonList,
@@ -134,6 +142,7 @@ export default defineComponent({
     return {
       state,
       check,
+      cart,
     }
   },
 })

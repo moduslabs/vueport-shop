@@ -4,13 +4,16 @@
       <IonText v-if="cart.isEmpty">
         Your <IonIcon icon="cart" class="ion-hide-sm-down" /> is empty
       </IonText>
-      <IonText v-if="!cart.isEmpty">
-        You have {{ cart.size }} items in your cart
-      </IonText>
-      <IonList>
+      <IonList v-if="!cart.isEmpty">
+        <IonText> You have {{ cart.size }} items in your cart </IonText>
         <IonItem v-for="item in cart.items" :key="item.id">
           <IonLabel>{{ item['products'].title }}</IonLabel>
         </IonItem>
+        <RouterLink to="/checkout">
+          <IonButton fill="outline" color="dark">
+            Checkout
+          </IonButton>
+        </RouterLink>
       </IonList>
     </IonContent>
   </IonTab>
@@ -24,6 +27,7 @@ import {
   IonIcon,
   IonList,
   IonItem,
+  IonButton,
 } from '@modus/ionic-vue'
 import cart from '@/composables/cart/index'
 import { defineComponent } from 'vue'
@@ -36,6 +40,7 @@ export default defineComponent({
     IonIcon,
     IonList,
     IonItem,
+    IonButton,
   },
   setup() {
     return { cart }
