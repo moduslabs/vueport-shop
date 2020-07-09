@@ -47,6 +47,7 @@
                   name="quantity"
                   placeholder="1"
                   type="number"
+                  role="form"
                   @input="(event) => setQuantity(event.target.value)"
                 />
               </IonItem>
