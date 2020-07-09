@@ -43,21 +43,12 @@
                 <IonLabel>
                   Quantity
                 </IonLabel>
-                <IonSelect
-                  placeholder="Select Quantity"
-                  class="select"
-                  @ionChange="
-                    (e) => {
-                      setQuantity(e.target.value)
-                    }
-                  "
-                >
-                  <IonSelectOption value="1">1</IonSelectOption>
-                  <IonSelectOption value="2">2</IonSelectOption>
-                  <IonSelectOption value="3">3</IonSelectOption>
-                  <IonSelectOption value="4">4</IonSelectOption>
-                  <IonSelectOption value="5">5</IonSelectOption>
-                </IonSelect>
+                <IonInput
+                  name="quantity"
+                  placeholder="1"
+                  type="number"
+                  @input="(event) => setQuantity(event.target.value)"
+                />
               </IonItem>
             </IonItemDivider>
             <IonItemDivider>
@@ -110,11 +101,12 @@ import {
   IonSelectOption,
   IonButton,
   IonModal,
+  IonInput,
 } from '@modus/ionic-vue'
+// import Input from '@/components/Input.vue'
 import { useRoute } from 'vue-router'
 import useProduct from '@/composables/products'
 import cart from '@/composables/cart/index'
-
 function getCurrencyFormat() {
   const intl = new Intl.NumberFormat(navigator.language, {
     maximumFractionDigits: 2,
@@ -142,12 +134,13 @@ export default defineComponent({
     IonSelectOption,
     IonButton,
     IonModal,
+    IonInput,
   },
   async setup() {
     const product = await useProduct(useRoute().params.productId)
     const isOpen = ref(false)
     const currency = getCurrencyFormat()
-    let quantity = 0
+    let quantity = 1
 
     function setQuantity(num: number) {
       quantity = num
