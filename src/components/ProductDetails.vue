@@ -43,13 +43,13 @@
                 <IonLabel>
                   Quantity
                 </IonLabel>
-                <IonSelect placeholder="Select Quantity" class="select">
-                  <IonSelectOption value="1">1</IonSelectOption>
-                  <IonSelectOption value="2">2</IonSelectOption>
-                  <IonSelectOption value="3">3</IonSelectOption>
-                  <IonSelectOption value="4">4</IonSelectOption>
-                  <IonSelectOption value="5">5</IonSelectOption>
-                </IonSelect>
+                <IonInput
+                  name="quantity"
+                  placeholder="1"
+                  type="number"
+                  role="form"
+                  @input="(event) => setQuantity(event.target.value)"
+                />
               </IonItem>
             </IonItemDivider>
             <IonItemDivider>
@@ -62,18 +62,30 @@
             </IonItemDivider>
             <IonItemDivider>
               <IonItem>
-                <IonButton>ADD TO CART</IonButton>
+                <IonButton @click="openModalComponent">ADD TO CART</IonButton>
               </IonItem>
             </IonItemDivider>
           </IonItemGroup>
         </IonCol>
       </IonRow>
     </IonGrid>
+    <IonModal :isOpen="isOpen" @willDismiss="willDismiss" :showBackdrop="true">
+      <IonText>{{ product['products'].title }} added to cart</IonText>
+      <RouterLink to="/cart">
+        <IonButton>View Cart</IonButton>
+      </RouterLink>
+      <RouterLink to="/checkout">
+        <IonButton>Checkout</IonButton>
+      </RouterLink>
+      <IonButton @click="willDismiss" size="small" color="light" shape="round"
+        >X</IonButton
+      >
+    </IonModal>
   </IonContent>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import {
   IonContent,
   IonRouterView,
@@ -89,9 +101,13 @@ import {
   IonSelect,
   IonSelectOption,
   IonButton,
+  IonModal,
+  IonInput,
 } from '@modus/ionic-vue'
+// import Input from '@/components/Input.vue'
 import { useRoute } from 'vue-router'
 import useProduct from '@/composables/products'
+import cart from '@/composables/cart/index'
 function getCurrencyFormat() {
   const intl = new Intl.NumberFormat(navigator.language, {
     maximumFractionDigits: 2,
@@ -118,12 +134,39 @@ export default defineComponent({
     IonSelect,
     IonSelectOption,
     IonButton,
+    IonModal,
+    IonInput,
   },
   async setup() {
     const product = await useProduct(useRoute().params.productId)
-
+    const isOpen = ref(false)
     const currency = getCurrencyFormat()
-    return { product, currency }
+    let quantity = 1
+
+    function setQuantity(num: number) {
+      quantity = num
+    }
+
+    function openModalComponent() {
+      for (let i = 0; i < quantity; i++) {
+        cart.add(product)
+      }
+      isOpen.value = true
+    }
+
+    function willDismiss() {
+      isOpen.value = false
+    }
+
+    return {
+      product,
+      currency,
+      isOpen,
+      cart,
+      openModalComponent,
+      willDismiss,
+      setQuantity,
+    }
   },
 })
 </script>
