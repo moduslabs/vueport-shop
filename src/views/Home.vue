@@ -10,9 +10,11 @@
             <IonCardSubtitle>Featured</IonCardSubtitle>
             <IonCardTitle>{{ category.title }}</IonCardTitle>
             <IonFab vertical="center" horizontal="end">
-              <IonFabButton :href="`/category/${category.id}`">
-                View
-              </IonFabButton>
+              <RouterLink :to="`/category/${category.id}`">
+                <IonFabButton>
+                  View
+                </IonFabButton>
+              </RouterLink>
             </IonFab>
           </IonCardHeader>
         </IonCard>

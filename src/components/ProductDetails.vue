@@ -104,10 +104,10 @@ import {
   IonModal,
   IonInput,
 } from '@modus/ionic-vue'
-// import Input from '@/components/Input.vue'
 import { useRoute } from 'vue-router'
 import useProduct from '@/composables/products'
 import cart from '@/composables/cart/index'
+
 function getCurrencyFormat() {
   const intl = new Intl.NumberFormat(navigator.language, {
     maximumFractionDigits: 2,
@@ -117,6 +117,7 @@ function getCurrencyFormat() {
 
   return intl.format
 }
+
 export default defineComponent({
   name: 'ProductDetails',
   components: {

@@ -7,8 +7,27 @@
       <IonList v-if="cart.items.length > 0">
         <IonText> You have {{ cart.items.length }} items in your cart </IonText>
         <IonItem v-for="item in cart.items" :key="item.id">
+          <IonGrid>
+            <IonRow>
+              <IonCol>
+                <IonImg
+                  :alt="item['products'].title"
+                  :src="item['products'].images[0]"
+                />
+              </IonCol>
+            </IonRow>
+          </IonGrid>
           <IonLabel>{{ item['products'].title }}</IonLabel>
+          <!--<IonLabel
+            v-for="variant in item['products'].variants"
+            :key="variant.id"
+            >{{ variant.title }}</IonLabel
+          >-->
+          <IonLabel>{{ 'Quantity: ' }}</IonLabel>
+          <IonLabel>{{ 'Variant: ' }}</IonLabel>
+          <IonLabel>{{ currency(item['products'].price) }}</IonLabel>
         </IonItem>
+        <IonLabel>{{ 'Total: ' + currency(calcTotal()) }}</IonLabel>
         <RouterLink to="/checkout">
           <IonButton fill="outline" color="dark">
             Checkout
@@ -28,9 +47,25 @@ import {
   IonList,
   IonItem,
   IonButton,
+  IonLabel,
+  IonImg,
+  IonGrid,
+  IonRow,
+  IonCol,
 } from '@modus/ionic-vue'
 import cart from '../composables/cart/index'
 import { defineComponent } from 'vue'
+
+function getCurrencyFormat() {
+  const intl = new Intl.NumberFormat(navigator.language, {
+    maximumFractionDigits: 2,
+    style: 'currency',
+    currency: 'USD',
+  })
+
+  return intl.format
+}
+
 export default defineComponent({
   name: 'Cart',
   components: {
@@ -41,9 +76,26 @@ export default defineComponent({
     IonList,
     IonItem,
     IonButton,
+    IonLabel,
+    IonImg,
+    IonGrid,
+    IonRow,
+    IonCol,
   },
   setup() {
-    return { cart }
+    const currency = getCurrencyFormat()
+
+    function calcTotal() {
+      let total = 0
+
+      cart.items.value.forEach((item) => {
+        total = total + parseInt(item['products'].price)
+      })
+
+      return total
+    }
+
+    return { cart, calcTotal, currency }
   },
 })
 </script>
