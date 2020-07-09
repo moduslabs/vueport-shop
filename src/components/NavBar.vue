@@ -25,7 +25,7 @@ import {
   IonMenuButton,
   IonBadge,
 } from '@modus/ionic-vue'
-import cart from '@/composables/cart/index'
+import cart from '@/composables/cart'
 import { defineComponent } from 'vue'
 import Menu from '@/components/Menu.vue'
 import { menuController } from '@ionic/core'
