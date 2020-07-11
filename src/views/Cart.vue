@@ -26,6 +26,7 @@
           <IonLabel>{{ 'Quantity: ' }}</IonLabel>
           <IonLabel>{{ 'Variant: ' }}</IonLabel>
           <IonLabel>{{ currency(item['products'].price) }}</IonLabel>
+          <IonButton @click="removeItem(item)">X</IonButton>
         </IonItem>
         <IonLabel>{{ 'Total: ' + currency(calcTotal()) }}</IonLabel>
         <RouterLink to="/checkout">
@@ -38,7 +39,7 @@
   </IonTab>
 </template>
 
-<script>
+<script type="ts">
 import {
   IonContent,
   IonText,
@@ -84,7 +85,9 @@ export default defineComponent({
   },
   setup() {
     const currency = getCurrencyFormat()
-
+    function removeItem(item){
+      cart.remove(item)
+    }
     function calcTotal() {
       let total = 0
 
@@ -95,7 +98,7 @@ export default defineComponent({
       return total
     }
 
-    return { cart, calcTotal, currency }
+    return { cart, calcTotal, currency, removeItem }
   },
 })
 </script>

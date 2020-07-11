@@ -17,7 +17,14 @@ interface Product {
 function add(product: Product) {
   items.value = [...items.value, product]
 }
+function remove(product: Product) {
+  const index = items.value.indexOf(product)
+  if (index > -1) {
+    items.value.splice(index, 1)
+  }
+}
 export default {
   items,
   add,
+  remove,
 }

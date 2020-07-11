@@ -10,9 +10,26 @@
             <Input name="Phone Number" inputType="tel" />
             <Input name="Email" inputType="email" />
           </IonList>
-        </IonCol>
-        <IonCol>
-          <div />
+          <IonList>
+            <IonLabel>Shipping Address</IonLabel>
+            <Input name="Address" inputType="text" />
+            <Input name="City" inputType="text" />
+            <Input name="Zip" inputType="number" />
+            <Input name="State" inputType="text" />
+            <Input name="Country" inputType="text" />
+            <IonLabel>Billing Address</IonLabel>
+            <IonItem>
+              <IonLabel>Use different Billing Address</IonLabel>
+              <IonCheckbox :checked="state.isChecked" @click="check" />
+            </IonItem>
+            <IonList v-if="state.isChecked">
+              <Input name="Address" inputType="text" />
+              <Input name="City" inputType="text" />
+              <Input name="Zip" inputType="number" />
+              <Input name="State" inputType="text" />
+              <Input name="Country" inputType="text" />
+            </IonList>
+          </IonList>
         </IonCol>
         <IonCol>
           <IonList>
@@ -43,61 +60,21 @@
             </IonItem>
             <Input name="CVV" inputType="number" />
           </IonList>
-        </IonCol>
-      </IonRow>
-      <IonRow>
-        <IonCol>
-          <IonList>
-            <IonLabel>Shipping Address</IonLabel>
-            <Input name="Address" inputType="text" />
-            <Input name="City" inputType="text" />
-            <Input name="Zip" inputType="number" />
-            <Input name="State" inputType="text" />
-            <Input name="Country" inputType="text" />
-          </IonList>
-        </IonCol>
-        <IonCol>
-          <div />
-        </IonCol>
-        <IonCol>
+          <IonLabel>Order Summary</IonLabel>
+          <IonItem v-for="item in cart.items" :key="item.id">
+            <IonList>
+              <IonLabel> {{ item['products'].title }} </IonLabel>
+              <IonLabel>
+                {{ 'Price: ' + currency(item['products'].price) }}
+              </IonLabel>
+            </IonList>
+          </IonItem>
           <IonItem>
-            <IonButton>Place Order</IonButton>
+            <IonButton fill="outline" color="dark">Place Order</IonButton>
           </IonItem>
           <IonItem>
             {{ 'Total: ' + currency(calcTotal()) }}
           </IonItem>
-        </IonCol>
-      </IonRow>
-      <IonRow>
-        <IonCol>
-          <IonLabel>Billing Address</IonLabel>
-          <IonItem>
-            <IonLabel>Use different Billing Address</IonLabel>
-            <IonCheckbox :checked="state.isChecked" @click="check" />
-          </IonItem>
-          <IonList v-if="state.isChecked">
-            <Input name="Address" inputType="text" />
-            <Input name="City" inputType="text" />
-            <Input name="Zip" inputType="number" />
-            <Input name="State" inputType="text" />
-            <Input name="Country" inputType="text" />
-          </IonList>
-        </IonCol>
-        <IonCol>
-          <div />
-        </IonCol>
-        <IonCol>
-          <IonCol>
-            <IonLabel>Order Summary</IonLabel>
-            <IonItem v-for="item in cart.items" :key="item.id">
-              <IonList>
-                <IonLabel> {{ item['products'].title }} </IonLabel>
-                <IonLabel>
-                  {{ 'Price: ' + currency(item['products'].price) }}
-                </IonLabel>
-              </IonList>
-            </IonItem>
-          </IonCol>
         </IonCol>
       </IonRow>
     </IonGrid>
