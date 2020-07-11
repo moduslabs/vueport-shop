@@ -15,18 +15,25 @@
                   :src="item['products'].images[0]"
                 />
               </IonCol>
+              <IonCol>
+                <IonLabel class="title">{{ item['products'].title }}</IonLabel>
+              </IonCol>
+              <IonCol>
+                <IonLabel>{{ 'Quantity: ' }}</IonLabel>
+              </IonCol>
+              <IonCol>
+                <IonLabel>{{ currency(item['products'].price) }}</IonLabel>
+              </IonCol>
+              <IonCol>
+                <IonButton @click="removeItem(item)">X</IonButton>
+              </IonCol>
             </IonRow>
           </IonGrid>
-          <IonLabel>{{ item['products'].title }}</IonLabel>
           <!--<IonLabel
             v-for="variant in item['products'].variants"
             :key="variant.id"
             >{{ variant.title }}</IonLabel
           >-->
-          <IonLabel>{{ 'Quantity: ' }}</IonLabel>
-          <IonLabel>{{ 'Variant: ' }}</IonLabel>
-          <IonLabel>{{ currency(item['products'].price) }}</IonLabel>
-          <IonButton @click="removeItem(item)">X</IonButton>
         </IonItem>
         <IonLabel>{{ 'Total: ' + currency(calcTotal()) }}</IonLabel>
         <RouterLink to="/checkout">
@@ -102,3 +109,8 @@ export default defineComponent({
   },
 })
 </script>
+<style scoped>
+ion-label {
+  word-wrap: break-word;
+}
+</style>

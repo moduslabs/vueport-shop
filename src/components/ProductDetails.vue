@@ -28,11 +28,16 @@
                 <IonLabel>
                   Size
                 </IonLabel>
-                <IonSelect placeholder="Select Size" class="select">
+                <IonSelect
+                  v-model="variant"
+                  placeholder="Select Size"
+                  class="select"
+                  @ionChange="(e) => setVariant(e.target.value)"
+                >
                   <IonSelectOption
                     v-for="variant in product['products'].variants"
                     :key="variant.id"
-                    :value="variant.sku"
+                    v-bind:value="variant.title"
                     >{{ variant.title }}
                   </IonSelectOption>
                 </IonSelect>
@@ -142,14 +147,21 @@ export default defineComponent({
     const product = await useProduct(useRoute().params.productId)
     const isOpen = ref(false)
     const currency = getCurrencyFormat()
-    let quantity = 1
-
+    const quantity = ref(1)
+    const variant = ref('')
+    const ogTitle = product['products'].value.title
     function setQuantity(num: number) {
-      quantity = num
+      quantity.value = num
     }
-
+    function setVariant(str: string) {
+      product['products'].value.title = `${ogTitle} (${str})`
+      console.log(product['products'].value.title)
+      variant.value = str
+      console.log(variant.value)
+      console.log(product)
+    }
     function openModalComponent() {
-      for (let i = 0; i < quantity; i++) {
+      for (let i = 0; i < quantity.value; i++) {
         cart.add(product)
       }
       isOpen.value = true
@@ -167,6 +179,7 @@ export default defineComponent({
       openModalComponent,
       willDismiss,
       setQuantity,
+      setVariant,
     }
   },
 })
