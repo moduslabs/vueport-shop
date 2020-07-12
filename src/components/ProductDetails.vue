@@ -53,7 +53,7 @@
                   placeholder="1"
                   type="number"
                   role="form"
-                  @input="(event) => setQuantity(event.target.value)"
+                  @input="(event) => setQuantity(parseInt(event.target.value))"
                 />
               </IonItem>
             </IonItemDivider>
@@ -147,23 +147,29 @@ export default defineComponent({
     const product = await useProduct(useRoute().params.productId)
     const isOpen = ref(false)
     const currency = getCurrencyFormat()
-    const quantity = ref(1)
+    let quantity = 1
     const variant = ref('')
     const ogTitle = product['products'].value.title
     function setQuantity(num: number) {
-      quantity.value = num
+      quantity = num
     }
     function setVariant(str: string) {
-      product['products'].value.title = `${ogTitle} (${str})`
-      console.log(product['products'].value.title)
       variant.value = str
-      console.log(variant.value)
-      console.log(product)
     }
     function openModalComponent() {
-      for (let i = 0; i < quantity.value; i++) {
+      if (variant.value) {
+        product[
+          'products'
+        ].value.title = `${variant.value} ${ogTitle} (${quantity})`
+      } else {
+        product['products'].value.title = `${ogTitle} (${quantity})`
+      }
+      for (let i = 0; i < quantity; i++) {
         cart.add(product)
       }
+      cart.filter()
+      console.log(cart.items.value)
+      console.log(cart.uniqueItems.value)
       isOpen.value = true
     }
 

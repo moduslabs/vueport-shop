@@ -6,7 +6,7 @@
       </IonText>
       <IonList v-if="cart.items.length > 0">
         <IonText> You have {{ cart.items.length }} items in your cart </IonText>
-        <IonItem v-for="item in cart.items" :key="item.id">
+        <IonItem v-for="item in cart.uniqueItems" :key="item.id">
           <IonGrid>
             <IonRow>
               <IonCol>
@@ -19,9 +19,6 @@
                 <IonLabel class="title">{{ item['products'].title }}</IonLabel>
               </IonCol>
               <IonCol>
-                <IonLabel>{{ 'Quantity: ' }}</IonLabel>
-              </IonCol>
-              <IonCol>
                 <IonLabel>{{ currency(item['products'].price) }}</IonLabel>
               </IonCol>
               <IonCol>
@@ -29,11 +26,6 @@
               </IonCol>
             </IonRow>
           </IonGrid>
-          <!--<IonLabel
-            v-for="variant in item['products'].variants"
-            :key="variant.id"
-            >{{ variant.title }}</IonLabel
-          >-->
         </IonItem>
         <IonLabel>{{ 'Total: ' + currency(calcTotal()) }}</IonLabel>
         <RouterLink to="/checkout">
