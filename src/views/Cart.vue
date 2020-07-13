@@ -91,7 +91,10 @@ export default defineComponent({
       let total = 0
 
       cart.items.value.forEach((item) => {
-        total = total + parseInt(item['products'].price)
+        const quantity = cart.cartCapacity.value.filter((quantity) => quantity.id === item.id)[0]
+        for (let i = 0; i < quantity.num; i++){
+          total = total + item.price
+        }
       })
 
       return total

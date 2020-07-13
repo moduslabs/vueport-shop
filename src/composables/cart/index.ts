@@ -2,7 +2,7 @@ import { ref } from 'vue'
 import { Category } from '@/composables/categories'
 import { Variant } from '@/composables/products'
 const items = ref<Array<Product>>([])
-const cartCapacity = ref<Array<number>>([])
+const cartCapacity = ref<Array<Quantity>>([])
 interface Product {
   id: string
   title: string
@@ -13,27 +13,38 @@ interface Product {
   price: number
   tags: string[]
 }
-// function addCapacity(num: number) {
-//   cartCapacity.value += num
-// }
-function add(product: Product, quantity: number) {
+
+interface Quantity {
+  id: string
+  num: number
+}
+
+function add(product: Product, num: number) {
+  const quantity = {} as Quantity
+  quantity.id = product.id
+  quantity.num = num
   items.value = [...items.value, product]
   cartCapacity.value = [...cartCapacity.value, quantity]
 }
-// function filter() {
-//   items.value = items.value.filter((value, index, self) => {
-//     return self.indexOf(value) === index
-//   })
-// }
+
 function remove(product: Product) {
-  const index = items.value.indexOf(product)
-  if (index > -1) {
-    items.value.splice(index, 1)
-    cartCapacity.value.splice(index, 1)
-  }
+  items.value.splice(
+    items.value.findIndex((item) => item.id === product.id),
+    1
+  )
+  cartCapacity.value.splice(
+    cartCapacity.value.findIndex((quantity) => quantity.id === product.id),
+    1
+  )
 }
 function totalItems() {
-  return cartCapacity.value.reduce((a, b) => a + b, 0)
+  let total = 0
+
+  cartCapacity.value.forEach((quantity) => {
+    total = total + quantity.num
+  })
+
+  return total
 }
 export default {
   items,
