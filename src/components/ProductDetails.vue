@@ -164,12 +164,7 @@ export default defineComponent({
       } else {
         product['products'].value.title = `${ogTitle} (${quantity})`
       }
-      for (let i = 0; i < quantity; i++) {
-        cart.add(product)
-      }
-      cart.filter()
-      console.log(cart.items.value)
-      console.log(cart.uniqueItems.value)
+      cart.add(product, quantity)
       isOpen.value = true
     }
 

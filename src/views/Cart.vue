@@ -5,8 +5,8 @@
         Your <IonIcon icon="cart" class="ion-hide-sm-down" /> is empty
       </IonText>
       <IonList v-if="cart.items.length > 0">
-        <IonText> You have {{ cart.items.length }} items in your cart </IonText>
-        <IonItem v-for="item in cart.uniqueItems" :key="item.id">
+        <IonText> You have {{ cart.totalItems() }} items in your cart </IonText>
+        <IonItem v-for="item in cart.items" :key="item.id">
           <IonGrid>
             <IonRow>
               <IonCol>
