@@ -18,7 +18,14 @@ interface Quantity {
   id: string
   num: number
 }
-
+function getCurrencyFormat() {
+  const intl = new Intl.NumberFormat(navigator.language, {
+    maximumFractionDigits: 2,
+    style: 'currency',
+    currency: 'USD',
+  })
+  return intl.format
+}
 function add(product: Product, num: number) {
   const quantity = {} as Quantity
   quantity.id = product.id
@@ -46,10 +53,20 @@ function totalItems() {
 
   return total
 }
+function calcTotalCost() {
+  let total = 0
+  items.value.forEach((item) => {
+    const index = items.value.indexOf(item)
+    total += parseInt(item['products'].price) * cartCapacity.value[index].num
+  })
+  return total
+}
 export default {
   items,
   add,
   remove,
   cartCapacity,
   totalItems,
+  getCurrencyFormat,
+  calcTotalCost,
 }

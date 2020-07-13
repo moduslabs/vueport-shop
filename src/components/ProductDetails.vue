@@ -113,16 +113,6 @@ import { useRoute } from 'vue-router'
 import useProduct from '@/composables/products'
 import cart from '@/composables/cart/index'
 
-function getCurrencyFormat() {
-  const intl = new Intl.NumberFormat(navigator.language, {
-    maximumFractionDigits: 2,
-    style: 'currency',
-    currency: 'USD',
-  })
-
-  return intl.format
-}
-
 export default defineComponent({
   name: 'ProductDetails',
   components: {
@@ -146,7 +136,7 @@ export default defineComponent({
   async setup() {
     const product = await useProduct(useRoute().params.productId)
     const isOpen = ref(false)
-    const currency = getCurrencyFormat()
+    const currency = cart.getCurrencyFormat()
     let quantity = 1
     const variant = ref('')
     const ogTitle = product['products'].value.title

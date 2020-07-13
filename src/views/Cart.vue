@@ -27,7 +27,7 @@
             </IonRow>
           </IonGrid>
         </IonItem>
-        <IonLabel>{{ 'Total: ' + currency(calcTotal()) }}</IonLabel>
+        <IonLabel>{{ 'Total: ' + currency(cart.calcTotalCost()) }}</IonLabel>
         <RouterLink to="/checkout">
           <IonButton fill="outline" color="dark">
             Checkout
@@ -56,16 +56,6 @@ import {
 import cart from '../composables/cart/index'
 import { defineComponent } from 'vue'
 
-function getCurrencyFormat() {
-  const intl = new Intl.NumberFormat(navigator.language, {
-    maximumFractionDigits: 2,
-    style: 'currency',
-    currency: 'USD',
-  })
-
-  return intl.format
-}
-
 export default defineComponent({
   name: 'Cart',
   components: {
@@ -83,24 +73,11 @@ export default defineComponent({
     IonCol,
   },
   setup() {
-    const currency = getCurrencyFormat()
+    const currency = cart.getCurrencyFormat()
     function removeItem(item){
       cart.remove(item)
     }
-    function calcTotal() {
-      let total = 0
-
-      cart.items.value.forEach((item) => {
-        const quantity = cart.cartCapacity.value.filter((quantity) => quantity.id === item.id)[0]
-        for (let i = 0; i < quantity.num; i++){
-          total = total + item.price
-        }
-      })
-
-      return total
-    }
-
-    return { cart, calcTotal, currency, removeItem }
+    return { cart, currency, removeItem }
   },
 })
 </script>

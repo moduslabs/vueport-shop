@@ -73,7 +73,7 @@
             <IonButton fill="outline" color="dark">Place Order</IonButton>
           </IonItem>
           <IonItem>
-            {{ 'Total: ' + currency(calcTotal()) }}
+            {{ 'Total: ' + currency(cart.calcTotalCost()) }}
           </IonItem>
         </IonCol>
       </IonRow>
@@ -100,16 +100,6 @@ import {
   IonSelectOption,
   IonButton,
 } from '@modus/ionic-vue'
-
-function getCurrencyFormat() {
-  const intl = new Intl.NumberFormat(navigator.language, {
-    maximumFractionDigits: 2,
-    style: 'currency',
-    currency: 'USD',
-  })
-
-  return intl.format
-}
 
 export default defineComponent({
   name: 'Checkout',
@@ -148,27 +138,17 @@ export default defineComponent({
     }
   },
   setup() {
-    const currency = getCurrencyFormat()
+    const currency = cart.getCurrencyFormat()
     const state = reactive({
       isChecked: false,
     })
     function check() {
       state.isChecked = !state.isChecked
     }
-    function calcTotal() {
-      let total = 0
-
-      cart.items.value.forEach((item) => {
-        total = total + parseInt(item['products'].price)
-      })
-
-      return total
-    }
     return {
       state,
       check,
       cart,
-      calcTotal,
       currency,
     }
   },
