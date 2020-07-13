@@ -12,6 +12,17 @@ interface Product {
   variants: Variant[]
   price: number
   tags: string[]
+  products: Products
+}
+interface Products {
+  price: number
+  id: string
+  title: string
+  description: string
+  images: string[]
+  category: Category['id']
+  variants: Variant[]
+  tags: string[]
 }
 
 interface Quantity {
@@ -57,7 +68,7 @@ function calcTotalCost() {
   let total = 0
   items.value.forEach((item) => {
     const index = items.value.indexOf(item)
-    total += parseInt(item['products'].price) * cartCapacity.value[index].num
+    total += item.products.price * cartCapacity.value[index].num
   })
   return total
 }
