@@ -29,7 +29,6 @@
                   Size
                 </IonLabel>
                 <IonSelect
-                  v-model="variant"
                   placeholder="Select Size"
                   class="select"
                   @ionChange="(e) => setVariant(e.target.value)"
@@ -137,11 +136,11 @@ export default defineComponent({
     const product = await useProduct(useRoute().params.productId)
     const isOpen = ref(false)
     const currency = cart.getCurrencyFormat()
-    let quantity = 1
+    const quantity = ref(1)
     const variant = ref('')
     const ogTitle = product['products'].value.title
     function setQuantity(num: number) {
-      quantity = num
+      quantity.value = num
     }
     function setVariant(str: string) {
       variant.value = str
@@ -150,11 +149,11 @@ export default defineComponent({
       if (variant.value) {
         product[
           'products'
-        ].value.title = `${variant.value} ${ogTitle} (${quantity})`
+        ].value.title = `${variant.value} ${ogTitle} (${quantity.value})`
       } else {
-        product['products'].value.title = `${ogTitle} (${quantity})`
+        product['products'].value.title = `${ogTitle} (${quantity.value})`
       }
-      cart.add(product, quantity)
+      cart.add(product, quantity.value)
       isOpen.value = true
     }
 
@@ -171,6 +170,7 @@ export default defineComponent({
       willDismiss,
       setQuantity,
       setVariant,
+      quantity,
     }
   },
 })

@@ -1,20 +1,12 @@
 import { ref } from 'vue'
 import { Category } from '@/composables/categories'
 import { Variant } from '@/composables/products'
-const items = ref<Array<Product>>([])
+const items = ref<Array<Products>>([])
 const cartCapacity = ref<Array<Quantity>>([])
-interface Product {
-  id: string
-  title: string
-  description: string
-  images: string[]
-  category: Category['id']
-  variants: Variant[]
-  price: number
-  tags: string[]
-  products: Products
-}
 interface Products {
+  products: Product
+}
+interface Product {
   price: number
   id: string
   title: string
@@ -37,21 +29,23 @@ function getCurrencyFormat() {
   })
   return intl.format
 }
-function add(product: Product, num: number) {
+function add(product: Products, num: number) {
   const quantity = {} as Quantity
-  quantity.id = product.id
+  quantity.id = product.products.id
   quantity.num = num
   items.value = [...items.value, product]
   cartCapacity.value = [...cartCapacity.value, quantity]
 }
 
-function remove(product: Product) {
+function remove(product: Products) {
   items.value.splice(
-    items.value.findIndex((item) => item.id === product.id),
+    items.value.findIndex((item) => item.products.id === product.products.id),
     1
   )
   cartCapacity.value.splice(
-    cartCapacity.value.findIndex((quantity) => quantity.id === product.id),
+    cartCapacity.value.findIndex(
+      (quantity) => quantity.id === product.products.id
+    ),
     1
   )
 }
