@@ -5,10 +5,29 @@
         Your <IonIcon icon="cart" class="ion-hide-sm-down" /> is empty
       </IonText>
       <IonList v-if="cart.items.length > 0">
-        <IonText> You have {{ cart.items.length }} items in your cart </IonText>
+        <IonText> You have {{ cart.totalItems }} items in your cart </IonText>
         <IonItem v-for="item in cart.items" :key="item.id">
-          <IonLabel>{{ item['products'].title }}</IonLabel>
+          <IonGrid>
+            <IonRow>
+              <IonCol>
+                <IonImg
+                  :alt="item['products'].title"
+                  :src="item['products'].images[0]"
+                />
+              </IonCol>
+              <IonCol>
+                <IonLabel class="title">{{ item['products'].title }}</IonLabel>
+              </IonCol>
+              <IonCol>
+                <IonLabel>{{ currency(item['products'].price) }}</IonLabel>
+              </IonCol>
+              <IonCol>
+                <IonButton @click="removeItem(item)">X</IonButton>
+              </IonCol>
+            </IonRow>
+          </IonGrid>
         </IonItem>
+        <IonLabel>{{ 'Total: ' + currency(cart.totalCost) }}</IonLabel>
         <RouterLink to="/checkout">
           <IonButton fill="outline" color="dark">
             Checkout
@@ -19,7 +38,7 @@
   </IonTab>
 </template>
 
-<script>
+<script type="ts">
 import {
   IonContent,
   IonText,
@@ -28,9 +47,15 @@ import {
   IonList,
   IonItem,
   IonButton,
+  IonLabel,
+  IonImg,
+  IonGrid,
+  IonRow,
+  IonCol,
 } from '@modus/ionic-vue'
 import cart from '../composables/cart/index'
 import { defineComponent } from 'vue'
+
 export default defineComponent({
   name: 'Cart',
   components: {
@@ -41,9 +66,23 @@ export default defineComponent({
     IonList,
     IonItem,
     IonButton,
+    IonLabel,
+    IonImg,
+    IonGrid,
+    IonRow,
+    IonCol,
   },
   setup() {
-    return { cart }
+    const currency = cart.getCurrencyFormat()
+    function removeItem(item){
+      cart.remove(item)
+    }
+    return { cart, currency, removeItem }
   },
 })
 </script>
+<style scoped>
+ion-label {
+  word-wrap: break-word;
+}
+</style>

@@ -9,6 +9,8 @@
             <Input name="Last Name" inputType="text" />
             <Input name="Phone Number" inputType="tel" />
             <Input name="Email" inputType="email" />
+          </IonList>
+          <IonList>
             <IonLabel>Shipping Address</IonLabel>
             <Input name="Address" inputType="text" />
             <Input name="City" inputType="text" />
@@ -20,18 +22,18 @@
               <IonLabel>Use different Billing Address</IonLabel>
               <IonCheckbox :checked="state.isChecked" @click="check" />
             </IonItem>
-            <IonItem v-if="state.isChecked">
+            <IonList v-if="state.isChecked">
               <Input name="Address" inputType="text" />
               <Input name="City" inputType="text" />
               <Input name="Zip" inputType="number" />
               <Input name="State" inputType="text" />
               <Input name="Country" inputType="text" />
-            </IonItem>
+            </IonList>
           </IonList>
         </IonCol>
         <IonCol>
-          <IonLabel>Payment Information</IonLabel>
           <IonList>
+            <IonLabel>Payment Information</IonLabel>
             <Input name="Cardholder Name" inputType="text" />
             <Input name="Card Number" inputType="text" />
             <IonItem>
@@ -57,20 +59,26 @@
               </IonSelect>
             </IonItem>
             <Input name="CVV" inputType="number" />
-            <IonItem>
-              <IonLabel>Order Summary</IonLabel>
-            </IonItem>
-            <IonItem v-for="item in cart.items" :key="item.id">
-              <IonList>
-                <IonLabel>
-                  {{ item['products'].title }} {{ item['products'].price }}
-                </IonLabel>
-              </IonList>
-            </IonItem>
-            <IonItem>
-              <IonButton>Place Order</IonButton>
-            </IonItem>
           </IonList>
+          <IonLabel>Order Summary</IonLabel>
+          <IonItem v-for="item in cart.items" :key="item.id">
+            <IonList>
+              <IonLabel> {{ item['products'].title }} </IonLabel>
+              <IonLabel>
+                {{ 'Price: ' + currency(item['products'].price) }}
+              </IonLabel>
+            </IonList>
+          </IonItem>
+          <IonItem>
+            <RouterLink to="/ordercompleted">
+              <IonButton @click="clearCart" fill="outline" color="dark">
+                Place Order
+              </IonButton>
+            </RouterLink>
+          </IonItem>
+          <IonItem>
+            {{ 'Total: ' + currency(cart.totalCost) }}
+          </IonItem>
         </IonCol>
       </IonRow>
     </IonGrid>
@@ -81,7 +89,7 @@
 import { defineComponent, ref, reactive } from 'vue'
 import range from 'lodash/range'
 import Input from '@/components/Input.vue'
-import cart from '../composables/cart/index'
+import cart from '../composables/cart'
 import {
   IonCheckbox,
   IonList,
@@ -96,6 +104,7 @@ import {
   IonSelectOption,
   IonButton,
 } from '@modus/ionic-vue'
+
 export default defineComponent({
   name: 'Checkout',
   components: {
@@ -133,16 +142,23 @@ export default defineComponent({
     }
   },
   setup() {
+    const currency = cart.getCurrencyFormat()
     const state = reactive({
       isChecked: false,
     })
     function check() {
       state.isChecked = !state.isChecked
     }
+    function clearCart() {
+      cart.items.value = []
+      cart.cartCapacity.value = []
+    }
     return {
       state,
       check,
       cart,
+      currency,
+      clearCart,
     }
   },
 })

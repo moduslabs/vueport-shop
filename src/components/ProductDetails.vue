@@ -28,11 +28,15 @@
                 <IonLabel>
                   Size
                 </IonLabel>
-                <IonSelect placeholder="Select Size" class="select">
+                <IonSelect
+                  placeholder="Select Size"
+                  class="select"
+                  @ionChange="(e) => setVariant(e.target.value)"
+                >
                   <IonSelectOption
                     v-for="variant in product['products'].variants"
                     :key="variant.id"
-                    :value="variant.sku"
+                    v-bind:value="variant.title"
                     >{{ variant.title }}
                   </IonSelectOption>
                 </IonSelect>
@@ -48,7 +52,7 @@
                   placeholder="1"
                   type="number"
                   role="form"
-                  @input="(event) => setQuantity(event.target.value)"
+                  @input="(event) => setQuantity(parseInt(event.target.value))"
                 />
               </IonItem>
             </IonItemDivider>
@@ -104,19 +108,10 @@ import {
   IonModal,
   IonInput,
 } from '@modus/ionic-vue'
-// import Input from '@/components/Input.vue'
 import { useRoute } from 'vue-router'
 import useProduct from '@/composables/products'
 import cart from '@/composables/cart/index'
-function getCurrencyFormat() {
-  const intl = new Intl.NumberFormat(navigator.language, {
-    maximumFractionDigits: 2,
-    style: 'currency',
-    currency: 'USD',
-  })
 
-  return intl.format
-}
 export default defineComponent({
   name: 'ProductDetails',
   components: {
@@ -140,17 +135,25 @@ export default defineComponent({
   async setup() {
     const product = await useProduct(useRoute().params.productId)
     const isOpen = ref(false)
-    const currency = getCurrencyFormat()
-    let quantity = 1
-
+    const currency = cart.getCurrencyFormat()
+    const quantity = ref(1)
+    const variant = ref('')
+    const ogTitle = product['products'].value.title
     function setQuantity(num: number) {
-      quantity = num
+      quantity.value = num
     }
-
+    function setVariant(str: string) {
+      variant.value = str
+    }
     function openModalComponent() {
-      for (let i = 0; i < quantity; i++) {
-        cart.add(product)
+      if (variant.value) {
+        product[
+          'products'
+        ].value.title = `${variant.value} ${ogTitle} (${quantity.value})`
+      } else {
+        product['products'].value.title = `${ogTitle} (${quantity.value})`
       }
+      cart.add(product, quantity.value)
       isOpen.value = true
     }
 
@@ -166,6 +169,8 @@ export default defineComponent({
       openModalComponent,
       willDismiss,
       setQuantity,
+      setVariant,
+      quantity,
     }
   },
 })

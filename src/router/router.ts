@@ -7,6 +7,7 @@ const about = () => import('@/views/About.vue')
 const productDetails = () => import('@/components/ProductDetails.vue')
 const checkout = () => import('@/views/Checkout.vue')
 const cart = () => import('@/views/Cart.vue')
+const orderCompleted = () => import('@/views/OrderCompleted.vue')
 const history = createWebHistory()
 const router = createRouter({
   history,
@@ -51,6 +52,13 @@ const router = createRouter({
       component: cart,
       meta: {
         title: 'Cart - Vue-Port Shop',
+      },
+    },
+    {
+      path: '/ordercompleted',
+      component: orderCompleted,
+      meta: {
+        title: 'Order Completed - Vue-Port Shop',
       },
     },
   ],
