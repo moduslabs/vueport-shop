@@ -9,7 +9,7 @@
       <IonLabel>About</IonLabel>
     </IonTabButton>
     <IonTabButton tab="cart" href="/cart">
-      <IonIcon icon="cart" class="ion-hide-sm-down" />
+      <IonIcon icon="cart" />
       <IonBadge color="primary">{{ cart.totalItems() }}</IonBadge>
     </IonTabButton>
   </IonTabBar>
