@@ -1,8 +1,23 @@
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { Category } from '@/composables/categories'
 import { Variant } from '@/composables/products'
 const items = ref<Array<Products>>([])
 const cartCapacity = ref<Array<Quantity>>([])
+const totalItems = computed(() => {
+  let total = 0
+  cartCapacity.value.forEach((quantity) => {
+    total = total + quantity.num
+  })
+  return total
+})
+const totalCost = computed(() => {
+  let total = 0
+  items.value.forEach((item) => {
+    const index = items.value.indexOf(item)
+    total += item.products.price * cartCapacity.value[index].num
+  })
+  return total
+})
 interface Products {
   products: Product
 }
@@ -49,23 +64,6 @@ function remove(product: Products) {
     1
   )
 }
-function totalItems() {
-  let total = 0
-
-  cartCapacity.value.forEach((quantity) => {
-    total = total + quantity.num
-  })
-
-  return total
-}
-function calcTotalCost() {
-  let total = 0
-  items.value.forEach((item) => {
-    const index = items.value.indexOf(item)
-    total += item.products.price * cartCapacity.value[index].num
-  })
-  return total
-}
 export default {
   items,
   add,
@@ -73,5 +71,5 @@ export default {
   cartCapacity,
   totalItems,
   getCurrencyFormat,
-  calcTotalCost,
+  totalCost,
 }

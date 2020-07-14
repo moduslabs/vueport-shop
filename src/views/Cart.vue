@@ -5,7 +5,7 @@
         Your <IonIcon icon="cart" class="ion-hide-sm-down" /> is empty
       </IonText>
       <IonList v-if="cart.items.length > 0">
-        <IonText> You have {{ cart.totalItems() }} items in your cart </IonText>
+        <IonText> You have {{ cart.totalItems }} items in your cart </IonText>
         <IonItem v-for="item in cart.items" :key="item.id">
           <IonGrid>
             <IonRow>
@@ -27,7 +27,7 @@
             </IonRow>
           </IonGrid>
         </IonItem>
-        <IonLabel>{{ 'Total: ' + currency(cart.calcTotalCost()) }}</IonLabel>
+        <IonLabel>{{ 'Total: ' + currency(cart.totalCost) }}</IonLabel>
         <RouterLink to="/checkout">
           <IonButton fill="outline" color="dark">
             Checkout

@@ -10,7 +10,7 @@
     </IonTabButton>
     <IonTabButton tab="cart" href="/cart">
       <IonIcon icon="cart" />
-      <IonBadge color="primary">{{ cart.totalItems() }}</IonBadge>
+      <IonBadge color="primary">{{ cart.totalItems }}</IonBadge>
     </IonTabButton>
   </IonTabBar>
   <Menu />

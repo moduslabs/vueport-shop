@@ -77,7 +77,7 @@
             </RouterLink>
           </IonItem>
           <IonItem>
-            {{ 'Total: ' + currency(cart.calcTotalCost()) }}
+            {{ 'Total: ' + currency(cart.totalCost) }}
           </IonItem>
         </IonCol>
       </IonRow>
