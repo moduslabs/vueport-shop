@@ -70,7 +70,11 @@
             </IonList>
           </IonItem>
           <IonItem>
-            <IonButton fill="outline" color="dark">Place Order</IonButton>
+            <RouterLink to="/ordercompleted">
+              <IonButton @click="clearCart" fill="outline" color="dark">
+                Place Order
+              </IonButton>
+            </RouterLink>
           </IonItem>
           <IonItem>
             {{ 'Total: ' + currency(cart.calcTotalCost()) }}
@@ -145,11 +149,16 @@ export default defineComponent({
     function check() {
       state.isChecked = !state.isChecked
     }
+    function clearCart() {
+      cart.items.value = []
+      cart.cartCapacity.value = []
+    }
     return {
       state,
       check,
       cart,
       currency,
+      clearCart,
     }
   },
 })
