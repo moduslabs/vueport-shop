@@ -15,22 +15,24 @@ const router = createRouter({
     {
       path: '/',
       component: home,
+      children: [
+        {
+          path: '/category/:categoryId',
+          component: category,
+          meta: {
+            title: 'Category - Vue-Port Shop',
+          },
+        },
+        {
+          path: '/product/:productId',
+          component: productDetails,
+          meta: {
+            title: 'Product - Vue-Port Shop',
+          },
+        },
+      ],
       meta: {
         title: 'Home Page - Vue-Port Shop',
-      },
-    },
-    {
-      path: '/category/:categoryId',
-      component: category,
-      meta: {
-        title: 'Category - Vue-Port Shop',
-      },
-    },
-    {
-      path: '/product/:productId',
-      component: productDetails,
-      meta: {
-        title: 'Product - Vue-Port Shop',
       },
     },
     {

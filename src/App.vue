@@ -5,21 +5,23 @@
         <NavBar />
       </template>
       <IonText v-if="error" color="warning">{{ error }}</IonText>
-      <Suspense>
-        <template #default>
-          <IonRouterView />
-        </template>
-        <template #fallback>
-          <Skeleton />
-        </template>
-      </Suspense>
+      <RouterView v-slot="{ Component }">
+        <Suspense>
+          <template #default>
+            <component :is="Component" />
+          </template>
+          <template #fallback>
+            <Skeleton />
+          </template>
+        </Suspense>
+      </RouterView>
     </IonTabs>
   </IonApp>
 </template>
 
 <script lang="ts">
 import { defineComponent, watch, onErrorCaptured, ref } from 'vue'
-import { IonApp, IonRouterView, IonTabs, IonText } from '@modus/ionic-vue'
+import { IonApp, IonTabs, IonText } from '@modus/ionic-vue'
 import { useRouter } from 'vue-router'
 import Skeleton from '@/components/Skeleton.vue'
 import NavBar from './components/NavBar.vue'
@@ -34,7 +36,6 @@ export default defineComponent({
   name: 'App',
   components: {
     IonApp,
-    IonRouterView,
     Skeleton,
     NavBar,
     IonTabs,

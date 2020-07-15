@@ -1,6 +1,7 @@
 <template>
   <IonTab tab="collections">
-    <IonContent>
+    <IonRouterView />
+    <IonContent v-if="$route.path === '/'">
       <div class="list">
         <IonCard v-for="category in this.categories" :key="category.id">
           <RouterLink :to="`/category/${category.id}`">
@@ -37,6 +38,7 @@ import {
   IonCardTitle,
   IonFab,
   IonFabButton,
+  IonRouterView,
 } from '@modus/ionic-vue'
 import { defineComponent } from 'vue'
 import { RouterLink } from 'vue-router'
@@ -55,6 +57,7 @@ export default defineComponent({
     IonCardTitle,
     IonFab,
     IonFabButton,
+    IonRouterView,
   },
   async setup() {
     const { categories } = await useCategories()
