@@ -7,7 +7,7 @@
       <IonText v-if="error" color="warning">{{ error }}</IonText>
       <Suspense>
         <template #default>
-          <IonRouterView />
+          <RouterView />
         </template>
         <template #fallback>
           <Skeleton />
@@ -34,7 +34,6 @@ export default defineComponent({
   name: 'App',
   components: {
     IonApp,
-    IonRouterView,
     Skeleton,
     NavBar,
     IonTabs,

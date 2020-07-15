@@ -1,6 +1,5 @@
 <template>
   <IonContent>
-    <IonRouterView />
     <IonGrid>
       <IonRow>
         <IonCol>
@@ -92,7 +91,6 @@
 import { defineComponent, ref } from 'vue'
 import {
   IonContent,
-  IonRouterView,
   IonText,
   IonImg,
   IonGrid,
@@ -116,7 +114,6 @@ export default defineComponent({
   name: 'ProductDetails',
   components: {
     IonContent,
-    IonRouterView,
     IonText,
     IonImg,
     IonGrid,
