@@ -5,14 +5,16 @@
         <NavBar />
       </template>
       <IonText v-if="error" color="warning">{{ error }}</IonText>
-      <Suspense>
-        <template #default>
-          <RouterView />
-        </template>
-        <template #fallback>
-          <Skeleton />
-        </template>
-      </Suspense>
+      <RouterView v-slot="{ Component }">
+        <Suspense>
+          <template #default>
+            <component :is="Component" />
+          </template>
+          <template #fallback>
+            <Skeleton />
+          </template>
+        </Suspense>
+      </RouterView>
     </IonTabs>
   </IonApp>
 </template>
@@ -38,6 +40,7 @@ export default defineComponent({
     NavBar,
     IonTabs,
     IonText,
+    IonRouterView,
   },
   setup() {
     const error = ref()
