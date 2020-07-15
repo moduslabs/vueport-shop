@@ -43,25 +43,27 @@ const router = createRouter({
       },
     },
     {
-      path: '/checkout',
-      component: checkout,
-      meta: {
-        title: 'Checkout - Vue-Port Shop',
-      },
-    },
-    {
       path: '/cart',
       component: cart,
       meta: {
         title: 'Cart - Vue-Port Shop',
       },
-    },
-    {
-      path: '/ordercompleted',
-      component: orderCompleted,
-      meta: {
-        title: 'Order Completed - Vue-Port Shop',
-      },
+      children: [
+        {
+          path: '/cart/checkout',
+          component: checkout,
+          meta: {
+            title: 'Checkout - Vue-Port Shop',
+          },
+        },
+        {
+          path: '/cart/ordercompleted',
+          component: orderCompleted,
+          meta: {
+            title: 'Order Completed - Vue-Port Shop',
+          },
+        },
+      ],
     },
   ],
 })
