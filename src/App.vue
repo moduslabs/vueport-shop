@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import { defineComponent, watch, onErrorCaptured, ref } from 'vue'
-import { IonApp, IonRouterView, IonTabs, IonText } from '@modus/ionic-vue'
+import { IonApp, IonTabs, IonText } from '@modus/ionic-vue'
 import { useRouter } from 'vue-router'
 import Skeleton from '@/components/Skeleton.vue'
 import NavBar from './components/NavBar.vue'
@@ -40,7 +40,6 @@ export default defineComponent({
     NavBar,
     IonTabs,
     IonText,
-    IonRouterView,
   },
   setup() {
     const error = ref()
