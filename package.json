@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@ionic/core": "^5.2.3",
-    "@modus/ionic-vue": "^3.0.0-alpha.11",
+    "@modus/ionic-vue": "^3.0.0-alpha.12",
     "core-js": "^3.6.5",
     "lodash": "^4.17.19",
     "register-service-worker": "1.7.1",
