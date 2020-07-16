@@ -37,7 +37,7 @@ import { RouterLink } from 'vue-router'
 import useCategories from '@/composables/categories'
 
 export default defineComponent({
-  name: 'Home',
+  name: 'CategoryList',
   components: {
     RouterLink,
     IonCard,
