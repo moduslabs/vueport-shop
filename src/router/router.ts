@@ -2,6 +2,7 @@ import { createWebHistory } from 'vue-router'
 import { createRouter } from '@modus/ionic-vue'
 
 const home = () => import('@/views/Home.vue')
+const categoryList = () => import('@/components/CategoryList.vue')
 const category = () => import('@/components/Category.vue')
 const about = () => import('@/views/About.vue')
 const productDetails = () => import('@/components/ProductDetails.vue')
@@ -17,23 +18,27 @@ const router = createRouter({
       component: home,
       children: [
         {
-          path: '/category/:categoryId',
+          path: '',
+          component: categoryList,
+          meta: {
+            title: 'Home Page - Vue-Port Shop',
+          },
+        },
+        {
+          path: 'category/:categoryId',
           component: category,
           meta: {
             title: 'Category - Vue-Port Shop',
           },
         },
         {
-          path: '/product/:productId',
+          path: 'product/:productId',
           component: productDetails,
           meta: {
             title: 'Product - Vue-Port Shop',
           },
         },
       ],
-      meta: {
-        title: 'Home Page - Vue-Port Shop',
-      },
     },
     {
       path: '/about',

@@ -10,7 +10,6 @@
           </template>
         </Suspense>
       </IonRouterView>
-      <CategoryList v-if="$route.path === '/'" />
     </IonContent>
   </IonTab>
 </template>
@@ -18,7 +17,6 @@
 <script lang="ts">
 import { IonContent, IonTab, IonRouterView } from '@modus/ionic-vue'
 import { defineComponent } from 'vue'
-import CategoryList from '@/components/CategoryList.vue'
 
 export default defineComponent({
   name: 'Home',
@@ -26,7 +24,6 @@ export default defineComponent({
     IonContent,
     IonTab,
     IonRouterView,
-    CategoryList,
   },
 })
 </script>
