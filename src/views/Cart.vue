@@ -1,13 +1,9 @@
 <template>
   <IonTab tab="cart">
     <IonRouterView v-slot="{ Component, transitionProps }">
-      <Suspense>
-        <template #default>
-          <Transition v-bind="transitionProps">
-            <component :is="Component" />
-          </Transition>
-        </template>
-      </Suspense>
+      <Transition v-bind="transitionProps">
+        <component :is="Component" />
+      </Transition>
     </IonRouterView>
   </IonTab>
 </template>
@@ -17,7 +13,7 @@ import { IonTab, IonRouterView } from '@modus/ionic-vue'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'Home',
+  name: 'Cart',
   components: {
     IonTab,
     IonRouterView,

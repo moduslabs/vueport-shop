@@ -7,20 +7,25 @@
             <component :is="Component" />
           </Transition>
         </template>
+        <template #fallback>
+          <Skeleton />
+        </template>
       </Suspense>
     </IonRouterView>
   </IonTab>
 </template>
 
 <script lang="ts">
-import { IonTab, IonRouterView } from '@modus/ionic-vue'
 import { defineComponent } from 'vue'
+import { IonTab, IonRouterView } from '@modus/ionic-vue'
+import Skeleton from '@/components/Skeleton.vue'
 
 export default defineComponent({
   name: 'Home',
   components: {
     IonTab,
     IonRouterView,
+    Skeleton,
   },
 })
 </script>

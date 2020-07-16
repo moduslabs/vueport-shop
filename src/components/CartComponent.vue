@@ -54,7 +54,7 @@ import cart from '../composables/cart/index'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'Cart',
+  name: 'CartComponent',
   components: {
     IonContent,
     IonText,

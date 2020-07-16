@@ -60,14 +60,14 @@ const router = createRouter({
           },
         },
         {
-          path: '/cart/checkout',
+          path: 'checkout',
           component: checkout,
           meta: {
             title: 'Checkout - Vue-Port Shop',
           },
         },
         {
-          path: '/cart/ordercompleted',
+          path: 'ordercompleted',
           component: orderCompleted,
           meta: {
             title: 'Order Completed - Vue-Port Shop',
