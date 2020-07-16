@@ -9,12 +9,18 @@
       <IonTabButton tab="about" href="/about" class="ion-hide-sm-down">
         <IonLabel>About</IonLabel>
       </IonTabButton>
-      <IonTabButton tab="cart" href="/cart">
-        <IonIcon icon="cart" />
-        <IonBadge color="primary">{{ cart.totalItems }}</IonBadge>
-      </IonTabButton>
+      <IonButton @click="openModalComponent" fill="clear">
+        <IonIcon icon="cart" class="cart" />
+        <IonBadge>{{ cart.totalItems }}</IonBadge>
+      </IonButton>
     </IonTabBar>
     <Menu />
+    <IonModal :isOpen="isOpen" @willDismiss="willDismiss" :showBackdrop="true">
+      <CartComponent />
+      <IonButton @click="willDismiss" size="small" color="light" shape="round"
+        >X</IonButton
+      >
+    </IonModal>
   </nav>
 </template>
 <script lang="ts">
@@ -26,10 +32,13 @@ import {
   IonTabButton,
   IonMenuButton,
   IonBadge,
+  IonModal,
+  IonButton,
 } from '@modus/ionic-vue'
 import cart from '@/composables/cart'
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import Menu from '@/components/Menu.vue'
+import CartComponent from '@/components/CartComponent.vue'
 import { menuController } from '@ionic/core'
 export default defineComponent({
   name: 'NavBar',
@@ -42,12 +51,34 @@ export default defineComponent({
     IonMenuButton,
     Menu,
     IonBadge,
+    IonModal,
+    IonButton,
+    CartComponent,
   },
   setup() {
+    const isOpen = ref(false)
     function openMenuComponent() {
       menuController.open('main-menu')
     }
-    return { openMenuComponent, cart }
+    function openModalComponent() {
+      isOpen.value = true
+    }
+
+    function willDismiss() {
+      isOpen.value = false
+    }
+    return {
+      openMenuComponent,
+      cart,
+      isOpen,
+      openModalComponent,
+      willDismiss,
+    }
   },
 })
 </script>
+<style scoped>
+.cart {
+  color: grey;
+}
+</style>

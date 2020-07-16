@@ -73,13 +73,7 @@
       </IonRow>
     </IonGrid>
     <IonModal :isOpen="isOpen" @willDismiss="willDismiss" :showBackdrop="true">
-      <IonText>{{ product['products'].title }} added to cart</IonText>
-      <RouterLink to="/cart">
-        <IonButton>View Cart</IonButton>
-      </RouterLink>
-      <RouterLink to="/cart/checkout">
-        <IonButton>Checkout</IonButton>
-      </RouterLink>
+      <CartComponent />
       <IonButton @click="willDismiss" size="small" color="light" shape="round"
         >X</IonButton
       >
@@ -109,7 +103,7 @@ import {
 import { useRoute } from 'vue-router'
 import useProduct from '@/composables/products'
 import cart from '@/composables/cart/index'
-
+import CartComponent from '@/components/CartComponent.vue'
 export default defineComponent({
   name: 'ProductDetails',
   components: {
@@ -128,6 +122,7 @@ export default defineComponent({
     IonButton,
     IonModal,
     IonInput,
+    CartComponent,
   },
   async setup() {
     const product = await useProduct(useRoute().params.productId)
