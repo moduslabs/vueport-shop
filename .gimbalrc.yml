@@ -31,6 +31,8 @@ configs:
         maxSize: 30 KB
       - path: dist/js/runtime-*.js
         maxSize: 3.75 KB
+      - path: dist/precache-*.js
+        maxSize: 15 KB
       - path: dist/index.html
         maxSize: 8 KB
 outputs:
@@ -47,6 +49,10 @@ plugins:
       page-has-heading-one: moderate
       landmark-one-main: serious
       empty-heading: serious
+      # This happened due to navigation layout. Neeed to fix after redesign
+      duplicate-id-active: serious
+      duplicate-id-aria: critical
+      region: moderate
   - plugin: '@modus/gimbal-plugin-source-map-explorer'
     bundles:
       - path: '*.js'

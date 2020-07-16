@@ -77,7 +77,7 @@
       <RouterLink to="/cart">
         <IonButton>View Cart</IonButton>
       </RouterLink>
-      <RouterLink to="/checkout">
+      <RouterLink to="/cart/checkout">
         <IonButton>Checkout</IonButton>
       </RouterLink>
       <IonButton @click="willDismiss" size="small" color="light" shape="round"

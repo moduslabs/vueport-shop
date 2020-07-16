@@ -1,6 +1,7 @@
 <template>
   <IonTab tab="cart">
-    <IonContent>
+    <IonRouterView />
+    <IonContent v-if="$route.path === '/cart'">
       <IonText v-if="cart.items.length === 0">
         Your <IonIcon icon="cart" class="ion-hide-sm-down" /> is empty
       </IonText>
@@ -28,7 +29,7 @@
           </IonGrid>
         </IonItem>
         <IonLabel>{{ 'Total: ' + currency(cart.totalCost) }}</IonLabel>
-        <RouterLink to="/checkout">
+        <RouterLink to="/cart/checkout">
           <IonButton fill="outline" color="dark">
             Checkout
           </IonButton>
@@ -52,6 +53,7 @@ import {
   IonGrid,
   IonRow,
   IonCol,
+  IonRouterView,
 } from '@modus/ionic-vue'
 import cart from '../composables/cart/index'
 import { defineComponent } from 'vue'
@@ -71,6 +73,7 @@ export default defineComponent({
     IonGrid,
     IonRow,
     IonCol,
+    IonRouterView,
   },
   setup() {
     const currency = cart.getCurrencyFormat()

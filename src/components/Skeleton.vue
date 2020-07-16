@@ -1,5 +1,5 @@
 <template>
-  <div id="skeleton">
+  <div>
     <ion-list>
       <ion-list-header>
         <ion-label>

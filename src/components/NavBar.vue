@@ -1,19 +1,21 @@
 <template>
-  <IonTabBar id="main-content" selectedTab="collections">
-    <IonMenuButton @click="openMenuComponent"></IonMenuButton>
-    <IonTitle>Vueport Shop</IonTitle>
-    <IonTabButton tab="collections" href="/" class="ion-hide-sm-down">
-      <IonLabel>Collections</IonLabel>
-    </IonTabButton>
-    <IonTabButton tab="about" href="/about" class="ion-hide-sm-down">
-      <IonLabel>About</IonLabel>
-    </IonTabButton>
-    <IonTabButton tab="cart" href="/cart">
-      <IonIcon icon="cart" />
-      <IonBadge color="primary">{{ cart.totalItems }}</IonBadge>
-    </IonTabButton>
-  </IonTabBar>
-  <Menu />
+  <nav>
+    <IonTabBar id="main-content" selectedTab="collections">
+      <IonMenuButton @click="openMenuComponent"></IonMenuButton>
+      <IonTitle>Vueport Shop</IonTitle>
+      <IonTabButton tab="collections" href="/" class="ion-hide-sm-down">
+        <IonLabel>Collections</IonLabel>
+      </IonTabButton>
+      <IonTabButton tab="about" href="/about" class="ion-hide-sm-down">
+        <IonLabel>About</IonLabel>
+      </IonTabButton>
+      <IonTabButton tab="cart" href="/cart">
+        <IonIcon icon="cart" />
+        <IonBadge color="primary">{{ cart.totalItems }}</IonBadge>
+      </IonTabButton>
+    </IonTabBar>
+    <Menu />
+  </nav>
 </template>
 <script lang="ts">
 import {
