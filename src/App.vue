@@ -5,9 +5,7 @@
         <NavBar />
       </template>
       <IonText v-if="error" color="warning">{{ error }}</IonText>
-      <RouterView v-slot="{ Component }">
-        <component :is="Component" />
-      </RouterView>
+      <RouterView />
     </IonTabs>
   </IonApp>
 </template>
