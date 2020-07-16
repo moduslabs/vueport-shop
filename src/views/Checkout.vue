@@ -70,7 +70,7 @@
             </IonList>
           </IonItem>
           <IonItem>
-            <RouterLink to="/ordercompleted">
+            <RouterLink to="/cart/ordercompleted">
               <IonButton @click="clearCart" fill="outline" color="dark">
                 Place Order
               </IonButton>

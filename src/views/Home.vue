@@ -11,10 +11,7 @@
             <IonCardSubtitle>Featured</IonCardSubtitle>
             <IonCardTitle>{{ category.title }}</IonCardTitle>
             <IonFab vertical="center" horizontal="end">
-              <RouterLink
-                :to="`/category/${category.id}`"
-                aria-label="View this category"
-              >
+              <RouterLink :to="`/category/${category.id}`">
                 <IonFabButton>
                   View
                 </IonFabButton>
