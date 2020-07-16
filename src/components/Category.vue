@@ -52,7 +52,7 @@ function getCurrencyFormat() {
 }
 
 export default defineComponent({
-  name: 'CollectionList',
+  name: 'Category',
   components: {
     IonContent,
     IonItem,
