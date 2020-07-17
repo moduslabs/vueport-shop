@@ -1,27 +1,29 @@
 <template>
   <IonContent>
-    <IonText v-if="cart.items.length === 0">
-      Your <IonIcon icon="cart" class="ion-hide-sm-down" /> is empty
+    <IonText v-if="cart.totalItems === 0">
+      Your <IonIcon icon="cart" /> is empty
     </IonText>
-    <IonList v-if="cart.items.length > 0">
+
+    <IonList v-else>
       <IonText> You have {{ cart.totalItems }} items in your cart </IonText>
-      <IonItem v-for="item in cart.items" :key="item.id">
+      <IonItem v-for="[skuId, item] in Array.from(cart.items)" :key="skuId">
         <IonGrid>
           <IonRow>
             <IonCol>
-              <IonImg
-                :alt="item['products'].title"
-                :src="item['products'].images[0]"
-              />
+              <IonImg :alt="item.product.title" :src="item.product.images[0]" />
             </IonCol>
             <IonCol>
-              <IonLabel class="title">{{ item['products'].title }}</IonLabel>
+              <IonLabel class="title"
+                >{{ item.product.title }}, {{ item.variant.title }} ({{
+                  item.quantity
+                }})</IonLabel
+              >
             </IonCol>
             <IonCol>
-              <IonLabel>{{ currency(item['products'].price) }}</IonLabel>
+              <IonLabel>{{ currency(item.price) }}</IonLabel>
             </IonCol>
             <IonCol>
-              <IonButton @click="removeItem(item)">X</IonButton>
+              <IonButton @click="removeItem(skuId)">X</IonButton>
             </IonCol>
           </IonRow>
         </IonGrid>
@@ -50,7 +52,7 @@ import {
   IonRow,
   IonCol,
 } from '@modus/ionic-vue'
-import cart from '../composables/cart/index'
+import cart from '../composables/cart'
 import { defineComponent } from 'vue'
 
 export default defineComponent({

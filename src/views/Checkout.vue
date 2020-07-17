@@ -61,11 +61,14 @@
             <Input name="CVV" inputType="number" />
           </IonList>
           <IonLabel>Order Summary</IonLabel>
-          <IonItem v-for="item in cart.items" :key="item.id">
+          <IonItem v-for="[skuId, item] in Array.from(cart.items)" :key="skuId">
             <IonList>
-              <IonLabel> {{ item['products'].title }} </IonLabel>
+              <IonLabel> {{ item.product.title }} </IonLabel>
               <IonLabel>
-                {{ 'Price: ' + currency(item['products'].price) }}
+                {{ 'Price: ' + currency(item.product.price) }}
+              </IonLabel>
+              <IonLabel>
+                {{ 'Quantity: ' + item.quantity }}
               </IonLabel>
             </IonList>
           </IonItem>

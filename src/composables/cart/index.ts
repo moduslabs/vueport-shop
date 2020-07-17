@@ -1,41 +1,35 @@
 import { ref, computed } from 'vue'
-import { Category } from '@/composables/categories'
-import { Variant } from '@/composables/products'
-const items = ref<Array<Products>>([])
-const cartCapacity = ref<Array<Quantity>>([])
+import type { Product, Variant } from '@/composables/products'
+
+export interface CartItem {
+  product: Product
+  variant: Variant
+  quantity: number
+  price: number
+}
+
+export type Cart = Map<Variant['sku'], CartItem>
+
+const items = ref<Cart>(new Map())
+
 const totalItems = computed(() => {
   let total = 0
-  cartCapacity.value.forEach((quantity) => {
-    total = total + quantity.num
+
+  items.value.forEach((item) => {
+    total += item.quantity
   })
+
   return total
 })
+
 const totalCost = computed(() => {
   let total = 0
   items.value.forEach((item) => {
-    const index = items.value.indexOf(item)
-    total += item.products.price * cartCapacity.value[index].num
+    total += item.price
   })
   return total
 })
-interface Products {
-  products: Product
-}
-interface Product {
-  price: number
-  id: string
-  title: string
-  description: string
-  images: string[]
-  category: Category['id']
-  variants: Variant[]
-  tags: string[]
-}
 
-interface Quantity {
-  id: string
-  num: number
-}
 function getCurrencyFormat() {
   const intl = new Intl.NumberFormat(navigator.language, {
     maximumFractionDigits: 2,
@@ -44,32 +38,35 @@ function getCurrencyFormat() {
   })
   return intl.format
 }
-function add(product: Products, num: number) {
-  const quantity = {} as Quantity
-  quantity.id = product.products.id
-  quantity.num = num
-  items.value = [...items.value, product]
-  cartCapacity.value = [...cartCapacity.value, quantity]
+
+function add(product: Product, variant: Variant, quantity: number) {
+  let oldQuantity = 0
+
+  if (items.value.has(variant.id)) {
+    // if we already have this SKU in cart then add quantity
+    const existing = items.value.get(variant.id)
+    oldQuantity = existing?.quantity || 0
+  }
+
+  const totalQuantity = quantity + oldQuantity
+
+  items.value.set(variant.id, {
+    product,
+    variant,
+    quantity: totalQuantity,
+    price: product.price * ~~totalQuantity,
+  })
 }
 
-function remove(product: Products) {
-  items.value.splice(
-    items.value.findIndex((item) => item.products.id === product.products.id),
-    1
-  )
-  cartCapacity.value.splice(
-    cartCapacity.value.findIndex(
-      (quantity) => quantity.id === product.products.id
-    ),
-    1
-  )
+function remove(skuId: Variant['sku']) {
+  items.value.delete(skuId)
 }
+
 export default {
   items,
   add,
   remove,
-  cartCapacity,
-  totalItems,
   getCurrencyFormat,
   totalCost,
+  totalItems,
 }
