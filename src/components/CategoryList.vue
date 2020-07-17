@@ -67,7 +67,7 @@ export default defineComponent({
   async setup() {
     const { categories } = await useCategories()
     const slideOpts = {
-      initialSlide: 1,
+      initialSlide: 0,
       slidesPerView: 'auto',
       speed: 400,
       spaceBetween: 15,
