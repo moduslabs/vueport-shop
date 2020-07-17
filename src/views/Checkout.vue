@@ -153,7 +153,7 @@ export default defineComponent({
       state.isChecked = !state.isChecked
     }
     function clearCart() {
-      cart.items.clear()
+      cart.items.value.clear()
     }
     return {
       state,
