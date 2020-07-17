@@ -10,7 +10,7 @@
         <IonGrid>
           <IonRow>
             <IonCol>
-              <IonImg :alt="item.product.title" :src="item.images[0]" />
+              <IonImg :alt="item.product.title" :src="item.product.images[0]" />
             </IonCol>
             <IonCol>
               <IonLabel class="title"
