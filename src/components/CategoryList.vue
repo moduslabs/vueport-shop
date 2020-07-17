@@ -6,14 +6,16 @@
         :key="category.id"
         class="slide"
       >
-        <IonCard>
+        <IonCard class="card">
           <RouterLink :to="`/category/${category.id}`">
             <IonImg class="hero" :src="category.image" :alt="category.title" />
           </RouterLink>
           <IonCardHeader>
             <IonCardSubtitle>Featured</IonCardSubtitle>
             <IonCardTitle>{{ category.title }}</IonCardTitle>
-            <IonFab vertical="center" horizontal="end">
+            <IonCardSubtitle>{{ category.description }}</IonCardSubtitle>
+            <br />
+            <IonFab vertical="end" horizontal="end">
               <RouterLink
                 :to="`/category/${category.id}`"
                 aria-label="View this category"
@@ -68,8 +70,9 @@ export default defineComponent({
       initialSlide: 1,
       slidesPerView: 'auto',
       speed: 400,
-      spaceBetween: 30,
+      spaceBetween: 15,
       loop: true,
+      keyboard: true,
     }
     return { categories, slideOpts }
   },
@@ -87,7 +90,7 @@ export default defineComponent({
   text-align: center;
   font-size: 18px;
   background: #fff;
-  width: 80%;
+  width: 100%;
 
   /* Center slide text vertically */
   display: -webkit-box;
@@ -102,5 +105,8 @@ export default defineComponent({
   -ms-flex-align: center;
   -webkit-align-items: center;
   align-items: center;
+}
+.card {
+  height: 90%;
 }
 </style>
