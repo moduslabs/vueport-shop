@@ -46,7 +46,7 @@ export type ProductComposition = {
   product: Ref<Product>
 }
 export async function useProduct(productId: Product['id']) {
-  const { response: product, request } = useApi<Product>(
+  const { response, request } = useApi<Product>(
     `https://ecomm-products.modus.workers.dev/${productId}`
   )
   const loaded = ref(false)
@@ -56,5 +56,5 @@ export async function useProduct(productId: Product['id']) {
     loaded.value = true
   }
 
-  return { product } as ProductComposition
+  return { product: response } as ProductComposition
 }
