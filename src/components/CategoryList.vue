@@ -2,9 +2,11 @@
   <IonContent>
     <div class="list">
       <IonCard v-for="category in this.categories" :key="category.id">
-        <RouterLink :to="`/category/${category.id}`">
-          <IonImg class="hero" :src="category.image" :alt="category.title" />
-        </RouterLink>
+        <div class="hero">
+          <RouterLink :to="`/category/${category.id}`">
+            <IonImg class="hero" :src="category.image" :alt="category.title" />
+          </RouterLink>
+        </div>
         <IonCardHeader>
           <IonCardSubtitle>Featured</IonCardSubtitle>
           <IonCardTitle>{{ category.title }}</IonCardTitle>
