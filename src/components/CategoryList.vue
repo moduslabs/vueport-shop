@@ -1,28 +1,36 @@
 <template>
   <IonContent>
-    <div class="list">
-      <IonCard v-for="category in this.categories" :key="category.id">
-        <div class="hero">
-          <RouterLink :to="`/category/${category.id}`">
-            <IonImg class="hero" :src="category.image" :alt="category.title" />
-          </RouterLink>
-        </div>
-        <IonCardHeader>
-          <IonCardSubtitle>Featured</IonCardSubtitle>
-          <IonCardTitle>{{ category.title }}</IonCardTitle>
-          <IonFab vertical="center" horizontal="end">
-            <RouterLink
-              :to="`/category/${category.id}`"
-              aria-label="View this category"
-            >
-              <IonFabButton>
-                View
-              </IonFabButton>
+    <IonSlides :options="slideOpts" pager="true" class="container">
+      <IonSlide
+        v-for="category in this.categories"
+        :key="category.id"
+        class="slide"
+      >
+        <IonCard class="card">
+          <div class="hero">
+            <RouterLink :to="`/category/${category.id}`">
+              <IonImg :src="category.image" :alt="category.title" />
             </RouterLink>
-          </IonFab>
-        </IonCardHeader>
-      </IonCard>
-    </div>
+          </div>
+          <IonCardHeader>
+            <IonCardSubtitle>Featured</IonCardSubtitle>
+            <IonCardTitle>{{ category.title }}</IonCardTitle>
+            <IonCardSubtitle>{{ category.description }}</IonCardSubtitle>
+            <br />
+            <IonFab vertical="end" horizontal="end">
+              <RouterLink
+                :to="`/category/${category.id}`"
+                aria-label="View this category"
+              >
+                <IonFabButton>
+                  View
+                </IonFabButton>
+              </RouterLink>
+            </IonFab>
+          </IonCardHeader>
+        </IonCard>
+      </IonSlide>
+    </IonSlides>
   </IonContent>
 </template>
 
@@ -36,6 +44,8 @@ import {
   IonFab,
   IonFabButton,
   IonContent,
+  IonSlides,
+  IonSlide,
 } from '@modus/ionic-vue'
 import { defineComponent } from 'vue'
 import { RouterLink } from 'vue-router'
@@ -53,15 +63,56 @@ export default defineComponent({
     IonFab,
     IonFabButton,
     IonContent,
+    IonSlides,
+    IonSlide,
   },
   async setup() {
     const { categories } = await useCategories()
-    return { categories }
+    const slideOpts = {
+      initialSlide: 0,
+      // slidesPerView: 'auto',
+      // speed: 400,
+      // spaceBetween: 15,
+      // loop: true,
+      // keyboard: true,
+    }
+    return { categories, slideOpts }
   },
 })
 </script>
 <style scoped>
+.hero {
+  width: 100vw;
+  height: calc(60vh / (16 / 9));
+}
 .list {
   padding-bottom: 3rem;
+}
+.container {
+  width: 100%;
+  height: 100%;
+}
+.slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  width: 100%;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.card {
+  height: 90%;
 }
 </style>
