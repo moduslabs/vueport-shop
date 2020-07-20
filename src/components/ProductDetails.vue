@@ -1,11 +1,13 @@
 <template>
   <IonContent>
     <header>
-      <IonImg
-        :alt="product.title"
-        :src="product.images[1]"
-        class="product-image"
-      />
+      <div class="product-image">
+        <IonImg
+          :alt="product.title"
+          :src="product.images[1]"
+          class="product-image"
+        />
+      </div>
 
       <IonItem lines="none">
         <IonText color="dark">

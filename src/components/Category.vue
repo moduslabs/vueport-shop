@@ -18,11 +18,13 @@
       >
         <IonItem class="list-item">
           <IonThumbnail slot="start" class="product-image-container">
-            <IonImg
-              :src="product.images[0]"
-              :alt="product.title"
-              class="product-image"
-            />
+            <div class="product-image">
+              <IonImg
+                :src="product.images[0]"
+                :alt="product.title"
+                class="product-image"
+              />
+            </div>
           </IonThumbnail>
           <article>
             <IonBadge color="success" class="tag">{{

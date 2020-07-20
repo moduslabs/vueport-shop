@@ -7,9 +7,11 @@
         class="slide"
       >
         <IonCard class="card">
-          <RouterLink :to="`/category/${category.id}`">
-            <IonImg class="hero" :src="category.image" :alt="category.title" />
-          </RouterLink>
+          <div class="hero">
+            <RouterLink :to="`/category/${category.id}`">
+              <IonImg :src="category.image" :alt="category.title" />
+            </RouterLink>
+          </div>
           <IonCardHeader>
             <IonCardSubtitle>Featured</IonCardSubtitle>
             <IonCardTitle>{{ category.title }}</IonCardTitle>
@@ -79,12 +81,16 @@ export default defineComponent({
 })
 </script>
 <style scoped>
+.hero {
+  width: 100vw;
+  height: calc(100vw / (16 / 9));
+}
 .list {
   padding-bottom: 3rem;
 }
 .container {
   width: 100%;
-  height: 100%;
+  height: 90%;
 }
 .slide {
   text-align: center;
