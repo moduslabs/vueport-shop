@@ -70,11 +70,11 @@ export default defineComponent({
     const { categories } = await useCategories()
     const slideOpts = {
       initialSlide: 0,
-      slidesPerView: 'auto',
-      speed: 400,
-      spaceBetween: 15,
-      loop: true,
-      keyboard: true,
+      // slidesPerView: 'auto',
+      // speed: 400,
+      // spaceBetween: 15,
+      // loop: true,
+      // keyboard: true,
     }
     return { categories, slideOpts }
   },
@@ -83,14 +83,14 @@ export default defineComponent({
 <style scoped>
 .hero {
   width: 100vw;
-  height: calc(100vw / (16 / 9));
+  height: calc(60vh / (16 / 9));
 }
 .list {
   padding-bottom: 3rem;
 }
 .container {
   width: 100%;
-  height: 90%;
+  height: 100%;
 }
 .slide {
   text-align: center;
