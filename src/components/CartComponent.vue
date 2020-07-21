@@ -1,8 +1,8 @@
 <template>
   <IonContent class="cart">
-    <IonText v-if="cart.totalItems === 0">
+    <IonTitle v-if="cart.totalItems === 0" class="title">
       Your <IonIcon icon="cart" /> is empty
-    </IonText>
+    </IonTitle>
 
     <IonList v-else>
       <IonTitle>Your Cart</IonTitle>
@@ -120,11 +120,7 @@ export default defineComponent({
   width: 4rem;
   height: 4rem;
 }
-
 .product-image {
   border-radius: 0.2rem;
-}
-.remove {
-  text-align: center;
 }
 </style>
