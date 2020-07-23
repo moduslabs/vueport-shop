@@ -1,33 +1,78 @@
 <template>
   <IonContent>
-    <IonSlides :options="slideOpts" pager="true" class="container">
+    <IonSlides
+      :options="slideOpts"
+      pager="true"
+      class="container ion-hide-md-down"
+    >
       <IonSlide
         v-for="category in this.categories"
         :key="category.id"
         class="slide"
       >
-        <IonCard class="card">
-          <div class="hero">
+        <IonCard class="card-desktop">
+          <RouterLink :to="`/category/${category.id}`">
             <RouterLink :to="`/category/${category.id}`">
-              <IonImg :src="category.image" :alt="category.title" />
+              <IonImg
+                :src="category.image"
+                :alt="category.title"
+                class="desktop"
+              />
             </RouterLink>
-          </div>
-          <IonCardHeader>
-            <IonCardSubtitle>Featured</IonCardSubtitle>
-            <IonCardTitle>{{ category.title }}</IonCardTitle>
-            <IonCardSubtitle>{{ category.description }}</IonCardSubtitle>
-            <br />
-            <IonFab vertical="end" horizontal="end">
-              <RouterLink
-                :to="`/category/${category.id}`"
-                aria-label="View this category"
-              >
-                <IonFabButton>
-                  View
-                </IonFabButton>
+            <div class="card-content">
+              <IonCardHeader>
+                <IonCardSubtitle>Featured</IonCardSubtitle>
+                <IonCardTitle>{{ category.title }}</IonCardTitle>
+              </IonCardHeader>
+              <IonCardContent>
+                {{ category.description }}
+              </IonCardContent>
+              <RouterLink :to="`/category/${category.id}`">
+                <IonFab vertical="end" horizontal="end">
+                  <IonFabButton>
+                    <IonIcon icon="pricetags" />
+                  </IonFabButton>
+                </IonFab>
               </RouterLink>
-            </IonFab>
-          </IonCardHeader>
+            </div>
+          </RouterLink>
+        </IonCard>
+      </IonSlide>
+    </IonSlides>
+    <IonSlides
+      :options="mobileSlideOpts"
+      pager="true"
+      class="container ion-hide-md-up"
+    >
+      <IonSlide
+        v-for="category in this.categories"
+        :key="category.id"
+        class="slide"
+      >
+        <IonCard class="card-mobile">
+          <RouterLink :to="`/category/${category.id}`">
+            <IonImg
+              :src="category.image"
+              :alt="category.title"
+              class="mobile"
+            />
+            <div>
+              <IonCardHeader>
+                <IonCardSubtitle>Featured</IonCardSubtitle>
+                <IonCardTitle>{{ category.title }}</IonCardTitle>
+              </IonCardHeader>
+              <IonCardContent>
+                {{ category.description }}
+              </IonCardContent>
+              <RouterLink :to="`/category/${category.id}`">
+                <IonFab vertical="end" horizontal="end">
+                  <IonFabButton>
+                    <IonIcon icon="pricetags" />
+                  </IonFabButton>
+                </IonFab>
+              </RouterLink>
+            </div>
+          </RouterLink>
         </IonCard>
       </IonSlide>
     </IonSlides>
@@ -41,11 +86,13 @@ import {
   IonCardHeader,
   IonCardSubtitle,
   IonCardTitle,
+  IonCardContent,
   IonFab,
   IonFabButton,
   IonContent,
   IonSlides,
   IonSlide,
+  IonIcon,
 } from '@modus/ionic-vue'
 import { defineComponent } from 'vue'
 import { RouterLink } from 'vue-router'
@@ -60,43 +107,49 @@ export default defineComponent({
     IonCardHeader,
     IonCardSubtitle,
     IonCardTitle,
+    IonCardContent,
     IonFab,
     IonFabButton,
     IonContent,
     IonSlides,
     IonSlide,
+    IonIcon,
   },
   async setup() {
     const { categories } = await useCategories()
     const slideOpts = {
       initialSlide: 0,
-      // slidesPerView: 'auto',
       // speed: 400,
-      // spaceBetween: 15,
-      // loop: true,
-      // keyboard: true,
+      spaceBetween: 100,
+      centeredSlides: true,
+      keyboard: true,
     }
-    return { categories, slideOpts }
+    const mobileSlideOpts = {
+      initialSlide: 0,
+    }
+    const here = () => {
+      console.log('here')
+    }
+    return { categories, slideOpts, mobileSlideOpts, here }
   },
 })
 </script>
 <style scoped>
-.hero {
+.mobile {
   width: 100vw;
   height: calc(60vh / (16 / 9));
 }
-.list {
-  padding-bottom: 3rem;
+.desktop {
+  height: 65%;
 }
 .container {
-  width: 100%;
   height: 100%;
 }
 .slide {
   text-align: center;
   font-size: 18px;
   background: #fff;
-  width: 100%;
+  height: 100%;
 
   /* Center slide text vertically */
   display: -webkit-box;
@@ -112,7 +165,12 @@ export default defineComponent({
   -webkit-align-items: center;
   align-items: center;
 }
-.card {
-  height: 90%;
+.card-desktop {
+  height: 80vh;
+  width: 80vw;
+}
+.card-mobile {
+  height: 83vh;
+  width: 100%;
 }
 </style>
