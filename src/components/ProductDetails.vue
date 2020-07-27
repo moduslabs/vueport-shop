@@ -63,11 +63,7 @@
         :value="variant.title"
       >
         <IonSelectOption
-          v-for="variant in [
-            ...new Map(
-              product.variants.map((item) => [item['title'], item])
-            ).values(),
-          ]"
+          v-for="variant in uniqueVariants"
           :key="variant.id"
           v-bind:value="variant.title"
           >{{ variant.title }}
@@ -132,6 +128,9 @@ export default defineComponent({
     const quantity = ref(1)
     const defaultVariant = product.value.variants[0]
     const variant = ref(defaultVariant)
+    const uniqueVariants = new Map(
+      product.value.variants.map((item) => [item['title'], item])
+    ).values()
 
     function setQuantity(num: number) {
       quantity.value = num
@@ -166,6 +165,7 @@ export default defineComponent({
       setVariant,
       quantity,
       variant,
+      uniqueVariants,
     }
   },
 })
