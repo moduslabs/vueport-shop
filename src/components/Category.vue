@@ -32,7 +32,7 @@
             }}</IonBadge>
 
             <ion-text color="dark">
-              <h3 class="product-title">{{ product.title }}</h3>
+              <h4 class="product-title">{{ product.title }}</h4>
             </ion-text>
 
             <IonText color="tertiary">{{ currency(product.price) }}</IonText>
@@ -105,12 +105,14 @@ header {
 }
 
 .product-image-container {
-  width: 8rem;
-  height: 8rem;
+  --product-image-width: 8rem;
+  width: var(--product-image-width);
+  height: calc(var(--product-image-width) * 9 / 16);
 }
 
 .product-image {
   border-radius: 0.4rem;
+  overflow: hidden;
 }
 
 .product-title {
@@ -119,5 +121,9 @@ header {
 
 .list-item {
   box-shadow: 16px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+article {
+  padding: 0.825rem 0;
 }
 </style>
