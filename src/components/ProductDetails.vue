@@ -63,14 +63,20 @@
         :value="variant.title"
       >
         <IonSelectOption
-          v-for="variant in product.variants"
+          v-for="variant in [
+            ...new Map(
+              product.variants.map((item) => [item['title'], item])
+            ).values(),
+          ]"
           :key="variant.id"
           v-bind:value="variant.title"
           >{{ variant.title }}
         </IonSelectOption>
       </IonSelect>
 
-      <IonButton @click="openModalComponent">ADD TO CART</IonButton>
+      <IonButton class="addBtn" @click="openModalComponent"
+        >ADD TO CART</IonButton
+      >
     </footer>
 
     <IonModal :isOpen="isOpen" @willDismiss="willDismiss" :showBackdrop="true">
@@ -205,6 +211,10 @@ h1 {
 
 .description {
   padding: 1rem 0;
+}
+
+.addBtn {
+  z-index: 100;
 }
 
 footer {
