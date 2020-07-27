@@ -140,8 +140,8 @@ export default defineComponent({
       const target = e.target as HTMLSelectElement
       const selected = target?.value
       variant.value = selected
-        ? Array.from(uniqueVariants).find(
-            (variant) => variant.title === selected
+        ? product.value.variants.find(
+            (variant) => variant.title === selected.valueOf()
           ) || defaultVariant
         : defaultVariant
     }
