@@ -6,12 +6,19 @@
         :key="category.id"
         class="slide"
       >
-        <RouterLink :to="`/category/${category.id}`" class="category-link">
+        <RouterLink
+          :to="`/category/${category.id}`"
+          class="category-link"
+          :ariaLabel="`See products in the ${category.title} Category`"
+        >
           <article>
-            <IonImg
+            <img
               :src="category.image"
               :alt="category.title"
               class="category-image"
+              decoding="async"
+              loading="lazy"
+              aria-hidden="true"
             />
 
             <div class="category-title">
@@ -25,7 +32,7 @@
 </template>
 
 <script lang="ts">
-import { IonImg, IonContent, IonSlides, IonSlide } from '@modus/ionic-vue'
+import { IonContent, IonSlides, IonSlide } from '@modus/ionic-vue'
 import { defineComponent, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import useCategories from '@/composables/categories'
@@ -34,7 +41,6 @@ export default defineComponent({
   name: 'CategoryList',
   components: {
     RouterLink,
-    IonImg,
     IonContent,
     IonSlides,
     IonSlide,
@@ -55,6 +61,7 @@ export default defineComponent({
           slidesPerView: 3,
           spaceBetween: 10,
           loop: true,
+          grabCursor: true,
           autoplay: {
             delay: 5500,
             disableOnInteraction: true,
@@ -64,8 +71,7 @@ export default defineComponent({
         slideOpts.value = {
           // mobile options
           slidesPerView: 'auto',
-          initialSlide: 0,
-          spaceBetween: 30,
+          spaceBetween: 10,
           loop: true,
           autoplay: {
             delay: 3500,
@@ -88,14 +94,10 @@ export default defineComponent({
   padding: 0 1rem;
 }
 
-.container >>> .swiper-wrapper {
-  align-items: flex-start;
-  justify-content: stretch;
-}
-
 .slide {
   font-size: 1.25rem;
   height: auto;
+  width: 85vw;
 }
 
 .card-content {
