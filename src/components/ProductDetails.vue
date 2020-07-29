@@ -63,14 +63,16 @@
         :value="variant.title"
       >
         <IonSelectOption
-          v-for="variant in product.variants"
+          v-for="variant in uniqueVariants"
           :key="variant.id"
           v-bind:value="variant.title"
           >{{ variant.title }}
         </IonSelectOption>
       </IonSelect>
 
-      <IonButton @click="openModalComponent">ADD TO CART</IonButton>
+      <IonButton class="addBtn" @click="openModalComponent"
+        >ADD TO CART</IonButton
+      >
     </footer>
 
     <IonModal :isOpen="isOpen" @willDismiss="willDismiss" :showBackdrop="true">
@@ -126,6 +128,11 @@ export default defineComponent({
     const quantity = ref(1)
     const defaultVariant = product.value.variants[0]
     const variant = ref(defaultVariant)
+    const uniqueVariants = Array.from(
+      new Map(
+        product.value.variants.map((variant) => [variant['title'], variant])
+      ).values()
+    )
 
     function setQuantity(num: number) {
       quantity.value = num
@@ -135,8 +142,9 @@ export default defineComponent({
       const target = e.target as HTMLSelectElement
       const selected = target?.value
       variant.value = selected
-        ? product.value.variants.find((item) => item.title == selected) ||
-          defaultVariant
+        ? uniqueVariants.find(
+            (variant) => variant.title === selected.valueOf()
+          ) || defaultVariant
         : defaultVariant
     }
 
@@ -160,6 +168,7 @@ export default defineComponent({
       setVariant,
       quantity,
       variant,
+      uniqueVariants,
     }
   },
 })
@@ -205,6 +214,10 @@ h1 {
 
 .description {
   padding: 1rem 0;
+}
+
+.addBtn {
+  z-index: 100;
 }
 
 footer {
