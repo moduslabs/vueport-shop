@@ -128,9 +128,11 @@ export default defineComponent({
     const quantity = ref(1)
     const defaultVariant = product.value.variants[0]
     const variant = ref(defaultVariant)
-    const uniqueVariants = new Map(
-      product.value.variants.map((item) => [item['title'], item])
-    ).values()
+    const uniqueVariants = Array.from(
+      new Map(
+        product.value.variants.map((variant) => [variant['title'], variant])
+      ).values()
+    )
 
     function setQuantity(num: number) {
       quantity.value = num
@@ -140,7 +142,7 @@ export default defineComponent({
       const target = e.target as HTMLSelectElement
       const selected = target?.value
       variant.value = selected
-        ? product.value.variants.find(
+        ? uniqueVariants.find(
             (variant) => variant.title === selected.valueOf()
           ) || defaultVariant
         : defaultVariant
