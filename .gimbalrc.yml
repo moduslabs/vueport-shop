@@ -17,7 +17,7 @@ configs:
   lighthouse:
     threshold:
       accessibility: 80
-      'best-practices': 80
+      "best-practices": 80
       performance: 30
       pwa: 50
       seo: 90
@@ -28,7 +28,7 @@ configs:
       - path: dist/js/chunk*.js
         maxSize: 250 KB
       - path: dist/js/polyfills*.js
-        maxSize: 30 KB
+        maxSize: 31 KB
       - path: dist/js/runtime-*.js
         maxSize: 3.75 KB
       - path: dist/precache-*.js
@@ -43,7 +43,7 @@ outputs:
   markdown: artifacts/gimbal.md
 
 plugins:
-  - plugin: '@modus/gimbal-plugin-axe'
+  - plugin: "@modus/gimbal-plugin-axe"
     thresholds:
       color-contrast: serious
       page-has-heading-one: moderate
@@ -53,8 +53,8 @@ plugins:
       duplicate-id-active: serious
       duplicate-id-aria: critical
       region: moderate
-  - plugin: '@modus/gimbal-plugin-source-map-explorer'
+  - plugin: "@modus/gimbal-plugin-source-map-explorer"
     bundles:
-      - path: '*.js'
+      - path: "*.js"
         thresholds:
           <unmapped>: 5 MB
