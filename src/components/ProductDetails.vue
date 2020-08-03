@@ -1,87 +1,93 @@
 <template>
-  <IonContent>
-    <header>
-      <div class="product-image">
-        <IonImg
-          :alt="product.title"
-          :src="product.images[1]"
-          class="product-image"
-        />
-      </div>
+  <div class="ion-page">
+    <IonContent>
+      <header>
+        <div class="product-image">
+          <IonImg
+            :alt="product.title"
+            :src="product.images[1]"
+            class="product-image"
+          />
+        </div>
+
+        <IonItem lines="none">
+          <IonText color="dark">
+            <h1>{{ product.title }}</h1>
+          </IonText>
+        </IonItem>
+      </header>
+
+      <IonItem class="tags" lines="none">
+        <IonBadge
+          v-for="tag in product.tags.slice(0, 3)"
+          :key="tag"
+          color="success"
+          class="tag"
+          >{{ tag }}</IonBadge
+        >
+      </IonItem>
 
       <IonItem lines="none">
-        <IonText color="dark">
-          <h1>{{ product.title }}</h1>
-        </IonText>
+        <div class="qty_price">
+          <IonText color="primary">
+            <h2>{{ currency(product.price) }}</h2>
+          </IonText>
+          <aside className="qty_container">
+            <IonLabel>
+              Qty
+            </IonLabel>
+            <IonInput
+              name="quantity"
+              placeholder="1"
+              type="number"
+              role="form"
+              class="qty"
+              inputmode="numeric"
+              :max="variant.quantity"
+              min="1"
+              step="1"
+              @input="(event) => setQuantity(parseInt(event.target.value))"
+            />
+          </aside>
+        </div>
       </IonItem>
-    </header>
 
-    <IonItem class="tags" lines="none">
-      <IonBadge
-        v-for="tag in product.tags.slice(0, 3)"
-        :key="tag"
-        color="success"
-        class="tag"
-        >{{ tag }}</IonBadge
+      <IonItem lines="none" class="description">
+        <IonText color="medium">{{ product.description }}</IonText>
+      </IonItem>
+
+      <footer slot="fixed">
+        <IonSelect
+          placeholder="Model"
+          class="select"
+          @ionChange="setVariant"
+          :value="variant.title"
+        >
+          <IonSelectOption
+            v-for="variant in uniqueVariants"
+            :key="variant.id"
+            v-bind:value="variant.title"
+            >{{ variant.title }}
+          </IonSelectOption>
+        </IonSelect>
+
+        <IonButton class="addBtn" @click="openModalComponent"
+          >ADD TO CART</IonButton
+        >
+      </footer>
+
+      <IonModal
+        :isOpen="isOpen"
+        @willDismiss="willDismiss"
+        :showBackdrop="true"
       >
-    </IonItem>
-
-    <IonItem lines="none">
-      <div class="qty_price">
-        <IonText color="primary">
-          <h2>{{ currency(product.price) }}</h2>
-        </IonText>
-        <aside className="qty_container">
-          <IonLabel>
-            Qty
-          </IonLabel>
-          <IonInput
-            name="quantity"
-            placeholder="1"
-            type="number"
-            role="form"
-            class="qty"
-            inputmode="numeric"
-            :max="variant.quantity"
-            min="1"
-            step="1"
-            @input="(event) => setQuantity(parseInt(event.target.value))"
-          />
-        </aside>
-      </div>
-    </IonItem>
-
-    <IonItem lines="none" class="description">
-      <IonText color="medium">{{ product.description }}</IonText>
-    </IonItem>
-
-    <footer slot="fixed">
-      <IonSelect
-        placeholder="Model"
-        class="select"
-        @ionChange="setVariant"
-        :value="variant.title"
-      >
-        <IonSelectOption
-          v-for="variant in uniqueVariants"
-          :key="variant.id"
-          v-bind:value="variant.title"
-          >{{ variant.title }}
-        </IonSelectOption>
-      </IonSelect>
-
-      <IonButton class="addBtn" @click="openModalComponent"
-        >ADD TO CART</IonButton
-      >
-    </footer>
-
-    <IonModal :isOpen="isOpen" @willDismiss="willDismiss" :showBackdrop="true">
-      <CartComponent />
-      <IonButton @click="willDismiss" size="large" color="light" shape="round"
-        >X</IonButton
-      >
-    </IonModal>
-  </IonContent>
+        <CartComponent />
+        <IonButton @click="willDismiss" size="large" color="light" shape="round"
+          >X</IonButton
+        >
+      </IonModal>
+    </IonContent>
+  </div>
 </template>
 
 <script lang="ts">

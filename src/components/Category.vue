@@ -1,46 +1,48 @@
 <template>
-  <IonContent>
-    <header>
-      <IonItem lines="none">
-        <IonText color="dark">
-          <h1>{{ category.title }}</h1>
-        </IonText>
-      </IonItem>
-      <IonItem lines="none">
-        <IonText color="medium">{{ category.description }}</IonText>
-      </IonItem>
-    </header>
-    <IonList lines="full">
-      <RouterLink
-        :to="`/product/${product.id}`"
-        v-for="product in products"
-        :key="product.id"
-      >
-        <IonItem class="list-item">
-          <IonThumbnail slot="start" class="product-image-container">
-            <div class="product-image">
-              <IonImg
-                :src="product.images[0]"
-                :alt="product.title"
-                class="product-image"
-              />
-            </div>
-          </IonThumbnail>
-          <article>
-            <IonBadge color="success" class="tag">{{
-              product.tags[0]
-            }}</IonBadge>
-
-            <ion-text color="dark">
-              <h4 class="product-title">{{ product.title }}</h4>
-            </ion-text>
-
-            <IonText color="tertiary">{{ currency(product.price) }}</IonText>
-          </article>
+  <div class="ion-page">
+    <IonContent>
+      <header>
+        <IonItem lines="none">
+          <IonText color="dark">
+            <h1>{{ category.title }}</h1>
+          </IonText>
         </IonItem>
-      </RouterLink>
-    </IonList>
-  </IonContent>
+        <IonItem lines="none">
+          <IonText color="medium">{{ category.description }}</IonText>
+        </IonItem>
+      </header>
+      <IonList lines="full">
+        <RouterLink
+          :to="`/product/${product.id}`"
+          v-for="product in products"
+          :key="product.id"
+        >
+          <IonItem class="list-item">
+            <IonThumbnail slot="start" class="product-image-container">
+              <div class="product-image">
+                <IonImg
+                  :src="product.images[0]"
+                  :alt="product.title"
+                  class="product-image"
+                />
+              </div>
+            </IonThumbnail>
+            <article>
+              <IonBadge color="success" class="tag">{{
+                product.tags[0]
+              }}</IonBadge>
+
+              <ion-text color="dark">
+                <h4 class="product-title">{{ product.title }}</h4>
+              </ion-text>
+
+              <IonText color="tertiary">{{ currency(product.price) }}</IonText>
+            </article>
+          </IonItem>
+        </RouterLink>
+      </IonList>
+    </IonContent>
+  </div>
 </template>
 
 <script lang="ts">
