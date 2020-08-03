@@ -145,6 +145,11 @@ export default defineComponent({
     IonBadge,
     IonTitle,
   },
+  watch: {
+    category(to) {
+      document.title = to.value.title
+    },
+  },
 
   async setup() {
     const { product } = await useProduct(useRoute().params.productId as string)
