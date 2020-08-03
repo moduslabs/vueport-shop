@@ -2,10 +2,12 @@
   <div class="ion-page">
     <IonContent>
       <header>
+        <IonTitle>{{ category.title }}</IonTitle>
+
         <div class="product-image">
           <IonImg
             :alt="category.description"
-            :src="category.images"
+            :src="category.image"
             class="product-image"
           />
         </div>
@@ -118,6 +120,7 @@ import {
   IonModal,
   IonInput,
   IonBadge,
+  IonTitle,
 } from '@modus/ionic-vue'
 import { useRoute } from 'vue-router'
 import { useProduct } from '@/composables/products'
@@ -140,6 +143,7 @@ export default defineComponent({
     IonInput,
     CartComponent,
     IonBadge,
+    IonTitle,
   },
 
   async setup() {
