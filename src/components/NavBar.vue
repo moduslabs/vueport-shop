@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <IonTabBar id="main-content" selectedTab="collections">
+    <IonTabBar id="main-content">
       <IonMenuButton @click="openMenuComponent"></IonMenuButton>
       <IonTitle>Vueport Shop</IonTitle>
       <IonTabButton tab="collections" href="/" class="ion-hide-sm-down">
@@ -9,7 +9,11 @@
       <IonTabButton tab="about" href="/about" class="ion-hide-sm-down">
         <IonLabel>About</IonLabel>
       </IonTabButton>
-      <IonButton @click="openModalComponent" fill="clear">
+      <IonButton
+        @click="openModalComponent"
+        fill="clear"
+        class="ion-hide-sm-down"
+      >
         <IonIcon icon="cart" class="cart" />
         <IonBadge>{{ cart.totalItems }}</IonBadge>
       </IonButton>
@@ -80,5 +84,10 @@ export default defineComponent({
 <style scoped>
 .cart {
   color: grey;
+}
+ion-tab-bar {
+  justify-content: left;
+  width: 100%;
+  overflow: hidden;
 }
 </style>
