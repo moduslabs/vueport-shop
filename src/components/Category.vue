@@ -2,7 +2,11 @@
   <div class="ion-page">
     <IonContent>
       <header>
-        <IonImg :alt="category.description" :src="category.image" />
+        <IonImg
+          :alt="category.description"
+          :src="category.image"
+          aria-label="category"
+        />
         <IonItem lines="none">
           <IonText color="dark">
             <h1>{{ category.title }}</h1>
