@@ -4,20 +4,6 @@
       <header>
         <div class="product-image">
           <IonImg
-            :alt="category.description"
-            :src="category.image"
-            class="product-image"
-          />
-        </div>
-
-        <IonItem>
-          <IonText>
-            <h1>{{ category.description }}</h1>
-          </IonText>
-        </IonItem>
-
-        <div class="product-image">
-          <IonImg
             :alt="product.title"
             :src="product.images[1]"
             class="product-image"
