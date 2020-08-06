@@ -12,7 +12,7 @@
 
         <IonItem lines="none">
           <IonText color="dark">
-            <h1>{{ product.title }}</h1>
+            <h2>{{ product.title }}</h2>
           </IonText>
         </IonItem>
       </header>
@@ -109,6 +109,7 @@ import { useRoute } from 'vue-router'
 import { useProduct } from '@/composables/products'
 import cart from '@/composables/cart'
 import CartComponent from '@/components/CartComponent.vue'
+import useCategories from '@/composables/categories'
 
 export default defineComponent({
   name: 'ProductDetails',
@@ -134,6 +135,10 @@ export default defineComponent({
     const quantity = ref(1)
     const defaultVariant = product.value.variants[0]
     const variant = ref(defaultVariant)
+    const { getCategoryById } = await useCategories()
+    const category = ref(getCategoryById(product.value.category))
+    document.title = product.value.title
+
     const uniqueVariants = Array.from(
       new Map(
         product.value.variants.map((variant) => [variant['title'], variant])
@@ -175,6 +180,7 @@ export default defineComponent({
       quantity,
       variant,
       uniqueVariants,
+      category,
     }
   },
 })
