@@ -2,8 +2,6 @@
   <div class="ion-page">
     <IonContent>
       <header>
-        <IonTitle>{{ category.title }}</IonTitle>
-
         <div class="product-image">
           <IonImg
             :alt="category.description"
@@ -120,7 +118,6 @@ import {
   IonModal,
   IonInput,
   IonBadge,
-  IonTitle,
 } from '@modus/ionic-vue'
 import { useRoute } from 'vue-router'
 import { useProduct } from '@/composables/products'
@@ -143,12 +140,6 @@ export default defineComponent({
     IonInput,
     CartComponent,
     IonBadge,
-    IonTitle,
-  },
-  watch: {
-    category(to) {
-      document.title = to.value.title
-    },
   },
 
   async setup() {
@@ -160,6 +151,7 @@ export default defineComponent({
     const variant = ref(defaultVariant)
     const { getCategoryById } = await useCategories()
     const category = ref(getCategoryById(product.value.category))
+    document.title = product.value.title
 
     const uniqueVariants = Array.from(
       new Map(

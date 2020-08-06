@@ -35,9 +35,6 @@ const router = createRouter({
         {
           path: 'product/:productId',
           component: productDetails,
-          meta: {
-            title: 'Product - Vue-Port Shop',
-          },
         },
       ],
     },

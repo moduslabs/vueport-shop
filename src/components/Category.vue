@@ -92,6 +92,8 @@ export default defineComponent({
 
     const currency = getCurrencyFormat()
 
+    document.title = category.value.title
+
     return { products, currency, category }
   },
 })
