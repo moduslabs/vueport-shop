@@ -10,6 +10,7 @@ const checkout = () => import('@/views/Checkout.vue')
 const cart = () => import('@/views/Cart.vue')
 const orderCompleted = () => import('@/views/OrderCompleted.vue')
 const cartComponent = () => import('@/components/CartComponent.vue')
+const phone = () => import('@/components/phoneViewport.vue')
 const history = createWebHistory()
 const router = createRouter({
   history,
@@ -71,6 +72,13 @@ const router = createRouter({
           },
         },
       ],
+    },
+    {
+      path: '/phone',
+      component: phone,
+      meta: {
+        title: 'Phone View - Vue-Port Shop',
+      },
     },
   ],
 })
