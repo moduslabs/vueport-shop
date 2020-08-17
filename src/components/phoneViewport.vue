@@ -82,7 +82,7 @@ export default {
   justify-content: center;
   width: 128px;
   height: 28px;
-  margin: 1rem auto 0px;
+  margin: 1rem auto 0;
   background: rgb(236, 240, 245);
   border-radius: 18px;
 }
@@ -103,35 +103,6 @@ export default {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-user agent stylesheet div {
-  display: block;
-}
-ion-icon {
-  visibility: hidden;
-}
-docs-page {
-  display: grid;
-  font-size: 16px;
-  line-height: 2;
-  margin-left: var(--page-margin-left);
-  margin-top: var(--header-height);
-  overflow-x: hidden;
-  transition: transform 200ms cubic-bezier(0.2, 1, 0.2, 1) 0s,
-    -webkit-transform 200ms cubic-bezier(0.2, 1, 0.2, 1) 0s;
-}
-docs-page {
-  display: grid;
-  font-size: 16px;
-  line-height: 2;
-  margin-left: var(--page-margin-left);
-  margin-top: var(--header-height);
-  overflow-x: hidden;
-  -webkit-transition: -webkit-transform 200ms cubic-bezier(0.2, 1, 0.2, 1);
-  transition: -webkit-transform 200ms cubic-bezier(0.2, 1, 0.2, 1);
-  transition: transform 200ms cubic-bezier(0.2, 1, 0.2, 1);
-  transition: transform 200ms cubic-bezier(0.2, 1, 0.2, 1),
-    -webkit-transform 200ms cubic-bezier(0.2, 1, 0.2, 1);
-}
 body {
   background-color: var(--background);
   color: var(--text-color);
@@ -139,7 +110,6 @@ body {
   -webkit-text-size-adjust: none;
   -moz-text-size-adjust: none;
   -ms-text-size-adjust: none;
-  text-size-adjust: none;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -245,14 +215,14 @@ html {
   background-color: white;
   color: black;
   font-weight: 600;
-  box-shadow: rgba(0, 16, 46, 0.15) 0px 2px 3px;
+  box-shadow: rgba(0, 16, 46, 0.15) 0 2px 3px;
 }
 .docs-demo-mode-toggle button.is-selected {
   background-color: white;
   color: black;
   font-weight: 600;
-  -webkit-box-shadow: 0px 2px 3px rgba(0, 16, 46, 0.15);
-  box-shadow: 0px 2px 3px rgba(0, 16, 46, 0.15);
+  -webkit-box-shadow: 0 2px 3px rgba(0, 16, 46, 0.15);
+  box-shadow: 0 2px 3px rgba(0, 16, 46, 0.15);
 }
 .docs-demo-mode-toggle button {
   background-color: transparent;
@@ -289,27 +259,6 @@ html {
 * {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-}
-user agent stylesheet button {
-  -webkit-appearance: button;
-  -webkit-writing-mode: horizontal-tb !important;
-  text-rendering: auto;
-  letter-spacing: normal;
-  word-spacing: normal;
-  text-transform: none;
-  text-indent: 0px;
-  text-shadow: none;
-  display: inline-block;
-  text-align: center;
-  align-items: flex-start;
-  cursor: default;
-  box-sizing: border-box;
-  margin: 0em;
-  font: 400 13.3333px Arial;
-  padding: 1px 6px;
-  border-width: 2px;
-  border-style: outset;
-  border-image: initial;
 }
 
 .docs-demo-mode-toggle button {
@@ -348,52 +297,10 @@ user agent stylesheet button {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-user agent stylesheet button {
-  -webkit-appearance: button;
-  -webkit-writing-mode: horizontal-tb !important;
-  text-rendering: auto;
-  letter-spacing: normal;
-  word-spacing: normal;
-  text-transform: none;
-  text-indent: 0px;
-  text-shadow: none;
-  display: inline-block;
-  text-align: center;
-  align-items: flex-start;
-  cursor: default;
-  box-sizing: border-box;
-  margin: 0em;
-  font: 400 13.3333px Arial;
-  padding: 1px 6px;
-  border-width: 2px;
-  border-style: outset;
-  border-image: initial;
-}
 
-.docs-demo-device {
-  --device-padding: 1rem;
-  --device-width: 344px;
-  --device-height: 704px;
-  --device-frame-width: 12px;
-  position: sticky;
-  top: 0px;
-}
-.docs-demo-device {
-  --device-padding: 1rem;
-  --device-width: 344px;
-  --device-height: 704px;
-  --device-frame-width: 12px;
-  padding: var(--device-padding);
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-}
 * {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-}
-user agent stylesheet div {
-  display: block;
 }
 
 .docs-demo-device.ios figure {
@@ -403,12 +310,12 @@ user agent stylesheet div {
 
 .docs-demo-device > figure {
   background-size: contain;
-  box-shadow: rgba(2, 8, 20, 0.1) 0px 2px 8px, rgba(2, 8, 20, 0.08) 0px 8px 16px;
+  box-shadow: rgba(2, 8, 20, 0.1) 0 2px 8px, rgba(2, 8, 20, 0.08) 0 8px 16px;
   width: var(--device-width);
   height: var(--device-height);
   position: relative;
   z-index: 1;
-  margin: 0px;
+  margin: 0;
   background-repeat: no-repeat;
   overflow: hidden;
 }
@@ -416,9 +323,9 @@ user agent stylesheet div {
   margin: 0;
   background-size: contain;
   background-repeat: no-repeat;
-  -webkit-box-shadow: 0px 2px 8px rgba(2, 8, 20, 0.1),
-    0px 8px 16px rgba(2, 8, 20, 0.08);
-  box-shadow: 0px 2px 8px rgba(2, 8, 20, 0.1), 0px 8px 16px rgba(2, 8, 20, 0.08);
+  -webkit-box-shadow: 0 2px 8px rgba(2, 8, 20, 0.1),
+    0 8px 16px rgba(2, 8, 20, 0.08);
+  box-shadow: 0 2px 8px rgba(2, 8, 20, 0.1), 0 8px 16px rgba(2, 8, 20, 0.08);
   width: var(--device-width);
   height: var(--device-height);
   overflow: hidden;
@@ -432,20 +339,14 @@ figure {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-user agent stylesheet figure {
-  display: block;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 40px;
-  margin-inline-end: 40px;
-}
+
 .docs-demo-device {
   --device-padding: 1rem;
   --device-width: 344px;
   --device-height: 704px;
   --device-frame-width: 12px;
   position: sticky;
-  top: 0px;
+  top: 0;
 }
 .docs-demo-device {
   --device-padding: 1rem;
@@ -471,9 +372,6 @@ figure > * {
 * {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-}
-user agent stylesheet svg:not(:root) {
-  overflow: hidden;
 }
 
 .docs-demo-device.ios .docs-demo-device__ios-notch,
@@ -513,9 +411,6 @@ figure > * {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-user agent stylesheet svg:not(:root) {
-  overflow: hidden;
-}
 
 .docs-demo-device.ios > figure > iframe {
   border-radius: 38px;
@@ -525,8 +420,8 @@ user agent stylesheet svg:not(:root) {
 }
 .docs-demo-device > figure > iframe {
   position: absolute;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   width: calc(100% - var(--device-frame-width) * 2);
   height: calc(100% - var(--device-frame-width) * 2);
   z-index: 1;
@@ -559,11 +454,5 @@ figure > * {
 * {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-}
-user agent stylesheet iframe {
-  border-width: 2px;
-  border-style: inset;
-  border-color: initial;
-  border-image: initial;
 }
 </style>
