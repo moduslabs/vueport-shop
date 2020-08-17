@@ -1,9 +1,20 @@
 <template>
   <div class="docs-demo-mode-toggle">
-    <button class="is-selected" title="Toggle iOS mode">iOS</button
-    ><button title="Toggle Android mode" class="">Android</button>
+    <button
+      :class="iosSelected"
+      @click="toggleIosSelected"
+      title="Toggle iOS mode"
+    >
+      iOS</button
+    ><button
+      :class="androidSelected"
+      @click="toggleAndroidSelected"
+      title="Toggle Android mode"
+    >
+      Android
+    </button>
   </div>
-  <div class="docs-demo-device ios">
+  <div :class="divClass">
     <figure>
       <svg class="docs-demo-device__md-bar" viewBox="0 0 1384.3 40.3">
         <path
@@ -20,7 +31,7 @@
           d="M0 1V0h219v1a5 5 0 0 0-5 5v3c0 12.15-9.85 22-22 22H27C14.85 31 5 21.15 5 9V6a5 5 0 0 0-5-5z"
           fill-rule="evenodd"
         ></path></svg
-      ><iframe src="http://localhost:8080/">
+      ><iframe :src="frameSrc">
         <RouterView />
       </iframe>
     </figure>
@@ -28,8 +39,39 @@
 </template>
 
 <script>
+import { ref } from 'vue'
+
 export default {
   name: 'phoneViewport',
+  setup() {
+    const iosSelected = ref('is-selected')
+    const androidSelected = ref('')
+    const divClass = ref('docs-demo-device ios')
+    const frameSrc = ref('http://localhost:8080?ionic:mode=ios')
+
+    function toggleAndroidSelected() {
+      iosSelected.value = ''
+      androidSelected.value = 'is-selected'
+      divClass.value = 'docs-demo-device md'
+      frameSrc.value = 'http://localhost:8080?ionic:mode=md'
+    }
+
+    function toggleIosSelected() {
+      iosSelected.value = 'is-selected'
+      androidSelected.value = ''
+      divClass.value = 'docs-demo-device ios'
+      frameSrc.value = 'http://localhost:8080?ionic:mode=ios'
+    }
+
+    return {
+      iosSelected,
+      androidSelected,
+      toggleAndroidSelected,
+      toggleIosSelected,
+      divClass,
+      frameSrc,
+    }
+  },
 }
 </script>
 
@@ -358,10 +400,7 @@ user agent stylesheet div {
   background-image: url(https://ionicframework.com/docs/assets/img/iphone-device-skin.png);
   border-radius: 54px;
 }
-.docs-demo-device.ios figure {
-  background-image: url(https://ionicframework.com/docs/assets/img/iphone-device-skin.png);
-  border-radius: 54px;
-}
+
 .docs-demo-device > figure {
   background-size: contain;
   box-shadow: rgba(2, 8, 20, 0.1) 0px 2px 8px, rgba(2, 8, 20, 0.08) 0px 8px 16px;
