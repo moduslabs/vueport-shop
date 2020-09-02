@@ -1,7 +1,8 @@
 <template>
   <IonContent class="cart">
     <IonTitle v-if="cart.totalItems === 0" class="title">
-      Your <IonIcon icon="cart" /> is empty
+      Your
+      <IonIcon icon="cart" /> is empty
     </IonTitle>
 
     <IonList v-else>
@@ -53,7 +54,7 @@
       </IonItem>
       <IonLabel>{{ 'Total: ' + currency(cart.totalCost) }}</IonLabel>
       <br />
-      <RouterLink to="/cart/checkout">
+      <RouterLink to="/checkout">
         <IonButton fill="outline" color="dark">
           Checkout
         </IonButton>
@@ -62,7 +63,7 @@
   </IonContent>
 </template>
 
-<script type="ts">
+<script>
 import {
   IonContent,
   IonText,
@@ -102,24 +103,33 @@ export default defineComponent({
   },
   setup() {
     const currency = cart.getCurrencyFormat()
-    function removeItem(item){
+
+    function removeItem(item) {
       cart.remove(item)
     }
-    return { cart, currency, removeItem }
+    return {
+      cart,
+      currency,
+      removeItem,
+    }
   },
 })
 </script>
+
 <style scoped>
 .card {
   width: 100%;
 }
+
 .cart {
   text-align: center;
 }
+
 .product-image-container {
   width: 4rem;
   height: 4rem;
 }
+
 .product-image {
   border-radius: 0.2rem;
 }

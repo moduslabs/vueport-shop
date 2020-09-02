@@ -90,4 +90,10 @@ ion-tab-bar {
   width: 100%;
   overflow: hidden;
 }
+ion-title.ios {
+  margin-top: 1rem;
+}
+ion-menu-button.ios {
+  margin-left: 0.6rem;
+}
 </style>

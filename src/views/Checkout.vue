@@ -73,7 +73,7 @@
             </IonList>
           </IonItem>
           <IonItem>
-            <RouterLink to="/cart/ordercompleted">
+            <RouterLink to="/ordercompleted">
               <IonButton @click="clearCart" fill="outline" color="dark">
                 Place Order
               </IonButton>
@@ -149,9 +149,11 @@ export default defineComponent({
     const state = reactive({
       isChecked: false,
     })
+
     function check() {
       state.isChecked = !state.isChecked
     }
+
     function clearCart() {
       cart.items.value.clear()
     }

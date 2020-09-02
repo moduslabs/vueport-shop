@@ -63,4 +63,8 @@ export default defineComponent({
 .centeredTitle {
   text-align: center;
 }
+
+ion-toolbar.ios {
+  margin-top: 1rem;
+}
 </style>
