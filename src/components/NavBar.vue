@@ -2,7 +2,7 @@
   <nav>
     <IonTabBar id="main-content">
       <IonMenuButton @click="openMenuComponent"></IonMenuButton>
-      <IonTitle>Vueport Shop</IonTitle>
+      <IonTitle><RouterLink to="/shop">Vueport Shop</RouterLink></IonTitle>
       <IonTabButton tab="collections" href="/" class="ion-hide-sm-down">
         <IonLabel>Collections</IonLabel>
       </IonTabButton>
@@ -21,9 +21,9 @@
     <Menu />
     <IonModal :isOpen="isOpen" @willDismiss="willDismiss" :showBackdrop="true">
       <CartComponent />
-      <IonButton @click="willDismiss" size="small" color="light" shape="round"
-        >X</IonButton
-      >
+      <IonButton @click="willDismiss" size="small" color="light" shape="round">
+        <IonIcon icon="cart" />
+      </IonButton>
     </IonModal>
   </nav>
 </template>
@@ -44,6 +44,11 @@ import { defineComponent, ref } from 'vue'
 import Menu from '@/components/Menu.vue'
 import CartComponent from '@/components/CartComponent.vue'
 import { menuController } from '@ionic/core'
+import { close } from 'ionicons/icons'
+import { addIcons } from 'ionicons'
+
+addIcons({ close })
+
 export default defineComponent({
   name: 'NavBar',
   components: {

@@ -1,6 +1,6 @@
 <template>
   <div class="ion-page">
-    <IonContent>
+    <IonContent v-if="product">
       <header>
         <div class="product-image">
           <IonImg
@@ -33,9 +33,7 @@
             <h2>{{ currency(product.price) }}</h2>
           </IonText>
           <aside className="qty_container">
-            <IonLabel>
-              Qty
-            </IonLabel>
+            <IonLabel> Qty </IonLabel>
             <IonInput
               name="quantity"
               placeholder="1"
@@ -82,9 +80,28 @@
         :showBackdrop="true"
       >
         <CartComponent />
-        <IonButton @click="willDismiss" size="large" color="light" shape="round"
-          >X</IonButton
-        >
+
+        <IonToolbar>
+          <IonButton
+            @click="toCheckout"
+            color="primary"
+            shape="round"
+            expand="full"
+            slot="primary"
+            v-if="cart.totalCost.value > 0"
+          >
+            <IonIcon slot="start" icon="close" /> Checkout
+          </IonButton>
+          <IonButton
+            @click="willDismiss"
+            color="light"
+            shape="round"
+            expand="block"
+            slot="secondary"
+          >
+            <IonIcon slot="start" icon="close" /> Close
+          </IonButton>
+        </IonToolbar>
       </IonModal>
     </IonContent>
   </div>
@@ -104,12 +121,18 @@ import {
   IonModal,
   IonInput,
   IonBadge,
+  IonIcon,
+  IonToolbar,
 } from '@modus/ionic-vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useProduct } from '@/composables/products'
 import cart from '@/composables/cart'
 import CartComponent from '@/components/CartComponent.vue'
 import useCategories from '@/composables/categories'
+import { close } from 'ionicons/icons'
+import { addIcons } from 'ionicons'
+
+addIcons({ close })
 
 export default defineComponent({
   name: 'ProductDetails',
@@ -126,6 +149,8 @@ export default defineComponent({
     IonInput,
     CartComponent,
     IonBadge,
+    IonIcon,
+    IonToolbar,
   },
 
   async setup() {
@@ -137,7 +162,10 @@ export default defineComponent({
     const variant = ref(defaultVariant)
     const { getCategoryById } = await useCategories()
     const category = ref(getCategoryById(product.value.category))
-    document.title = product.value.title
+    const router = useRouter()
+    console.log(router)
+
+    // document.title = product.value.title
 
     const uniqueVariants = Array.from(
       new Map(
@@ -168,6 +196,10 @@ export default defineComponent({
       isOpen.value = false
     }
 
+    function toCheckout() {
+      router.push('/checkout')
+    }
+
     return {
       product,
       currency,
@@ -181,6 +213,7 @@ export default defineComponent({
       variant,
       uniqueVariants,
       category,
+      toCheckout,
     }
   },
 })

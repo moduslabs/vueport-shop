@@ -1,64 +1,59 @@
 <template>
+  <IonHeader translucent="true">
+    <IonToolbar>
+      <IonTitle>{{ 'Cart value: ' + currency(cart.totalCost.value) }}</IonTitle>
+    </IonToolbar>
+  </IonHeader>
   <IonContent class="cart">
-    <IonTitle v-if="cart.totalItems === 0" class="title">
+    <IonTitle v-if="cart.totalItems.value === 0" class="title">
       Your
       <IonIcon icon="cart" /> is empty
     </IonTitle>
 
     <IonList v-else>
-      <IonTitle>Your Cart</IonTitle>
-      <IonText> You have {{ cart.totalItems }} items in your cart </IonText>
-      <IonItem v-for="[skuId, item] in Array.from(cart.items)" :key="skuId">
-        <IonCard class="card">
-          <IonGrid>
-            <IonRow>
-              <IonCol>
-                <IonThumbnail class="product-image-container">
-                  <IonImg
-                    class="product-image"
-                    :alt="item.product.title"
-                    :src="item.product.images[0]"
-                  />
-                </IonThumbnail>
-              </IonCol>
-              <IonCol>
-                <b>
-                  <IonText color="primary">{{ item.product.title }} </IonText>
-                </b>
-                <br />
-                <i>
-                  {{ item.variant.title }}
-                </i>
-              </IonCol>
-              <IonCol>
-                Qty: <IonLabel>{{ item.quantity }}</IonLabel>
-              </IonCol>
-              <IonCol>
-                <IonText>
-                  {{ currency(item.price) }}
-                </IonText>
-              </IonCol>
-              <IonCol>
-                <IonButton
-                  @click="removeItem(skuId)"
-                  class="remove"
-                  fill="clear"
-                  color="dark"
-                >
-                  X
-                </IonButton>
-              </IonCol>
-            </IonRow>
-          </IonGrid>
-        </IonCard>
-      </IonItem>
-      <IonLabel>{{ 'Total: ' + currency(cart.totalCost) }}</IonLabel>
-      <br />
-      <RouterLink to="/checkout">
-        <IonButton fill="outline" color="dark">
-          Checkout
+      <IonItem
+        v-for="[skuId, item] in Array.from(cart.items.value)"
+        :key="skuId"
+      >
+        <IonThumbnail class="product-image-container" slot="start">
+          <IonImg
+            class="product-image"
+            :alt="item.product.title"
+            :src="item.product.images[0]"
+          />
+        </IonThumbnail>
+
+        <article class="product-content">
+          <main>
+            <IonText color="primary" class="product-title"
+              ><h6>{{ item.product.title }}</h6>
+            </IonText>
+            <IonText color="medium" class="product-variant">
+              <div>{{ item.variant.title }}</div>
+            </IonText>
+          </main>
+          <aside>
+            <IonText color="dark">
+              <h6>{{ currency(item.price) }}</h6>
+            </IonText>
+            <IonText color="medium" class="product-variant">
+              <div>
+                Qty: <span>{{ item.quantity }}</span>
+              </div>
+            </IonText>
+          </aside>
+        </article>
+
+        <IonButton
+          @click="removeItem(skuId)"
+          class="remove"
+          fill="clear"
+          color="dark"
+          slot="end"
+        >
+          <IonIcon slot="start" icon="close" />
         </IonButton>
-      </RouterLink>
+      </IonItem>
     </IonList>
   </IonContent>
 </template>
@@ -69,16 +64,13 @@ import {
   IonText,
   IonIcon,
   IonList,
-  IonItem,
   IonButton,
-  IonLabel,
   IonImg,
-  IonGrid,
-  IonRow,
-  IonCol,
   IonThumbnail,
-  IonCard,
+  IonItem,
   IonTitle,
+  IonHeader,
+  IonToolbar,
 } from '@modus/ionic-vue'
 import cart from '../composables/cart'
 import { defineComponent } from 'vue'
@@ -90,16 +82,13 @@ export default defineComponent({
     IonText,
     IonIcon,
     IonList,
-    IonItem,
     IonButton,
-    IonLabel,
     IonImg,
-    IonGrid,
-    IonRow,
-    IonCol,
     IonThumbnail,
-    IonCard,
+    IonItem,
     IonTitle,
+    IonHeader,
+    IonToolbar,
   },
   setup() {
     const currency = cart.getCurrencyFormat()
@@ -117,12 +106,17 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.card {
-  width: 100%;
+ion-list.ios {
+  margin-top: 1.825rem;
 }
 
 .cart {
   text-align: center;
+}
+
+.card {
+  width: 100%;
+  text-align: left;
 }
 
 .product-image-container {
@@ -132,5 +126,18 @@ export default defineComponent({
 
 .product-image {
   border-radius: 0.2rem;
+}
+
+.product-title {
+  font-weight: bold;
+}
+
+.product-content {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
+h6 {
+  margin: 0;
 }
 </style>
