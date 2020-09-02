@@ -3,7 +3,7 @@ import { createRouter } from '@modus/ionic-vue'
 
 const Tabs = () => import('@/components/Tabs.vue')
 const Collections = () => import('@/views/Collections.vue')
-const category = () => import('@/components/Category.vue')
+const Category = () => import('@/views/Category.vue')
 const about = () => import('@/views/About.vue')
 const productDetails = () => import('@/components/ProductDetails.vue')
 const checkout = () => import('@/views/Checkout.vue')
@@ -38,7 +38,7 @@ const router = createRouter({
         },
         {
           path: 'category/:categoryId',
-          component: category,
+          component: Category,
           meta: {
             title: 'Category - Vue-Port Shop',
           },

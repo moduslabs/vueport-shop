@@ -5,7 +5,7 @@
         <div class="product-image">
           <IonImg
             :alt="product.title"
-            :src="product.images[1]"
+            :src="product.images[1].replace('1600x900', '860x483')"
             class="product-image"
           />
         </div>

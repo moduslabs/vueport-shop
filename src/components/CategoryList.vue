@@ -13,7 +13,7 @@
         >
           <article>
             <img
-              :src="category.image"
+              :src="category.image.replace('1600x900', '280x480')"
               :alt="category.title"
               class="category-image"
               decoding="async"
