@@ -17,7 +17,7 @@ configs:
   lighthouse:
     threshold:
       accessibility: 80
-      "best-practices": 80
+      'best-practices': 80
       performance: 30
       pwa: 50
       seo: 90
@@ -43,7 +43,7 @@ outputs:
   markdown: artifacts/gimbal.md
 
 plugins:
-  - plugin: "@modus/gimbal-plugin-axe"
+  - plugin: '@modus/gimbal-plugin-axe'
     thresholds:
       color-contrast: serious
       page-has-heading-one: moderate
@@ -52,9 +52,10 @@ plugins:
       # This happened due to navigation layout. Neeed to fix after redesign
       duplicate-id-active: serious
       duplicate-id-aria: critical
+      bypass: critical
       region: moderate
-  - plugin: "@modus/gimbal-plugin-source-map-explorer"
+  - plugin: '@modus/gimbal-plugin-source-map-explorer'
     bundles:
-      - path: "*.js"
+      - path: '*.js'
         thresholds:
           <unmapped>: 5 MB
