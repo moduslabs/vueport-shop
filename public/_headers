@@ -5,7 +5,7 @@
   X-Content-Type-Options: nosniff
   Strict-Transport-Security: max-age=31536000; includeSubdomains; preload
   Referrer-Policy: origin-when-cross-origin, strict-origin-when-cross-origin
-  Feature-Policy: camera 'none'; microphone 'none'; speakers 'none'; geolocation 'none'; usb 'none'; document-write 'none'; autoplay 'none'; document-domain 'none';
+  Feature-Policy: camera 'none'; microphone 'none'; geolocation 'none'; usb 'none'; document-write 'none'; autoplay 'none'; document-domain 'none';
 
 /*.{jpg,png,svg,jpeg,ico,gif,woff,woff2}
   Cache-Control: public, max-age=31536000
