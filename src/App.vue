@@ -2,9 +2,11 @@
   <IonText v-if="error" color="warning">{{ error }}</IonText>
   <Suspense>
     <template #default>
-      <Transition v-bind="transitionProps">
-        <RouterView />
-      </Transition>
+      <RouterView v-slot="{ Component, transitionProps }">
+        <Transition v-bind="transitionProps">
+          <component :is="Component" />
+        </Transition>
+      </RouterView>
     </template>
     <template #fallback>
       <Skeleton />
@@ -16,6 +18,7 @@
 import { defineComponent, watch, onErrorCaptured, ref } from 'vue'
 import { IonText } from '@modus/ionic-vue'
 import { useRouter, RouterView } from 'vue-router'
+import Skeleton from '@/components/Skeleton.vue'
 
 import '@ionic/core/css/normalize.css'
 import '@ionic/core/css/core.css'
@@ -28,6 +31,7 @@ export default defineComponent({
   components: {
     IonText,
     RouterView,
+    Skeleton,
   },
   setup() {
     const error = ref()
@@ -57,6 +61,10 @@ export default defineComponent({
 a {
   text-decoration: none;
   color: black;
+}
+
+html.ios ion-modal .ion-page {
+  padding-top: 1.25rem;
 }
 
 [style*='--aspect-ratio'] > :first-child {

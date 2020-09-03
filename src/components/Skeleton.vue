@@ -1,40 +1,66 @@
 <template>
   <div>
-    <ion-list>
-      <ion-list-header>
-        <ion-label>
-          <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
-        </ion-label>
-      </ion-list-header>
-      <ion-item v-for="(n, idx) in Array(5)" :key="idx">
-        <ion-avatar slot="start">
-          <ion-skeleton-text animated></ion-skeleton-text>
-        </ion-avatar>
-        <ion-label>
+    <IonList>
+      <IonListHeader>
+        <IonLabel>
+          <IonSkeletonText animated style="width: 20%"></IonSkeletonText>
+        </IonLabel>
+      </IonListHeader>
+      <IonItem v-for="(n, idx) in Array(5)" :key="idx">
+        <IonAvatar slot="start">
+          <IonSkeletonText animated></IonSkeletonText>
+        </IonAvatar>
+        <IonLabel>
           <h3>
-            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+            <IonSkeletonText animated style="width: 50%"></IonSkeletonText>
           </h3>
           <p>
-            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+            <IonSkeletonText animated style="width: 80%"></IonSkeletonText>
           </p>
           <p>
-            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+            <IonSkeletonText animated style="width: 60%"></IonSkeletonText>
           </p>
-        </ion-label>
-        <ion-thumbnail slot="end">
-          <ion-skeleton-text animated></ion-skeleton-text>
-        </ion-thumbnail>
-      </ion-item>
-    </ion-list>
+        </IonLabel>
+        <IonThumbnail slot="end">
+          <IonSkeletonText animated></IonSkeletonText>
+        </IonThumbnail>
+      </IonItem>
+    </IonList>
   </div>
 </template>
 
+<script lang="ts">
+import { defineComponent } from 'vue'
+import {
+  IonList,
+  IonLabel,
+  IonItem,
+  IonThumbnail,
+  IonSkeletonText,
+  IonListHeader,
+  IonAvatar,
+} from '@modus/ionic-vue'
+
+export default defineComponent({
+  name: 'Skeleton',
+  components: {
+    IonList,
+    IonLabel,
+    IonItem,
+    IonThumbnail,
+    IonSkeletonText,
+    IonListHeader,
+    IonAvatar,
+  },
+})
+</script>
+
 <style scoped>
-.custom-skeleton ion-skeleton-text {
+.custom-skeleton IonSkeletonText {
   line-height: 13px;
 }
 
-.custom-skeleton ion-skeleton-text:last-child {
+.custom-skeleton IonSkeletonText:last-child {
   margin-bottom: 5px;
 }
 </style>

@@ -32,7 +32,7 @@
           <IonText color="primary">
             <h2>{{ currency(product.price) }}</h2>
           </IonText>
-          <aside className="qty_container">
+          <aside className="qty_container" v-if="variant">
             <IonLabel> Qty </IonLabel>
             <IonInput
               name="quantity"
@@ -54,12 +54,14 @@
         <IonText color="medium">{{ product.description }}</IonText>
       </IonItem>
 
-      <footer slot="fixed">
+      <IonToolbar slot="fixed" class="footer">
         <IonSelect
           placeholder="Model"
           class="select"
           @ionChange="setVariant"
           :value="variant.title"
+          v-if="variant"
+          slot="secondary"
         >
           <IonSelectOption
             v-for="variant in uniqueVariants"
@@ -69,10 +71,14 @@
           </IonSelectOption>
         </IonSelect>
 
-        <IonButton class="addBtn" @click="openModalComponent"
-          >ADD TO CART</IonButton
+        <IonButton
+          class="addBtn"
+          @click="addToCart"
+          slot="primary"
+          color="primary"
+          ><IonIcon slot="start" icon="cart" /> ADD TO CART</IonButton
         >
-      </footer>
+      </IonToolbar>
 
       <IonModal
         :isOpen="isOpen"
@@ -85,20 +91,12 @@
           <IonButton
             @click="toCheckout"
             color="primary"
-            shape="round"
-            expand="full"
             slot="primary"
             v-if="cart.totalCost.value > 0"
           >
-            <IonIcon slot="start" icon="close" /> Checkout
+            <IonIcon slot="start" icon="checkbox" /> Checkout
           </IonButton>
-          <IonButton
-            @click="willDismiss"
-            color="light"
-            shape="round"
-            expand="block"
-            slot="secondary"
-          >
+          <IonButton @click="willDismiss" color="light" slot="secondary">
             <IonIcon slot="start" icon="close" /> Close
           </IonButton>
         </IonToolbar>
@@ -129,10 +127,10 @@ import { useProduct } from '@/composables/products'
 import cart from '@/composables/cart'
 import CartComponent from '@/components/CartComponent.vue'
 import useCategories from '@/composables/categories'
-import { close } from 'ionicons/icons'
+import { close, checkbox } from 'ionicons/icons'
 import { addIcons } from 'ionicons'
 
-addIcons({ close })
+addIcons({ close, checkbox })
 
 export default defineComponent({
   name: 'ProductDetails',
@@ -160,12 +158,10 @@ export default defineComponent({
     const isOpen = ref(false)
     const currency = cart.getCurrencyFormat()
     const quantity = ref(1)
-    const defaultVariant = product.value.variants[0]
+    const defaultVariant = product.value.variants[0] || ''
     const variant = ref(defaultVariant)
     const { getCategoryById } = await useCategories()
     const category = ref(getCategoryById(product.value.category))
-
-    // document.title = product.value.title
 
     const uniqueVariants = Array.from(
       new Map(
@@ -187,7 +183,7 @@ export default defineComponent({
         : defaultVariant
     }
 
-    function openModalComponent() {
+    function addToCart() {
       isOpen.value = true
       cart.add(product.value, variant.value, quantity.value)
     }
@@ -205,7 +201,7 @@ export default defineComponent({
       currency,
       isOpen,
       cart,
-      openModalComponent,
+      addToCart,
       willDismiss,
       setQuantity,
       setVariant,
@@ -265,7 +261,7 @@ h1 {
   z-index: 100;
 }
 
-footer {
+.footer {
   display: flex;
   justify-content: space-around;
   align-items: center;

@@ -1,39 +1,46 @@
 <template>
-  <IonContent>
-    <IonGrid>
+  <IonContent fullScreen>
+    <IonHeader>
+      <IonToolbar>
+        <IonTitle>Checkout</IonTitle>
+      </IonToolbar>
+    </IonHeader>
+    <IonGrid class="content">
       <IonRow>
         <IonCol>
           <IonList>
-            <IonLabel>Contact Information</IonLabel>
+            <IonLabel><h1>Contact Information</h1></IonLabel>
             <Input name="First Name" inputType="text" />
             <Input name="Last Name" inputType="text" />
             <Input name="Phone Number" inputType="tel" />
             <Input name="Email" inputType="email" />
           </IonList>
           <IonList>
-            <IonLabel>Shipping Address</IonLabel>
+            <IonLabel><h1>Shipping Address</h1></IonLabel>
             <Input name="Address" inputType="text" />
             <Input name="City" inputType="text" />
             <Input name="Zip" inputType="number" />
             <Input name="State" inputType="text" />
             <Input name="Country" inputType="text" />
-            <IonLabel>Billing Address</IonLabel>
+          </IonList>
+          <IonList>
+            <IonLabel><h1>Billing Address</h1></IonLabel>
             <IonItem>
               <IonLabel>Use different Billing Address</IonLabel>
               <IonCheckbox :checked="state.isChecked" @click="check" />
             </IonItem>
-            <IonList v-if="state.isChecked">
+            <template v-if="state.isChecked">
               <Input name="Address" inputType="text" />
               <Input name="City" inputType="text" />
               <Input name="Zip" inputType="number" />
               <Input name="State" inputType="text" />
               <Input name="Country" inputType="text" />
-            </IonList>
+            </template>
           </IonList>
         </IonCol>
         <IonCol>
           <IonList>
-            <IonLabel>Payment Information</IonLabel>
+            <IonLabel><h1>Payment Information</h1></IonLabel>
             <Input name="Cardholder Name" inputType="text" />
             <Input name="Card Number" inputType="text" />
             <IonItem>
@@ -60,7 +67,7 @@
             </IonItem>
             <Input name="CVV" inputType="number" />
           </IonList>
-          <IonLabel>Order Summary</IonLabel>
+          <IonLabel><h1>Order Summary</h1></IonLabel>
           <IonItem v-for="[skuId, item] in Array.from(cart.items)" :key="skuId">
             <IonList>
               <IonLabel> {{ item.product.title }} </IonLabel>
@@ -73,18 +80,16 @@
             </IonList>
           </IonItem>
           <IonItem>
-            <RouterLink to="/ordercompleted">
-              <IonButton @click="clearCart" fill="outline" color="dark">
-                Place Order
-              </IonButton>
-            </RouterLink>
-          </IonItem>
-          <IonItem>
-            {{ 'Total: ' + currency(cart.totalCost) }}
+            {{ 'Total: ' + currency(cart.totalCost.value) }}
           </IonItem>
         </IonCol>
       </IonRow>
     </IonGrid>
+    <IonToolbar slot="fixed" class="footer">
+      <RouterLink to="/ordercompleted" slot="primary">
+        <IonButton @click="clearCart" color="primary"> Place Order </IonButton>
+      </RouterLink>
+    </IonToolbar>
   </IonContent>
 </template>
 
@@ -106,6 +111,9 @@ import {
   IonSelect,
   IonSelectOption,
   IonButton,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
 } from '@modus/ionic-vue'
 
 export default defineComponent({
@@ -124,6 +132,9 @@ export default defineComponent({
     IonSelectOption,
     IonButton,
     Input,
+    IonHeader,
+    IonToolbar,
+    IonTitle,
   },
   data() {
     return {
@@ -167,3 +178,20 @@ export default defineComponent({
   },
 })
 </script>
+<style scoped>
+.ios ion-header {
+  padding-top: 2rem;
+}
+
+.content {
+  padding-bottom: 5rem;
+}
+
+ion-list {
+  margin-bottom: 1.25rem;
+}
+
+.footer {
+  bottom: 0;
+}
+</style>

@@ -43,6 +43,7 @@ import {
   IonLabel,
   IonTabButton,
   IonIcon,
+  IonTitle,
 } from '@modus/ionic-vue'
 export default defineComponent({
   name: 'Menu',
@@ -56,6 +57,7 @@ export default defineComponent({
     IonLabel,
     IonTabButton,
     IonIcon,
+    IonTitle,
   },
 })
 </script>

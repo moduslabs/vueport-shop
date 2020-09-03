@@ -2,7 +2,6 @@
   <nav>
     <IonTabBar id="main-content">
       <IonMenuButton @click="openMenuComponent"></IonMenuButton>
-      <IonTitle><RouterLink to="/shop">Vueport Shop</RouterLink></IonTitle>
       <IonTabButton tab="collections" href="/" class="ion-hide-sm-down">
         <IonLabel>Collections</IonLabel>
       </IonTabButton>
@@ -15,7 +14,7 @@
         class="ion-hide-sm-down"
       >
         <IonIcon icon="cart" class="cart" />
-        <IonBadge>{{ cart.totalItems }}</IonBadge>
+        <IonBadge>{{ cart.totalItems.value }}</IonBadge>
       </IonButton>
     </IonTabBar>
     <Menu />
@@ -29,7 +28,6 @@
 </template>
 <script lang="ts">
 import {
-  IonTitle,
   IonTabBar,
   IonIcon,
   IonLabel,
@@ -52,7 +50,6 @@ addIcons({ close })
 export default defineComponent({
   name: 'NavBar',
   components: {
-    IonTitle,
     IonTabBar,
     IonIcon,
     IonLabel,
@@ -87,6 +84,10 @@ export default defineComponent({
 })
 </script>
 <style scoped>
+nav {
+  position: fixed;
+}
+
 .cart {
   color: grey;
 }

@@ -1,5 +1,5 @@
 <template>
-  <IonHeader translucent="true">
+  <IonHeader>
     <IonToolbar>
       <IonTitle>{{ 'Cart value: ' + currency(cart.totalCost.value) }}</IonTitle>
     </IonToolbar>

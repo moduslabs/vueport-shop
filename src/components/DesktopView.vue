@@ -117,143 +117,15 @@ export default {
   border-radius: 18px;
 }
 
-* {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-body {
-  background-color: var(--background);
-  color: var(--text-color);
-  font-family: var(--font-family);
-  -webkit-text-size-adjust: none;
-  -moz-text-size-adjust: none;
-  -ms-text-size-adjust: none;
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-html.md {
-  --ion-default-font: 'Roboto', 'Helvetica Neue', sans-serif;
-}
-
-figure > * {
-  display: block;
-  margin: 0 auto;
-}
-
 iframe {
-  background-color: rgba(0, 0, 0, 0.02);
-  -webkit-box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
   border: none;
   width: 100vw;
   height: 100vh;
 }
 
-figure {
-  margin: 0;
-}
-
-:root {
-  --ion-color-primary: #3880ff;
-  --ion-color-primary-rgb: 56, 128, 255;
-  --ion-color-primary-contrast: #ffffff;
-  --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #3171e0;
-  --ion-color-primary-tint: #4c8dff;
-  --ion-color-secondary: #3dc2ff;
-  --ion-color-secondary-rgb: 61, 194, 255;
-  --ion-color-secondary-contrast: #ffffff;
-  --ion-color-secondary-contrast-rgb: 255, 255, 255;
-  --ion-color-secondary-shade: #36abe0;
-  --ion-color-secondary-tint: #50c8ff;
-  --ion-color-tertiary: #5260ff;
-  --ion-color-tertiary-rgb: 82, 96, 255;
-  --ion-color-tertiary-contrast: #ffffff;
-  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
-  --ion-color-tertiary-shade: #4854e0;
-  --ion-color-tertiary-tint: #6370ff;
-  --ion-color-success: #2dd36f;
-  --ion-color-success-rgb: 45, 211, 111;
-  --ion-color-success-contrast: #ffffff;
-  --ion-color-success-contrast-rgb: 255, 255, 255;
-  --ion-color-success-shade: #28ba62;
-  --ion-color-success-tint: #42d77d;
-  --ion-color-warning: #ffc409;
-  --ion-color-warning-rgb: 255, 196, 9;
-  --ion-color-warning-contrast: #000000;
-  --ion-color-warning-contrast-rgb: 0, 0, 0;
-  --ion-color-warning-shade: #e0ac08;
-  --ion-color-warning-tint: #ffca22;
-  --ion-color-danger: #eb445a;
-  --ion-color-danger-rgb: 235, 68, 90;
-  --ion-color-danger-contrast: #ffffff;
-  --ion-color-danger-contrast-rgb: 255, 255, 255;
-  --ion-color-danger-shade: #cf3c4f;
-  --ion-color-danger-tint: #ed576b;
-  --ion-color-dark: #222428;
-  --ion-color-dark-rgb: 34, 36, 40;
-  --ion-color-dark-contrast: #ffffff;
-  --ion-color-dark-contrast-rgb: 255, 255, 255;
-  --ion-color-dark-shade: #1e2023;
-  --ion-color-dark-tint: #383a3e;
-  --ion-color-medium: #92949c;
-  --ion-color-medium-rgb: 146, 148, 156;
-  --ion-color-medium-contrast: #ffffff;
-  --ion-color-medium-contrast-rgb: 255, 255, 255;
-  --ion-color-medium-shade: #808289;
-  --ion-color-medium-tint: #9d9fa6;
-  --ion-color-light: #f4f5f8;
-  --ion-color-light-rgb: 244, 245, 248;
-  --ion-color-light-contrast: #000000;
-  --ion-color-light-contrast-rgb: 0, 0, 0;
-  --ion-color-light-shade: #d7d8da;
-  --ion-color-light-tint: #f5f6f9;
-}
-
-:root {
-  --accent-color: #3880ff;
-  --accent-color-rgb: 56, 128, 255;
-  --accent-color-100: #4d8dff;
-  --accent-color-200: #639cff;
-  --accent-color-300: #4d8dff;
-  --accent-color-400: #7cabff;
-  --accent-color-500: #97bdff;
-  --accent-color-600: #b2ceff;
-  --accent-color-700: #cddfff;
-  --accent-color-800: #e3edff;
-  --accent-color-900: #f0f6ff;
-  --background: #ffffff;
-  --code-background: #f5f7fa;
-  --code-color: var(--text-color--dark);
-  --code-font-family: 'SFMono-Regular', 'Roboto Mono', Consolas,
-    'Liberation Mono', Menlo, Courier, monospace;
-  --font-family: system-ui, sans-serif;
-  --header-height: 56px;
-  --heading-font-family: 'Eina', var(--font-family);
-  --line-rule-color: #edf2f6;
-  --menu-width: 240px;
-  --offset-background: #fdfdff;
-  --offset-background--dark: #f7f7ff;
-  --page-margin-left: var(--menu-width);
-  --text-color: #303943;
-  --text-color--darker: #24282e;
-  --text-color--dark: #020814;
-  --text-color--lighter: #abb2bf;
-  --text-color--light: #73849a;
-}
-
 @media screen and (min-width: 621px) {
-  html {
-    --ion-safe-area-top: var(--ion-statusbar-padding);
-  }
-
-  html {
-    --ion-font-family: var(--ion-default-font);
-  }
-
   .docs-demo-mode-toggle button.is-selected {
     background-color: white;
     color: black;
