@@ -55,20 +55,21 @@ export default {
     const iosSelected = ref('is-selected')
     const androidSelected = ref('')
     const divClass = ref('docs-demo-device ios')
-    const frameSrc = ref('http://localhost:8080/shop?ionic:mode=ios')
+    const origin = window.location.origin
+    const frameSrc = ref(`${origin}/shop?ionic:mode=ios`)
 
     function toggleAndroidSelected() {
       iosSelected.value = ''
       androidSelected.value = 'is-selected'
       divClass.value = 'docs-demo-device md'
-      frameSrc.value = 'http://localhost:8080/shop?ionic:mode=md'
+      frameSrc.value = `${origin}/shop?ionic:mode=md`
     }
 
     function toggleIosSelected() {
       iosSelected.value = 'is-selected'
       androidSelected.value = ''
       divClass.value = 'docs-demo-device ios'
-      frameSrc.value = 'http://localhost:8080/shop?ionic:mode=ios'
+      frameSrc.value = `${origin}/shop?ionic:mode=ios`
     }
 
     return {

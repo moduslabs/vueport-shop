@@ -154,7 +154,9 @@ export default defineComponent({
   },
 
   async setup() {
-    const { product } = await useProduct(useRoute().params.productId as string)
+    const { params } = useRoute()
+    const { push } = useRouter()
+    const { product } = await useProduct(params.productId as string)
     const isOpen = ref(false)
     const currency = cart.getCurrencyFormat()
     const quantity = ref(1)
@@ -162,8 +164,6 @@ export default defineComponent({
     const variant = ref(defaultVariant)
     const { getCategoryById } = await useCategories()
     const category = ref(getCategoryById(product.value.category))
-    const router = useRouter()
-    console.log(router)
 
     // document.title = product.value.title
 
@@ -197,7 +197,7 @@ export default defineComponent({
     }
 
     function toCheckout() {
-      router.push('/checkout')
+      push('/checkout')
     }
 
     return {
