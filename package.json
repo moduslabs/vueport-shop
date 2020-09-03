@@ -52,5 +52,15 @@
     "*.{html,scss,css}": [
       "prettier --write"
     ]
+  },
+  "vue": {
+    "pwa": {
+      "workboxOptions": {
+        "exclude": [
+          "_headers",
+          "_redirects"
+        ]
+      }
+    }
   }
 }
