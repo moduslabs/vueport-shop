@@ -5,17 +5,13 @@
       <IonText color="primary" class="text">
         This website was built using Modus' Ionic-Vue library, which you can
         check out on
-        <a href="https://github.com/ModusCreateOrg/ionic-vue">
-          GitHub.
-        </a>
+        <a href="https://github.com/ModusCreateOrg/ionic-vue"> GitHub. </a>
       </IonText>
       <br />
       <IonText color="danger" class="text">
         This project was built as part of Modus Create's open source projects.
         You can find out more about Modus' other projects on our
-        <a href="https://labs.moduscreate.com/">
-          website.
-        </a>
+        <a href="https://labs.moduscreate.com/"> website. </a>
       </IonText>
       <h2>Contributors</h2>
       <a href="https://github.com/djtimmy679">

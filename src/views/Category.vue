@@ -4,7 +4,7 @@
       <header>
         <IonImg
           :alt="category.description"
-          :src="category.image"
+          :src="category.image.replace('1600x900', '860x480')"
           aria-label="category"
         />
         <IonItem lines="none">
@@ -26,7 +26,7 @@
             <IonThumbnail slot="start" class="product-image-container">
               <div class="product-image">
                 <IonImg
-                  :src="product.images[0]"
+                  :src="product.images[0].replace('1600x900', '256x144')"
                   :alt="product.title"
                   class="product-image"
                 />

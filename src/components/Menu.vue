@@ -43,6 +43,7 @@ import {
   IonLabel,
   IonTabButton,
   IonIcon,
+  IonTitle,
 } from '@modus/ionic-vue'
 export default defineComponent({
   name: 'Menu',
@@ -56,11 +57,16 @@ export default defineComponent({
     IonLabel,
     IonTabButton,
     IonIcon,
+    IonTitle,
   },
 })
 </script>
 <style scoped>
 .centeredTitle {
   text-align: center;
+}
+
+ion-toolbar.ios {
+  margin-top: 1rem;
 }
 </style>

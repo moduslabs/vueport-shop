@@ -2,7 +2,6 @@
   <nav>
     <IonTabBar id="main-content">
       <IonMenuButton @click="openMenuComponent"></IonMenuButton>
-      <IonTitle>Vueport Shop</IonTitle>
       <IonTabButton tab="collections" href="/" class="ion-hide-sm-down">
         <IonLabel>Collections</IonLabel>
       </IonTabButton>
@@ -15,21 +14,20 @@
         class="ion-hide-sm-down"
       >
         <IonIcon icon="cart" class="cart" />
-        <IonBadge>{{ cart.totalItems }}</IonBadge>
+        <IonBadge>{{ cart.totalItems.value }}</IonBadge>
       </IonButton>
     </IonTabBar>
     <Menu />
     <IonModal :isOpen="isOpen" @willDismiss="willDismiss" :showBackdrop="true">
       <CartComponent />
-      <IonButton @click="willDismiss" size="small" color="light" shape="round"
-        >X</IonButton
-      >
+      <IonButton @click="willDismiss" size="small" color="light" shape="round">
+        <IonIcon icon="cart" />
+      </IonButton>
     </IonModal>
   </nav>
 </template>
 <script lang="ts">
 import {
-  IonTitle,
   IonTabBar,
   IonIcon,
   IonLabel,
@@ -44,10 +42,14 @@ import { defineComponent, ref } from 'vue'
 import Menu from '@/components/Menu.vue'
 import CartComponent from '@/components/CartComponent.vue'
 import { menuController } from '@ionic/core'
+import { close } from 'ionicons/icons'
+import { addIcons } from 'ionicons'
+
+addIcons({ close })
+
 export default defineComponent({
   name: 'NavBar',
   components: {
-    IonTitle,
     IonTabBar,
     IonIcon,
     IonLabel,
@@ -82,6 +84,10 @@ export default defineComponent({
 })
 </script>
 <style scoped>
+nav {
+  position: fixed;
+}
+
 .cart {
   color: grey;
 }
@@ -89,5 +95,11 @@ ion-tab-bar {
   justify-content: left;
   width: 100%;
   overflow: hidden;
+}
+ion-title.ios {
+  margin-top: 1rem;
+}
+ion-menu-button.ios {
+  margin-left: 0.6rem;
 }
 </style>
